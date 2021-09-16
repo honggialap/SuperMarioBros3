@@ -145,6 +145,49 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Actor\Character\Mario.cpp" />
+    <ClCompile Include="Engine\Component\Animator.cpp" />
+    <ClCompile Include="Engine\Component\AudioSource.cpp" />
+    <ClCompile Include="Engine\Component\Physics.cpp" />
+    <ClCompile Include="Engine\Component\SpriteRenderer.cpp" />
+    <ClCompile Include="Engine\Component\TileMap.cpp" />
+    <ClCompile Include="Engine\Framework\Application.cpp" />
+    <ClCompile Include="Engine\Framework\Audio.cpp" />
+    <ClCompile Include="Engine\Framework\Graphics.cpp" />
+    <ClCompile Include="Engine\Framework\Input.cpp" />
+    <ClCompile Include="Engine\Framework\Time.cpp" />
+    <ClCompile Include="Engine\Game.cpp" />
+    <ClCompile Include="Engine\GameObject.cpp" />
+    <ClCompile Include="Engine\Library\pugixml.cpp" />
+    <ClCompile Include="Engine\Player.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SuperMarioBros3.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Actor\Character\Mario.h" />
+    <ClInclude Include="Engine\Component\Animator.h" />
+    <ClInclude Include="Engine\Component\AudioSource.h" />
+    <ClInclude Include="Engine\Component\Physics.h" />
+    <ClInclude Include="Engine\Component\SpriteRenderer.h" />
+    <ClInclude Include="Engine\Component\TileMap.h" />
+    <ClInclude Include="Engine\Framework\Application.h" />
+    <ClInclude Include="Engine\Framework\Audio.h" />
+    <ClInclude Include="Engine\Framework\Graphics.h" />
+    <ClInclude Include="Engine\Framework\Input.h" />
+    <ClInclude Include="Engine\Framework\Time.h" />
+    <ClInclude Include="Engine\Game.h" />
+    <ClInclude Include="Engine\GameObject.h" />
+    <ClInclude Include="Engine\Library\pugiconfig.hpp" />
+    <ClInclude Include="Engine\Library\pugixml.hpp" />
+    <ClInclude Include="Engine\Player.h" />
+    <ClInclude Include="SuperMarioBros3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Data\GameData.xml" />
+    <Xml Include="Data\Prefab\TemplatePrefab.xml" />
+    <Xml Include="Data\Scene\DemoScene.xml" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets" Condition="Exists('..\packages\Microsoft.DXSDK.D3DX.9.29.952.8\build\native\Microsoft.DXSDK.D3DX.targets')" />
