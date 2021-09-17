@@ -1,4 +1,5 @@
 #include "Engine/Framework/Application.h"
+#include "Engine/Framework/Time.h"
 
 int WINAPI WinMain(
 	_In_ HINSTANCE hInstance,
@@ -8,21 +9,27 @@ int WINAPI WinMain(
 )
 {
 	pApplication app = new CApplication();
-	if (app->Create(hInstance, L"Application class test", L"Data/brick.ico", 1920, 1080, false))
+	pTime time = new CTime();
+	if (app->Create(hInstance, L"Time class test", L"Data/brick.ico", 1920, 1080, false))
 	{
-		int counter = 0;	
+		time->Start();
+		float exitDuration = 0;
+		float exitTime = 5000;
+
 		while (!app->HandleMessage())
 		{
-			if (counter < 100000)
+			time->Tick();
+			exitDuration += time->_elapsedMs;
+
+			if (exitDuration > exitTime)
 			{
-				counter++;
-			}
-			else
-			{
-				//app->Exit();
+				app->Exit();
 			}
 		}
 	}
+	delete time;
+	time = nullptr;
+
 	delete app;
 	app = nullptr;
 
