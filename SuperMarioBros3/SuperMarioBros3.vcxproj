@@ -151,7 +151,6 @@
     <ClCompile Include="Engine\Component\Animator.cpp" />
     <ClCompile Include="Engine\Component\AudioSource.cpp" />
     <ClCompile Include="Engine\Component\Physics.cpp" />
-    <ClCompile Include="Engine\Resource\AnimationFrame.cpp" />
     <ClCompile Include="Engine\Resource\Sprite.cpp" />
     <ClCompile Include="Engine\Component\SpriteRenderer.cpp" />
     <ClCompile Include="Engine\Component\TileMap.cpp" />
@@ -175,7 +174,6 @@
     <ClInclude Include="Engine\Component\Animator.h" />
     <ClInclude Include="Engine\Component\AudioSource.h" />
     <ClInclude Include="Engine\Component\Physics.h" />
-    <ClInclude Include="Engine\Resource\AnimationFrame.h" />
     <ClInclude Include="Engine\Resource\Sprite.h" />
     <ClInclude Include="Engine\Component\SpriteRenderer.h" />
     <ClInclude Include="Engine\Component\TileMap.h" />

@@ -81,9 +81,6 @@
     <ClCompile Include="Engine\Resource\Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Resource\AnimationFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SuperMarioBros3.h">
@@ -147,9 +144,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Engine\Resource\Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Engine\Resource\AnimationFrame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

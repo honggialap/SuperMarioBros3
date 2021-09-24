@@ -1,3 +1,11 @@
+/// <summary>
+/// 
+/// </summary>
+struct CAnimationFrame
+{
+};
+typedef CAnimationFrame* pAnimationFrame;
+
 
 /// <summary>
 /// 
