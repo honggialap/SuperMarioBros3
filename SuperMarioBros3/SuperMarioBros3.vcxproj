@@ -147,15 +147,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Actor\Character\Mario.cpp" />
+    <ClCompile Include="Engine\Resource\Animation.cpp" />
     <ClCompile Include="Engine\Component\Animator.cpp" />
     <ClCompile Include="Engine\Component\AudioSource.cpp" />
     <ClCompile Include="Engine\Component\Physics.cpp" />
+    <ClCompile Include="Engine\Resource\AnimationFrame.cpp" />
+    <ClCompile Include="Engine\Resource\Sprite.cpp" />
     <ClCompile Include="Engine\Component\SpriteRenderer.cpp" />
     <ClCompile Include="Engine\Component\TileMap.cpp" />
     <ClCompile Include="Engine\Framework\Application.cpp" />
     <ClCompile Include="Engine\Framework\Audio.cpp" />
     <ClCompile Include="Engine\Framework\Graphics.cpp" />
     <ClCompile Include="Engine\Framework\Input.cpp" />
+    <ClCompile Include="Engine\Resource\SoundClip.cpp" />
+    <ClCompile Include="Engine\Resource\Texture.cpp" />
     <ClCompile Include="Engine\Framework\Time.cpp" />
     <ClCompile Include="Engine\Game.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />
@@ -166,15 +171,20 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Character\Mario.h" />
+    <ClInclude Include="Engine\Resource\Animation.h" />
     <ClInclude Include="Engine\Component\Animator.h" />
     <ClInclude Include="Engine\Component\AudioSource.h" />
     <ClInclude Include="Engine\Component\Physics.h" />
+    <ClInclude Include="Engine\Resource\AnimationFrame.h" />
+    <ClInclude Include="Engine\Resource\Sprite.h" />
     <ClInclude Include="Engine\Component\SpriteRenderer.h" />
     <ClInclude Include="Engine\Component\TileMap.h" />
     <ClInclude Include="Engine\Framework\Application.h" />
     <ClInclude Include="Engine\Framework\Audio.h" />
     <ClInclude Include="Engine\Framework\Graphics.h" />
     <ClInclude Include="Engine\Framework\Input.h" />
+    <ClInclude Include="Engine\Resource\SoundClip.h" />
+    <ClInclude Include="Engine\Resource\Texture.h" />
     <ClInclude Include="Engine\Framework\Time.h" />
     <ClInclude Include="Engine\Game.h" />
     <ClInclude Include="Engine\GameObject.h" />

@@ -4,6 +4,15 @@
 /// <summary>
 /// 
 /// </summary>
+struct CKeyHandler
+{
+};
+typedef CKeyHandler* pKeyHandler;
+
+
+/// <summary>
+/// 
+/// </summary>
 struct CInput
 {
 };
