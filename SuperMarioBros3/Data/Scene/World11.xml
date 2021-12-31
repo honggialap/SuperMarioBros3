@@ -10,7 +10,7 @@
 	<GameObject actor="2003" name="score" source="Data/Asset/World/Score.xml" x="0" y="0" gridX="0" gridY="0" layer="1" active="true" />
 
 	<!--Main Character-->
-	<GameObject actor="3001" name="mario" source="Data/Asset/World/Character/Mario/Mario.xml" x="1000" y="200" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="3001" name="mario" source="Data/Asset/World/Character/Mario/Mario.xml" x="2000" y="200" gridX="0" gridY="0" layer="2" active="true" />
 
 	<!--NPC-->
 	<GameObject actor="3004" name="goomba01" source="Data/Asset/World/Character/Goomba/Goomba.xml" x="100" y="100" gridX="1" gridY="1" layer="1" active="true" />
@@ -20,8 +20,10 @@
 	<GameObject actor="3004" name="redGoomba01" source="Data/Asset/World/Character/Goomba/RedGoomba.xml" x="500" y="100" gridX="1" gridY="1" layer="1" active="true" />
 
 	<GameObject actor="3005" name="koopa01" source="Data/Asset/World/Character/Koopa/Koopa.xml" x="100" y="400" gridX="1" gridY="-1" layer="1" active="true" />
-	<GameObject actor="3005" name="redKoopa01" source="Data/Asset/World/Character/Koopa/RedKoopa.xml" x="200" y="400" gridX="1" gridY="-1" layer="1" active="true" />
-	<GameObject actor="3005" name="redKoopa02" source="Data/Asset/World/Character/Koopa/RedKoopa.xml" x="300" y="400" gridX="1" gridY="-1" layer="1" active="true" />
+	<!--
+	<GameObject actor="3005" name="redKoopa01" source="Data/Asset/World/Character/Koopa/RedKoopa.xml" x="2400" y="400" gridX="1" gridY="-1" layer="1" active="true" />
+	-->
+	<GameObject actor="3005" name="redKoopa02" source="Data/Asset/World/Character/Koopa/RedKoopa.xml" x="2300" y="300" gridX="1" gridY="-1" layer="1" active="true" />
 	<GameObject actor="3005" name="wingKoopa01" source="Data/Asset/World/Character/Koopa/WingKoopa.xml" x="400" y="400" gridX="0" gridY="0" layer="1" active="true" />
 	<GameObject actor="3005" name="wingKoopa02" source="Data/Asset/World/Character/Koopa/WingKoopa.xml" x="500" y="400" gridX="0" gridY="0" layer="1" active="true" />
 	<GameObject actor="3005" name="wingKoopa03" source="Data/Asset/World/Character/Koopa/WingKoopa.xml" x="600" y="400" gridX="0" gridY="0" layer="1" active="true" />

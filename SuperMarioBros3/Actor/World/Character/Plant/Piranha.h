@@ -26,6 +26,7 @@ public:
 		float posX, float posY, int gridX, int gridY, unsigned int layer
 	) : CGameObject(game, scene, id, name, prefabSource, posX, posY, gridX, gridY, layer) {};
 
+
 	/* Lifecycle */
 	virtual void Load();
 	virtual void Start();
@@ -34,7 +35,7 @@ public:
 
 
 	/* Child */
-	pPiranhaSensor _sensor;
+	pPiranhaSensor _sensor = nullptr;
 
 
 	/* Body */
@@ -72,8 +73,8 @@ public:
 		EXIT
 	};
 	EActionStage _actionStage = EActionStage::START;
-	EAction _action;
-	EAction _nextAction;
+	EAction _action = EAction::HIDE;
+	EAction _nextAction = EAction::HIDE;
 
 	void SetAction(EAction action)
 	{

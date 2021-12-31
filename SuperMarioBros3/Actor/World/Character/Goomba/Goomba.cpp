@@ -35,6 +35,7 @@ void CGoomba::Start()
 	_start = true;
 	_left = true;
 	_ax = 0.0f;
+
 	_ay = 0.0f;
 	SetAction(EAction::WALK);
 }
@@ -363,6 +364,7 @@ int CGoomba::IsCollidable()
 		return 0;
 		break;
 	}
+	return 0;
 }
 
 int CGoomba::IsBlocking()

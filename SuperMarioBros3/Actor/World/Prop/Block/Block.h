@@ -53,8 +53,8 @@ public:
 
 
 	/* Logic */
-	bool _topBounce;
-	bool _leftBounce;
+	bool _topBounce = false;
+	bool _leftBounce = false;
 	bool _return = false;
 	float _origin = 0;
 	pMario _target = nullptr;
@@ -90,8 +90,8 @@ public:
 		EXIT
 	};
 	EActionStage _actionStage = EActionStage::START;
-	EAction _action;
-	EAction _nextAction;
+	EAction _action = EAction::IDLE;
+	EAction _nextAction = EAction::IDLE;
 
 	void SetAction(EAction action)
 	{

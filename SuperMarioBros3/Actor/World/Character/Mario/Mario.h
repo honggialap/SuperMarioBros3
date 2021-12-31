@@ -280,6 +280,7 @@ public:
 	float POWERUP_INTERVAL = 0;
 	float INVINCIBLE_COUNTDOWN = 0;
 	float DEFLECT_FORCE = 0;
+	float SHELL_OFFSET = 0;
 
 	/* Logic */
 	enum class EPower

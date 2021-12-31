@@ -270,12 +270,13 @@ void CCollider::Process(float elapsedMs, std::vector<pGameObject>* coObjects)
 		{
 			pCollision e = _coEvents[i];
 			if (e->_destroy) continue;
-			if (e->_target->IsBlocking()) continue;  // blocking collisions will be handled later, skip them
-
 			if (e->_overlapping)
 			{
 				_gameObject->OnCollisionWith(e);
 			}
+			if (e->_target->IsBlocking()) continue;  // blocking collisions will be handled later, skip them
+
+
 		}
 		for (UINT i = 0; i < _coEvents.size(); i++) delete _coEvents[i];
 	}

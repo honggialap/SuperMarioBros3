@@ -79,9 +79,10 @@ public:
 	/* Stats */
 	float GRAVITY = 0;
 	float WALK_SPEED = 0;
+	float SPIN_SPEED = 0;
 	float JUMP_FORCE = 0;
+	float RESTORE_LIMIT = 0;
 	float DECAY_INTERVAL = 0;
-	float JUMP_INTERVAL = 0;
 
 
 	/* Logic */
@@ -94,15 +95,13 @@ public:
 	bool _wing = false;
 	bool _left = false;
 	bool _ground = false;
-	float _currentDecayInterval = 0;
-	float _currentJumpInterval = 0;
-
+	float _decayInterval = 0;
+	float _restoreLimit = 0;
 
 	/* State */
 	enum class EAction
 	{
-		WALK,
-		JUMP,
+		MOVE,
 		RETRACT,
 		SPIN,
 		DIE,
@@ -114,8 +113,8 @@ public:
 		EXIT
 	};
 	EActionStage _actionStage = EActionStage::START;
-	EAction _action = EAction::WALK;
-	EAction _nextAction = EAction::WALK;
+	EAction _action = EAction::MOVE;
+	EAction _nextAction = EAction::MOVE;
 
 	void SetAction(EAction action)
 	{
@@ -134,8 +133,7 @@ public:
 	};
 
 	void HandleAction(float elapsedMs);
-	void Walk(float elapsedMs);
-	void Jump(float elapsedMs);
+	void Move(float elapsedMs);
 	void Retract(float elapsedMs);
 	void Spin(float elapsedMs);
 	void Die(float elapsedMs);

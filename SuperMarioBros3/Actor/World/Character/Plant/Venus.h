@@ -60,8 +60,8 @@ public:
 	virtual void Render();
 
 	/* Child */
-	pVenusFireball _fireball;
-	pVenusSensor _sensor;
+	pVenusFireball _fireball = nullptr;
+	pVenusSensor _sensor = nullptr;
 
 	/* Body */
 	bool _renderBody = false;
@@ -84,8 +84,8 @@ public:
 		RED_VENUS
 	};
 	EType _type = EType::VENUS;
-	bool _left;
-	bool _up;
+	bool _left = false;
+	bool _up = false;
 	float _currentHideInterval = 0;
 	float _currentStandInterval = 0;
 	float _shootStandInterval = 0;
@@ -107,8 +107,8 @@ public:
 		EXIT
 	};
 	EActionStage _actionStage = EActionStage::START;
-	EAction _action;
-	EAction _nextAction;
+	EAction _action = EAction::HIDE;
+	EAction _nextAction = EAction::HIDE;
 
 	void SetAction(EAction action)
 	{

@@ -204,6 +204,7 @@ int CLeaf::IsCollidable()
 		return 0;
 		break;
 	}
+	return 0;
 }
 
 int CLeaf::IsBlocking()

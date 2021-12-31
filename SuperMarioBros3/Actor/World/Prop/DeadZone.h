@@ -28,6 +28,7 @@ public:
 	/* Logic */
 	enum class EAction
 	{
+		DEFAULT
 	};
 	enum class EActionStage
 	{
@@ -36,8 +37,8 @@ public:
 		EXIT
 	};
 	EActionStage _actionStage = EActionStage::START;
-	EAction _action;
-	EAction _nextAction;
+	EAction _action = EAction::DEFAULT;
+	EAction _nextAction = EAction::DEFAULT;
 
 	void SetAction(EAction action)
 	{

@@ -480,6 +480,7 @@
 		POWERUP_INTERVAL ="200"
 		INVINCIBLE_COUNTDOWN="5000"
 		DEFLECT_FORCE="1.5"
+		SHELL_OFFSET="32"
 		/>
 	
 	<Body tag="small" width ="62.0" height="64.0" offsetX="0.0" offsetY="32.0"/>

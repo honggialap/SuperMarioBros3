@@ -65,8 +65,8 @@ public:
 		EXIT
 	};
 	EActionStage _actionStage = EActionStage::START;
-	EAction _action;
-	EAction _nextAction;
+	EAction _action = EAction::IDLE;
+	EAction _nextAction = EAction::IDLE;
 
 	void SetAction(EAction action)
 	{

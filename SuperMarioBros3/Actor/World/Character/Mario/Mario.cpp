@@ -69,6 +69,7 @@ void CMario::Load()
 	KICK_INTERVAL = statsNode.attribute("KICK_INTERVAL").as_float();
 	INVINCIBLE_COUNTDOWN = statsNode.attribute("INVINCIBLE_COUNTDOWN").as_float();
 	DEFLECT_FORCE = statsNode.attribute("DEFLECT_FORCE").as_float();
+	SHELL_OFFSET = statsNode.attribute("SHELL_OFFSET").as_float();
 	/* Weapon */
 }
 
@@ -103,6 +104,19 @@ void CMario::Update(float elapsedMs)
 	{
 		SetPosition(100, 100);
 		SetNextAction(EAction::IDLE);
+	}
+
+	if (_hold && _shell != nullptr)
+	{
+		if (_left) _shell->SetPosition(_x - SHELL_OFFSET, _y);
+		else _shell->SetPosition(_x + SHELL_OFFSET, _y);
+		_shell->_vy = 0;
+		if (_shell->_action == CKoopa::EAction::MOVE)
+		{
+			Hit();
+			_hold = false;
+			_shell = nullptr;
+		}
 	}
 
 	_vx += _ax * elapsedMs;
@@ -1553,6 +1567,7 @@ int CMario::IsCollidable()
 		return 0;
 		break;
 	}
+	return 0;
 }
 
 int CMario::IsBlocking()
@@ -1724,11 +1739,39 @@ void CMario::OnCollisionWith(pCollision e)
 			if (koopa->_wing) koopa->_wing = false;
 			else koopa->SetNextAction(CKoopa::EAction::RETRACT);
 			_vy = DEFLECT_FORCE;
+
+			if (koopa->_action == CKoopa::EAction::RETRACT)
+			{
+				koopa->SetNextAction(CKoopa::EAction::SPIN);
+			}
 		}
 		else if (e->_nx != 0)
 		{
-			if (!_invincible) Hit();
-			_vy = DEFLECT_FORCE;
+			if (koopa->_action == CKoopa::EAction::RETRACT)
+			{
+				if (!_hold && _game->IsDown(ACTION))
+				{
+					_shell = koopa;
+					_hold = true;
+				}
+				else
+				{
+					if (e->_nx > 0) koopa->_left = true;
+					else koopa->_left = false;
+					koopa->SetNextAction(CKoopa::EAction::SPIN);
+					SetNextAction(CMario::EAction::KICK);
+				}
+			}
+			else
+			{
+				if (!_invincible)
+				{
+					Hit();
+					_vy = DEFLECT_FORCE;
+					_shell = nullptr;
+					_hold = false;
+				}
+			}
 		}
 	}
 

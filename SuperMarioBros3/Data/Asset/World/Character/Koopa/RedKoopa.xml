@@ -2,7 +2,7 @@
 
 	<Sprites>
 		<!--BBox-->
-		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="9991" textureId="0" left="0" top="0" width ="64" height="60" offsetX="0" offsetY="28"/>
 
 		<Sprite id="1001" textureId="2" left="4" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
 		<Sprite id="1002" textureId="2" left="76" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
@@ -94,10 +94,11 @@
 		GRAVITY="0.0025"
 		WALK_SPEED ="0.25"
 		JUMP_FORCE ="1"
-		JUMP_INTERVAL ="2000"
 		DECAY_INTERVAL="2000"
+		SPIN_SPEED = "0.8"
+		RESTORE_LIMIT = "6000"
 		/>
-	<Body tag="small" width ="64" height="64" offsetX="0" offsetY="32"/>
+	<Body tag="small" width ="64" height="60" offsetX="0" offsetY="28"/>
 	<GameObject actor="3006" name="sensor" source="Data/Asset/World/Character/Koopa/KoopaSensor.xml"/>
 
 </Prefab>

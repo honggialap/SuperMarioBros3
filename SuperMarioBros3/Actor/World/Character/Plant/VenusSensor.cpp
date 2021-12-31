@@ -16,10 +16,6 @@ void CVenusSensor::Render()
 {
 }
 
-void CVenusSensor::HandleAction(float elapsedMs)
-{
-}
-
 int CVenusSensor::IsCollidable()
 {
 	return 0;

@@ -42,7 +42,7 @@ void CBackground::Render()
 	float boundRight = _game->cameraX + _game->_graphics->_backBufferWidth + BUFFER_CAM;
 	float boundBottom = _game->cameraY - _game->_graphics->_backBufferHeight - BUFFER_CAM;
 
-	for (int i = 0; i < _cells.size(); i++)
+	for (unsigned int i = 0; i < _cells.size(); i++)
 	{
 		float renderX = _x + (i % _mapWidth) * _cellWidth;
 		float renderY = _y - (i / _mapWidth) * _cellHeight;

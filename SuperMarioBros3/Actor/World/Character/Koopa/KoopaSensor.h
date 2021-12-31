@@ -2,7 +2,8 @@
 #include "../../../../Engine/GameObject.h"
 
 #pragma region Sprite ID
-#define BBOX							9991
+#define LEFT_BBOX							9991
+#define RIGHT_BBOX							9992
 #pragma endregion
 
 #pragma region Animation ID
@@ -18,45 +19,26 @@ public:
 		float posX, float posY, int gridX, int gridY, unsigned int layer
 	) : CGameObject(game, scene, id, name, prefabSource, posX, posY, gridX, gridY, layer) {};
 
-	/* Binding Command */
-	/* Stats */
 	/* Lifecycle */
 	virtual void Load();
 	virtual void Start();
 	virtual void Update(float elapsedMs);
 	virtual void Render();
 
+	/* Body */
+	bool _renderBody = false;
+	float LEFT_BODY_WIDTH = 0;
+	float LEFT_BODY_HEIGHT = 0;
+	float LEFT_BODY_OFFSETX = 0;
+	float LEFT_BODY_OFFSETY = 0;
+	float RIGHT_BODY_WIDTH = 0;
+	float RIGHT_BODY_HEIGHT = 0;
+	float RIGHT_BODY_OFFSETX = 0;
+	float RIGHT_BODY_OFFSETY = 0;
+
 	/* Logic */
-	enum class EAction
-	{
-	};
-	enum class EActionStage
-	{
-		START,
-		PROGRESS,
-		EXIT
-	};
-	EActionStage _actionStage = EActionStage::START;
-	EAction _action;
-	EAction _nextAction;
-
-	void SetAction(EAction action)
-	{
-		_action = action;
-		_actionStage = EActionStage::START;
-	};
-	void SetNextAction(EAction action)
-	{
-		_nextAction = action;
-		_actionStage = EActionStage::EXIT;
-	};
-	void NextAction()
-	{
-		_action = _nextAction;
-		_actionStage = EActionStage::START;
-	};
-
-	void HandleAction(float elapsedMs);
+	bool _left = false;
+	bool _activate = false;
 
 	int IsCollidable();
 	int IsBlocking();

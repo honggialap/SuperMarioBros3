@@ -188,6 +188,7 @@ int CBrick::IsCollidable()
 		return 0;
 		break;
 	}
+	return 0;
 }
 
 int CBrick::IsBlocking()
@@ -202,6 +203,7 @@ int CBrick::IsBlocking()
 		return 0;
 		break;
 	}
+	return 0;
 }
 
 void CBrick::GetBoundingBox(float& left, float& top, float& right, float& bottom)
