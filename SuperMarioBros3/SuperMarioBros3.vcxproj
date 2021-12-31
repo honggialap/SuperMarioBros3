@@ -189,6 +189,26 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Debug\GridMaker.exe" />
+    <None Include="Data\Texture\World11MainSection-origin_map.tmx" />
+    <None Include="Data\Texture\World11SubSection-origin_map.tmx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Data\Texture\BBox.png" />
+    <Image Include="Data\Texture\Enemy.png" />
+    <Image Include="Data\Texture\Goal.png" />
+    <Image Include="Data\Texture\HUD.png" />
+    <Image Include="Data\Texture\Intro.png" />
+    <Image Include="Data\Texture\Item.png" />
+    <Image Include="Data\Texture\Mario.png" />
+    <Image Include="Data\Texture\Prop.png" />
+    <Image Include="Data\Texture\SMB3_1-1_map.png" />
+    <Image Include="Data\Texture\w11mapb.png" />
+    <Image Include="Data\Texture\World11MainSection-origin.png" />
+    <Image Include="Data\Texture\World11MainSection.png" />
+    <Image Include="Data\Texture\World11SubSection-origin.png" />
+    <Image Include="Data\Texture\World11SubSection.png" />
+    <Image Include="Data\Texture\WorldMap.png" />
+    <Image Include="Data\Texture\ww11map.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
