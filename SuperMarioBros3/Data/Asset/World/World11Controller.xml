@@ -1,0 +1,12 @@
+<Prefab>
+
+	<Stats>
+		<Camera id ="0" targetName="mario"
+				leftBound ="0" topBound ="1728" rightBound ="10240" bottomBound ="869"
+				trackWidth ="320" trackHeight ="256" trackOffsetX ="0" trackOffsetY ="-128"/>
+		<Camera id ="1" targetName="mario"
+				leftBound ="11776" topBound ="768" rightBound ="11968" bottomBound ="869"
+				trackWidth ="320" trackHeight ="512" trackOffsetX ="0" trackOffsetY ="0"/>
+	</Stats>
+
+</Prefab>

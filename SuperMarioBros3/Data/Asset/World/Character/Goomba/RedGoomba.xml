@@ -1,0 +1,48 @@
+<Prefab>
+
+	<Sprites>
+		<!--BBox-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+		<!--GOOMBA-->
+		<Sprite id="1001" textureId="2" left="4" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1002" textureId="2" left="76" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1003" textureId="2" left="148" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<!--RED GOOMBA-->
+		<Sprite id="2001" textureId="2" left="300" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2002" textureId="2" left="372" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2003" textureId="2" left="444" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<!--GOOMBA WING-->
+		<Sprite id="3001" textureId="2" left="516" top="4" width="96" height="64" offsetX="0" offsetY="48"/>
+		<Sprite id="3002" textureId="2" left="620" top="4" width="96" height="64" offsetX="0" offsetY="48"/>
+	</Sprites>
+
+	<Animations>
+		<Animation id="1001">
+			<Frame spriteId="1001" time="200"/>
+			<Frame spriteId="1002" time="200"/>
+		</Animation>
+		<Animation id="2001">
+			<Frame spriteId="2001" time="200"/>
+			<Frame spriteId="2002" time="200"/>
+		</Animation>
+		<Animation id="3001">
+			<Frame spriteId="3001" time="150"/>
+			<Frame spriteId="3002" time="150"/>
+			<Frame spriteId="3001" time="150"/>
+			<Frame spriteId="3002" time="150"/>
+			<Frame spriteId="3001" time="150"/>
+		</Animation>
+	</Animations>
+
+	<Stats
+		renderBody="false"
+		type ="1"
+		wing ="true"
+		GRAVITY="0.0025"
+		WALK_SPEED ="0.25"
+		JUMP_FORCE ="1"
+		JUMP_INTERVAL ="2000"
+		DECAY_INTERVAL="2000"
+		/>
+	<Body tag="small" width ="64" height="64" offsetX="0" offsetY="32"/>
+</Prefab>

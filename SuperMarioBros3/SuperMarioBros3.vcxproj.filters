@@ -1,160 +1,597 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{eb59922e-9363-4a84-a23a-ddd72a6c7717}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="World">
+      <UniqueIdentifier>{735c0454-7fab-4784-ba8e-08dfd0fa2d7d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="World\Characters">
+      <UniqueIdentifier>{6baffb7a-73e4-45ad-a0f5-5bcf20b63e27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Characters\Piranha">
+      <UniqueIdentifier>{ec5afd15-f152-4426-a30b-cc29bf66686b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Characters\Venus">
+      <UniqueIdentifier>{e71314b9-f928-4b54-ad01-8c052191caeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Characters\Goomba">
+      <UniqueIdentifier>{39337cc5-0387-4890-8b5d-87eb6ad85b18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Characters\Koopa">
+      <UniqueIdentifier>{4337cc99-0189-42f2-986b-4a0b30b40d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Characters\Mario">
+      <UniqueIdentifier>{2b351538-a6ca-4d8b-92c8-5ff3ddbf41e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Items">
+      <UniqueIdentifier>{dfa8641e-6eb4-47d2-bac3-09029736cd88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Items\Coin">
+      <UniqueIdentifier>{5c8d0145-b333-4cee-a229-dde89d4d1cfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Items\Mushroom">
+      <UniqueIdentifier>{96be6f84-8988-4e2b-9904-1d8e1084c47f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Items\ExtraLife">
+      <UniqueIdentifier>{c2fc03cd-8fc5-4454-8402-c0d4df09f49f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Items\Leaf">
+      <UniqueIdentifier>{664b70d0-3e2a-43fc-b61e-a6df5c29b429}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props">
+      <UniqueIdentifier>{04621aba-1be5-4cf2-8349-d31c97f20c47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\HollowedPlatform">
+      <UniqueIdentifier>{c672dd3c-7488-46d1-8118-dc636b8aabc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\SolidPlatform">
+      <UniqueIdentifier>{46b3162f-5f7a-4580-ba13-d6bc88a3fdbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\Pipe">
+      <UniqueIdentifier>{ae6ad38d-90ad-4813-959d-f978cef521b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\Brick">
+      <UniqueIdentifier>{7d277a9e-dde4-4546-81bc-6730860cfac2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\Block">
+      <UniqueIdentifier>{0ba984a3-7e7c-4386-9533-2249dcf7c118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\Spawner">
+      <UniqueIdentifier>{767774e9-51a5-41e7-a94d-60650c9cce4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{b73541a5-1cc9-476d-9e8b-c51e0bb202f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\DeadZone">
+      <UniqueIdentifier>{99a3130a-44b7-452b-a4cd-a20e31dae2ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\Switch">
+      <UniqueIdentifier>{6363dbea-6cc1-4d33-a485-f801780bcfe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\Background">
+      <UniqueIdentifier>{d53e8fcc-d5f4-4895-80ed-9c36380d5f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Items\Flower">
+      <UniqueIdentifier>{4ef7aea8-35db-49a5-b2ab-723148002ee1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Controller">
+      <UniqueIdentifier>{1ed5e5fd-d199-4859-a237-f1b7621cc479}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Controller\GameMaster">
+      <UniqueIdentifier>{dd4a2b30-460c-4919-bfbb-6e6bfa5862c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Controller\Intro">
+      <UniqueIdentifier>{41ff2b09-fddd-41fd-b25b-40af70a2726b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Controller\WorldMap">
+      <UniqueIdentifier>{bd407da6-bc73-4412-a857-c46418693cc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Controller\World">
+      <UniqueIdentifier>{7ad33259-9545-4389-ac5b-7a35d3f8240a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\Props\Goal">
+      <UniqueIdentifier>{05c492b5-95da-42f6-a772-26be704d92cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="World\UI">
+      <UniqueIdentifier>{cf8899d9-b19b-46d7-8898-ddced8148867}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Character\Mario\MarioTail.cpp">
+      <Filter>World\Characters\Mario</Filter>
     </ClCompile>
-    <ClCompile Include="SuperMarioBros3.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Character\Mario\Mario.cpp">
+      <Filter>World\Characters\Mario</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Framework\Application.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Character\Mario\MarioFireball.cpp">
+      <Filter>World\Characters\Mario</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Framework\Time.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Character\Goomba\Goomba.cpp">
+      <Filter>World\Characters\Goomba</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Framework\Graphics.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Character\Plant\VenusSensor.cpp">
+      <Filter>World\Characters\Venus</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Framework\Input.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Character\Plant\Venus.cpp">
+      <Filter>World\Characters\Venus</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Framework\Audio.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Character\Plant\VenusFireball.cpp">
+      <Filter>World\Characters\Venus</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Library\pugixml.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Character\Plant\PiranhaSensor.cpp">
+      <Filter>World\Characters\Piranha</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\SpriteRenderer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Character\Plant\Piranha.cpp">
+      <Filter>World\Characters\Piranha</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\Animator.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Item\Coin.cpp">
+      <Filter>World\Items\Coin</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\Physics.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Item\ExtraLife.cpp">
+      <Filter>World\Items\ExtraLife</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Component\AudioSource.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Item\Leaf.cpp">
+      <Filter>World\Items\Leaf</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Game.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Item\Mushroom.cpp">
+      <Filter>World\Items\Mushroom</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\GameObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Prop\Platform\HollowedPlatform.cpp">
+      <Filter>World\Props\HollowedPlatform</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Player.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Prop\Platform\SolidPlatform.cpp">
+      <Filter>World\Props\SolidPlatform</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\Character\Mario.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Prop\Block\Brick.cpp">
+      <Filter>World\Props\Brick</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Resource\SoundClip.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Prop\Block\Block.cpp">
+      <Filter>World\Props\Block</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Resource\Texture.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Prop\Spawner.cpp">
+      <Filter>World\Props\Spawner</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Resource\Animation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Prop\Pipe\EmptyPipe.cpp">
+      <Filter>World\Props\Pipe</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Resource\Sprite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Actor\World\Prop\Pipe\EntryPipe.cpp">
+      <Filter>World\Props\Pipe</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\Prop\Pipe\ExitPipe.cpp">
+      <Filter>World\Props\Pipe</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\Prop\Pipe\Pipe.cpp">
+      <Filter>World\Props\Pipe</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\Prop\DeadZone.cpp">
+      <Filter>World\Props\DeadZone</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\Prop\Switch.cpp">
+      <Filter>World\Props\Switch</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\Item\Flower.cpp">
+      <Filter>World\Items\Flower</Filter>
     </ClCompile>
     <ClCompile Include="Actor\Background.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>World\Props\Background</Filter>
     </ClCompile>
+    <ClCompile Include="Actor\GameMaster.cpp">
+      <Filter>World\Controller\GameMaster</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Animation.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Application.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Debug.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Game.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\GameObject.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Graphics.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Input.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Library\pugixml.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Sprite.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Framework\Time.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="SuperMarioBros3.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\Character\Koopa\KoopaSensor.cpp">
+      <Filter>World\Characters\Koopa</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\Character\Koopa\Koopa.cpp">
+      <Filter>World\Characters\Koopa</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Intro\IntroController.cpp">
+      <Filter>World\Controller\Intro</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\WorldController.cpp">
+      <Filter>World\Controller\World</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\WorldMap\WorldMapController.cpp">
+      <Filter>World\Controller\WorldMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Collision.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\Prop\Goal.cpp">
+      <Filter>World\Props\Goal</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\HUD.cpp">
+      <Filter>World\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\World\Score.cpp">
+      <Filter>World\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SuperMarioBros3.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Mario\MarioFireball.h">
+      <Filter>World\Characters\Mario</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Framework\Application.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Mario\MarioTail.h">
+      <Filter>World\Characters\Mario</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Framework\Time.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Goomba\Goomba.h">
+      <Filter>World\Characters\Goomba</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Framework\Graphics.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Koopa\KoopaSensor.h">
+      <Filter>World\Characters\Koopa</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Framework\Input.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Koopa\Koopa.h">
+      <Filter>World\Characters\Koopa</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Framework\Audio.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Plant\VenusSensor.h">
+      <Filter>World\Characters\Venus</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Library\pugiconfig.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Plant\Venus.h">
+      <Filter>World\Characters\Venus</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Library\pugixml.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Plant\VenusFireball.h">
+      <Filter>World\Characters\Venus</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\SpriteRenderer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Plant\PiranhaSensor.h">
+      <Filter>World\Characters\Piranha</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\Animator.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Character\Plant\Piranha.h">
+      <Filter>World\Characters\Piranha</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\Physics.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Item\Coin.h">
+      <Filter>World\Items\Coin</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Component\AudioSource.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Item\ExtraLife.h">
+      <Filter>World\Items\ExtraLife</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Game.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Item\Leaf.h">
+      <Filter>World\Items\Leaf</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\GameObject.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Item\Mushroom.h">
+      <Filter>World\Items\Mushroom</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Player.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Prop\Platform\HollowedPlatform.h">
+      <Filter>World\Props\HollowedPlatform</Filter>
     </ClInclude>
-    <ClInclude Include="Actor\Character\Mario.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Prop\Platform\SolidPlatform.h">
+      <Filter>World\Props\SolidPlatform</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Resource\Texture.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Prop\Block\Brick.h">
+      <Filter>World\Props\Brick</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Resource\SoundClip.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Prop\Block\Block.h">
+      <Filter>World\Props\Block</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Resource\Animation.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Prop\Spawner.h">
+      <Filter>World\Props\Spawner</Filter>
     </ClInclude>
-    <ClInclude Include="Engine\Resource\Sprite.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Actor\World\Prop\Pipe\Pipe.h">
+      <Filter>World\Props\Pipe</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\Prop\Pipe\ExitPipe.h">
+      <Filter>World\Props\Pipe</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\Prop\Pipe\EntryPipe.h">
+      <Filter>World\Props\Pipe</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\Prop\Pipe\EmptyPipe.h">
+      <Filter>World\Props\Pipe</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\Prop\DeadZone.h">
+      <Filter>World\Props\DeadZone</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\Prop\Switch.h">
+      <Filter>World\Props\Switch</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\Item\Flower.h">
+      <Filter>World\Items\Flower</Filter>
     </ClInclude>
     <ClInclude Include="Actor\Background.h">
-      <Filter>Header Files</Filter>
+      <Filter>World\Props\Background</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\GameMaster.h">
+      <Filter>World\Controller\GameMaster</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\Character\Mario\Mario.h">
+      <Filter>World\Characters\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Animation.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Application.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Collision.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Debug.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Game.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\GameObject.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Graphics.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Input.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Library\pugiconfig.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Library\pugixml.hpp">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Sprite.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Framework\Time.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperMarioBros3.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Intro\IntroController.h">
+      <Filter>World\Controller\Intro</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\WorldController.h">
+      <Filter>World\Controller\World</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\WorldMap\WorldMapController.h">
+      <Filter>World\Controller\WorldMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\Prop\Goal.h">
+      <Filter>World\Props\Goal</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\World\Score.h">
+      <Filter>World\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\HUD.h">
+      <Filter>World\UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="Data\GameData.xml" />
-    <Xml Include="Data\Scene\DemoScene.xml" />
-    <Xml Include="Data\Prefab\TemplatePrefab.xml" />
+    <Xml Include="Data\Asset\World\Character\Mario\MarioTail.xml">
+      <Filter>World\Characters\Mario</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Mario\Mario.xml">
+      <Filter>World\Characters\Mario</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Mario\MarioFireball.xml">
+      <Filter>World\Characters\Mario</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Goomba\RedGoomba.xml">
+      <Filter>World\Characters\Goomba</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Goomba\Goomba.xml">
+      <Filter>World\Characters\Goomba</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Koopa\Koopa.xml">
+      <Filter>World\Characters\Koopa</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Koopa\KoopaSensor.xml">
+      <Filter>World\Characters\Koopa</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Koopa\RedKoopa.xml">
+      <Filter>World\Characters\Koopa</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Koopa\WingKoopa.xml">
+      <Filter>World\Characters\Koopa</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Plant\RedVenus.xml">
+      <Filter>World\Characters\Venus</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Plant\Venus.xml">
+      <Filter>World\Characters\Venus</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Plant\VenusFireball.xml">
+      <Filter>World\Characters\Venus</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Plant\VenusSensor.xml">
+      <Filter>World\Characters\Venus</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Plant\PiranhaSensor.xml">
+      <Filter>World\Characters\Piranha</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Character\Plant\Piranha.xml">
+      <Filter>World\Characters\Piranha</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Item\Coin.xml">
+      <Filter>World\Items\Coin</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Item\ExtraLife.xml">
+      <Filter>World\Items\ExtraLife</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Item\Leaf.xml">
+      <Filter>World\Items\Leaf</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Item\Mushroom.xml">
+      <Filter>World\Items\Mushroom</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\HollowedPlatform81Tile.xml">
+      <Filter>World\Props\HollowedPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\HollowedPlatform41Tile.xml">
+      <Filter>World\Props\HollowedPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\HollowedPlatform21Tile.xml">
+      <Filter>World\Props\HollowedPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\HollowedPlatform18Tile.xml">
+      <Filter>World\Props\HollowedPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\HollowedPlatform14Tile.xml">
+      <Filter>World\Props\HollowedPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\HollowedPlatform12Tile.xml">
+      <Filter>World\Props\HollowedPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\HollowedPlatform11Tile.xml">
+      <Filter>World\Props\HollowedPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\SolidPlatform11Tile.xml">
+      <Filter>World\Props\SolidPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\SolidPlatform12Tile.xml">
+      <Filter>World\Props\SolidPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\SolidPlatform14Tile.xml">
+      <Filter>World\Props\SolidPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\SolidPlatform18Tile.xml">
+      <Filter>World\Props\SolidPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\SolidPlatform21Tile.xml">
+      <Filter>World\Props\SolidPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\SolidPlatform41Tile.xml">
+      <Filter>World\Props\SolidPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Platform\SolidPlatform81Tile.xml">
+      <Filter>World\Props\SolidPlatform</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Block\Brick.xml">
+      <Filter>World\Props\Brick</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\SpawnerW11.xml">
+      <Filter>World\Props\Spawner</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Pipe\GreenUpExitPipe.xml">
+      <Filter>World\Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Pipe\BlueDownEntryPipe.xml">
+      <Filter>World\Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Pipe\BlueDownExitPipe.xml">
+      <Filter>World\Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Pipe\BlueUpEntryPipe.xml">
+      <Filter>World\Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Pipe\BlueUpExitPipe.xml">
+      <Filter>World\Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Pipe\GreenDownEntryPipe.xml">
+      <Filter>World\Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Pipe\GreenDownExitPipe.xml">
+      <Filter>World\Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Pipe\GreenEmptyPipe.xml">
+      <Filter>World\Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Pipe\GreenUpEntryPipe.xml">
+      <Filter>World\Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\DeadZone.xml">
+      <Filter>World\Props\DeadZone</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Switch.xml">
+      <Filter>World\Props\Switch</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Item\Flower.xml">
+      <Filter>World\Items\Flower</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\World11MainBackground.xml">
+      <Filter>World\Props\Background</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\World11SubBackground.xml">
+      <Filter>World\Props\Background</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\WorldMap\WorldMapBackground.xml">
+      <Filter>World\Props\Background</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\GameMaster.xml">
+      <Filter>World\Controller\GameMaster</Filter>
+    </Xml>
+    <Xml Include="Data\GameData.xml">
+      <Filter>Game</Filter>
+    </Xml>
+    <Xml Include="Data\Scene\World11.xml">
+      <Filter>Game</Filter>
+    </Xml>
+    <Xml Include="Data\Scene\WorldMap.xml">
+      <Filter>Game</Filter>
+    </Xml>
+    <Xml Include="Data\Scene\MainGame.xml">
+      <Filter>Game</Filter>
+    </Xml>
+    <Xml Include="Data\Scene\Intro.xml">
+      <Filter>Game</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\Intro\IntroController.xml">
+      <Filter>World\Controller\Intro</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\World11Controller.xml">
+      <Filter>World\Controller\World</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\WorldMap\WorldMapController.xml">
+      <Filter>World\Controller\WorldMap</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Goal.xml">
+      <Filter>World\Props\Goal</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Score.xml">
+      <Filter>World\UI</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\HUD.xml">
+      <Filter>World\UI</Filter>
+    </Xml>
+    <Xml Include="Data\Scene\MainGameSample.xml">
+      <Filter>Game</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Block\CoinBlock.xml">
+      <Filter>World\Props\Block</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Block\ExtraLifeBlock.xml">
+      <Filter>World\Props\Block</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Block\SwitchBlock.xml">
+      <Filter>World\Props\Block</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\World\Prop\Block\PowerUpBlock.xml">
+      <Filter>World\Props\Block</Filter>
+    </Xml>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Data\brick.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <None Include="..\Debug\GridMaker.exe" />
   </ItemGroup>
 </Project>

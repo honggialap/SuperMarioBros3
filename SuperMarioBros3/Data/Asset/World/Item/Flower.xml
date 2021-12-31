@@ -1,0 +1,10 @@
+<Prefab>
+
+	<Sprites>
+		<Sprite id="1001" textureId="3" left="76" top="76" width="64" height="64" offsetX="0" offsetY="-32"/>
+	</Sprites>
+
+	<Stats>
+	</Stats>
+
+</Prefab>

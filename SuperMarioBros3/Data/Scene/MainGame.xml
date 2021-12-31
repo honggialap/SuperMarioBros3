@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<Scene>
+	<GameObject actor="1001" name="gameMaster" source="Data/Asset/GameMaster.xml" x="0" y="0" gridX="0" gridY="0" layer="0" active="true" />
+</Scene>

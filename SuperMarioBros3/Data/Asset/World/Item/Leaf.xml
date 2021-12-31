@@ -1,0 +1,23 @@
+<Prefab>
+
+	<Sprites>
+		<!--BBox-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+
+		<Sprite id="1001" textureId="3" left="148" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1101" textureId="3" left="220" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
+	</Sprites>
+
+	<Stats
+		renderBody="true"
+		MOVE_SPEED="0.2"
+		GRAVITY="0.0001"
+		REVERSE_INTERVAL="500"
+		DECAY_INTERVAL="10000"
+		SPAWN_LIMIT ="500"
+		/>
+	<Body tag="small" width ="64.0" height="64.0" offsetX="0.0" offsetY="32.0"/>
+
+
+
+</Prefab>

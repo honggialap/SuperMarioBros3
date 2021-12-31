@@ -1,0 +1,34 @@
+<Prefab>
+
+	<Sprites>
+		<!--BBox-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+
+		<Sprite id="1001" textureId="3" left="4" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1002" textureId="3" left="76" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1003" textureId="3" left="148" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1004" textureId="3" left="220" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1005" textureId="3" left="292" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1006" textureId="3" left="364" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
+	</Sprites>
+
+	<Animations>
+		<Animation id="1001">
+			<Frame spriteId="1001" time="30"/>
+			<Frame spriteId="1002" time="30"/>
+			<Frame spriteId="1003" time="30"/>
+			<Frame spriteId="1004" time="30"/>
+			<Frame spriteId="1005" time="30"/>
+			<Frame spriteId="1006" time="30"/>
+		</Animation>
+	</Animations>
+
+	<Stats
+		renderBody="true"
+		DECAY_INTERVAL="300"
+		SPEED="0.6"
+		/>
+	<Body tag="small" width ="64.0" height="64.0" offsetX="0.0" offsetY="32.0"/>
+
+
+</Prefab>

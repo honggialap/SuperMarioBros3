@@ -1,0 +1,32 @@
+<Prefab>
+
+	<Sprites>
+		<!--BBox-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+
+		<Sprite id="2001" textureId="4" left="4" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2002" textureId="4" left="76" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2003" textureId="4" left="148" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2004" textureId="4" left="220" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="3001" textureId="4" left="292" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="3002" textureId="4" left="332" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
+	</Sprites>
+
+	<Animations>
+		<Animation id="2001">
+			<Frame spriteId="2001" time="200"/>
+			<Frame spriteId="2002" time="200"/>
+			<Frame spriteId="2003" time="200"/>
+			<Frame spriteId="2004" time="200"/>
+		</Animation>
+	</Animations>
+
+	<Stats
+	renderBody="true"
+	MOVE_SPEED = "0.1"
+	BOUNCE_LIMIT ="32"
+		/>
+	<Body tag="small" width ="64.0" height="64.0" offsetX="0.0" offsetY="32.0"/>
+
+
+</Prefab>

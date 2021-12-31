@@ -1,0 +1,67 @@
+<GameData>
+	<GameSettings
+		gameTitle ="SUPER MARIO BROS 3"
+		resolutionWidth ="1041"
+		resolutionHeight ="1000"
+		fps ="144"
+		gridWidth ="512"
+		gridHeight ="480"
+		/>
+	<!--client width + 17, height + 40-->
+
+	<PlayerSettings>
+		<!--Left-->
+		<Button keyCode="30"/>
+		<!--Up-->
+		<Button keyCode="17"/>
+		<!--Right-->
+		<Button keyCode="32"/>
+		<!--Down-->
+		<Button keyCode="31"/>
+		<!--A-->
+		<Button keyCode="36"/>
+		<!--B-->
+		<Button keyCode="37"/>
+		<!--Select-->
+		<Button keyCode="51"/>
+		<!--Start-->
+		<Button keyCode="52"/>
+		<!--Hot1-->
+		<Button keyCode="2"/>
+		<!--Hot2-->
+		<Button keyCode="3"/>
+		<!--Hot3-->
+		<Button keyCode="4"/>
+		<!--Hot4-->
+		<Button keyCode="5"/>
+		
+		<!--NUMPAD for CAMERA-->
+		<Button keyCode="80"/>
+		<Button keyCode="75"/>
+		<Button keyCode="77"/>
+		<Button keyCode="72"/>
+
+	</PlayerSettings>
+	<!--https://community.bistudio.com/wiki/DIK_KeyCodes-->
+
+	<Textures>
+		<Texture id="0" source="Data/Texture/BBox.png"/>
+		<Texture id="1" source="Data/Texture/Mario.png"/>
+		<Texture id="2" source="Data/Texture/Enemy.png"/>
+		<Texture id="3" source="Data/Texture/Item.png"/>
+		<Texture id="4" source="Data/Texture/Prop.png"/>
+		<Texture id="5" source="Data/Texture/Goal.png"/>
+		<Texture id="6" source="Data/Texture/HUD.png"/>
+		<Texture id="7" source="Data/Texture/Intro.png"/>
+		<Texture id="8" source="Data/Texture/WorldMap.png"/>
+		<Texture id="9" source="Data/Texture/World11MainSection.png"/>
+		<Texture id="10" source="Data/Texture/World11SubSection.png"/>
+	</Textures>
+
+	<Scenes>
+		<Scene id ="0" source="Data/Scene/MainGame.xml"/>
+		<Scene id ="1" source="Data/Scene/Intro.xml"/>
+		<Scene id ="2" source="Data/Scene/WorldMap.xml"/>
+		<Scene id ="3" source="Data/Scene/World11.xml"/>
+	</Scenes>
+</GameData>

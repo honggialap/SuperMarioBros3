@@ -1,0 +1,13 @@
+<Prefab>
+
+	<Sprites>
+		<Sprite id="1001" textureId="4" left="4" top="220" width="128" height="128" offsetX="0" offsetY="0"/>
+		<Sprite id="1002" textureId="4" left="140" top="220" width="128" height="128" offsetX="0" offsetY="0"/>
+		<Sprite id="2001" textureId="4" left="276" top="220" width="128" height="128" offsetX="0" offsetY="0"/>
+		<Sprite id="2002" textureId="4" left="412" top="220" width="128" height="128" offsetX="0" offsetY="0"/>
+	</Sprites>
+
+	<Stats>
+	</Stats>
+
+</Prefab>

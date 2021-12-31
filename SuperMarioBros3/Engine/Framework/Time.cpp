@@ -1,19 +1,18 @@
 #include "Time.h"
+#include "Debug.h"
 
-/// <summary>
-/// Start clock ticking.
-/// </summary>
+
 void CTime::Start()
 {
 	_elapsedMs = 0;
 	_totalElapsedMs = 0;
 	_startTimeStamp = _clock.now();
 	_currentTimeStamp = _startTimeStamp;
+
+	DebugOut(L"[Time] Start clock.\n");
 }
 
-/// <summary>
-/// Update _elapsedMs and _totalElapsedMs between each call.
-/// </summary>
+
 void CTime::Tick()
 {
 	_previousTimeStamp = _currentTimeStamp;
