@@ -1,6 +1,6 @@
 #pragma once
-#include "Engine/GameObject.h"
-#include "Actor/World/Character/Mario/Mario.h"
+#include "../../../../Engine/GameObject.h"
+#include "../../../../Actor/World/Character/Mario/Mario.h"
 
 #pragma region Sprite ID
 #define BBOX							9991

@@ -1,5 +1,5 @@
 #pragma once
-#include "Engine/GameObject.h"
+#include "../../../../Engine/GameObject.h"
 #include "PiranhaSensor.h"
 
 #pragma region Sprite ID

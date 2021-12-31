@@ -1,7 +1,7 @@
 #include "Goomba.h"
-#include "Actor/World/Prop/Platform/HollowedPlatform.h"
-#include "Engine/Game.h"
-#include "Engine/Library/pugixml.hpp"
+#include "../../../../Actor/World/Prop/Platform/HollowedPlatform.h"
+#include "../../../../Engine/Game.h"
+#include "../../../../Engine/Library/pugixml.hpp"
 
 void CGoomba::Load()
 {

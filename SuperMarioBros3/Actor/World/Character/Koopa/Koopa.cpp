@@ -1,7 +1,7 @@
 #include "Koopa.h"
-#include "Engine/Game.h"
-#include "Engine/Library/pugixml.hpp"
-#include "SuperMarioBros3.h"
+#include "../../../../Engine/Game.h"
+#include "../../../../Engine/Library/pugixml.hpp"
+#include "../../../../SuperMarioBros3.h"
 
 void CKoopa::Load()
 {

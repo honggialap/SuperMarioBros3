@@ -1,5 +1,5 @@
-	#pragma once
-#include "Engine/GameObject.h"
+#pragma once
+#include "../Engine/GameObject.h"
 #include "Intro/IntroController.h"
 #include "WorldMap/WorldMapController.h"
 #include "World/WorldController.h"

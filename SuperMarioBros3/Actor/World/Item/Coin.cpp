@@ -1,6 +1,6 @@
 #include "Coin.h"
-#include "Engine/Game.h"
-#include "Engine/Library/pugixml.hpp"
+#include "../../../Engine/Game.h"
+#include "../../../Engine/Library/pugixml.hpp"
 
 void CCoin::Load()
 {

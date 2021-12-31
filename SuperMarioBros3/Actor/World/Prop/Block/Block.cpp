@@ -1,8 +1,8 @@
 #include "Block.h"
-#include "SuperMarioBros3.h"
-#include "Actor/World/Item/Coin.h"
-#include "Engine/Game.h"
-#include "Engine/Library/pugixml.hpp"
+#include "../../../../SuperMarioBros3.h"
+#include "../../../../Actor/World/Item/Coin.h"
+#include "../../../../Engine/Game.h"
+#include "../../../../Engine/Library/pugixml.hpp"
 
 void CBlock::Load()
 {

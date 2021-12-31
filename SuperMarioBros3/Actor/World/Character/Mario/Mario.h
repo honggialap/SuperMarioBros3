@@ -1,7 +1,7 @@
 #pragma once
-#include "Engine/GameObject.h"
+#include "../../../../Engine/GameObject.h"
 #include "MarioTail.h"
-#include "Actor/World/Character/Koopa/Koopa.h"
+#include "../../../../Actor/World/Character/Koopa/Koopa.h"
 
 
 #pragma region Sprite ID
