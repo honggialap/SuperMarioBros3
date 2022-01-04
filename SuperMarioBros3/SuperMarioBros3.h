@@ -1,63 +1,43 @@
 #include "Engine/Game.h"
 
-#pragma region Definitions
-#pragma region Texture ID
-#define TEX_CHARACTER				1
-#define TEX_ENEMY					2
-#define TEX_ITEM					3
-#define TEX_PROPS					4
-#pragma endregion
-
-#pragma region SoundClip ID
-#pragma endregion
-
 #pragma region Actor ID
 /* CONTROLLER */
-#define ACT_GAMEMASTER				1001
-#define ACT_INTRO_CONTROLLER		1002
-#define ACT_WORLDMAP_CONTROLLER		1003
-#define ACT_WORLD_CONTROLLER		1004
-
-/* COMMONS */
-#define ACT_HUD						2001
-#define ACT_BACKGROUND				2002
-#define ACT_SCORE					2003
+#define ACT_GAMEMASTER			1001
+#define ACT_WORLD				1002
 
 /* CHARACTER */
-#define ACT_MARIO					3001
-#define ACT_MARIO_TAIL				3002
-#define ACT_MARIO_FIREBALL			3003
-#define ACT_GOOMBA					3004
-#define ACT_KOOPA					3005
-#define ACT_KOOPA_SENSOR			3006
-#define ACT_PIRANHA					3007
-#define ACT_PIRANHA_SENSOR			3008
-#define ACT_VENUS					3009
-#define ACT_VENUS_FIREBALL			3010
-#define ACT_VENUS_SENSOR			3011
+#define ACT_MARIO				2001
+#define ACT_MARIO_TAIL			2002
+#define ACT_GOOMBA				2003
+#define ACT_KOOPA				2004
+#define ACT_KOOPA_SENSOR		2005
+#define ACT_PIRANHA				2006
+#define ACT_PIRANHA_SENSOR		2007
+#define ACT_VENUS				2008
+#define ACT_VENUS_FIREBALL		2009
+#define ACT_VENUS_SENSOR		2010
 
 /* ITEM */
-#define ACT_COIN					4001
-#define ACT_FLOWER					4002
-#define ACT_LEAF					4003
-#define ACT_MUSHROOM				4004
-#define ACT_EXTRALIFE				4005
+#define ACT_COIN				3001
+#define ACT_EXTRALIFE			3002
+#define ACT_MUSHROOM			3003
+#define ACT_LEAF				3004
 
-/* PROPS */
-#define ACT_BRICK					5001
-#define ACT_BLOCK					5002
-#define ACT_PIPE					5003
-#define ACT_ENTRY_PIPE				5004
-#define ACT_EXIT_PIPE				5005
-#define ACT_EMPTY_PIPE				5006
-#define ACT_SOLID_PLATFORM			5007
-#define ACT_HOLLOWED_PLATFORM		5008
-#define ACT_GOAL					5009
-#define ACT_SWITCH					5010
-#define ACT_SPAWNER					5011
-#define ACT_DEADZONE				5012
+/* PROP */
+#define ACT_SOLID_PLATFORM		4001
+#define ACT_HOLLOWED_PLATFORM	4002
+#define ACT_BRICK				4003
+#define ACT_BLOCK				4004
+#define ACT_SPAWN_ZONE			4005
+#define ACT_DEAD_ZONE			4006
+#define ACT_SWITCH				4007
+#define ACT_PIPE				4008
+#define ACT_GOAL				4009
 
-#pragma endregion
+/* MISC */
+#define ACT_BACKGROUND			5001
+#define ACT_HUD					5002
+#define ACT_SCORE_EFFECT		5003
 #pragma endregion
 
 

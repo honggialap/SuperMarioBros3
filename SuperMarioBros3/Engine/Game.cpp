@@ -1,10 +1,4 @@
 #include "Game.h"
-#include "GameObject.h"
-
-#include "Framework/Debug.h"
-#include "Library/pugixml.hpp"
-#include <codecvt>
-#include <locale>
 
 
 CGame::CGame()

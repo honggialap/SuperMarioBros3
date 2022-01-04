@@ -59,9 +59,7 @@
 	</Textures>
 
 	<Scenes>
-		<Scene id ="0" source="Data/Scene/MainGame.xml"/>
-		<Scene id ="1" source="Data/Scene/Intro.xml"/>
-		<Scene id ="2" source="Data/Scene/WorldMap.xml"/>
-		<Scene id ="3" source="Data/Scene/World11.xml"/>
+		<Scene id ="0" source="Data/Scene/MainGameScene.xml"/>
+		<Scene id ="1" source="Data/Scene/World11Scene.xml"/>
 	</Scenes>
 </GameData>

@@ -1,0 +1,8 @@
+<Prefab>
+	<Stats
+		marioLife ="3"
+		marioPower ="0"
+		startScene ="1"
+		/>
+	<Level id="1"/>
+</Prefab>

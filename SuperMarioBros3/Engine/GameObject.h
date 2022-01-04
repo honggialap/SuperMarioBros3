@@ -1,4 +1,6 @@
 #pragma once
+#include "Framework/Debug.h"
+#include "Library/pugixml.hpp"
 #include "Sprite.h"
 #include "Animation.h"
 #include "Collision.h"

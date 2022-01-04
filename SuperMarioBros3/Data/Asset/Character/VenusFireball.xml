@@ -1,0 +1,22 @@
+<Prefab>
+
+	<Sprites>
+		<Sprite id="1001" textureId="2" left="372" top="1036" width="32" height="64" offsetX="0" offsetY="0"/>
+		<Sprite id="1002" textureId="2" left="412" top="1036" width="32" height="64" offsetX="0" offsetY="0"/>
+		<Sprite id="1003" textureId="2" left="452" top="1036" width="32" height="64" offsetX="0" offsetY="0"/>
+		<Sprite id="1004" textureId="2" left="492" top="1036" width="32" height="64" offsetX="0" offsetY="0"/>
+	</Sprites>
+
+	<Animations>
+		<Animation id="1001">
+			<Frame spriteId="1001" time="200"/>
+			<Frame spriteId="1002" time="200"/>
+			<Frame spriteId="1003" time="200"/>
+			<Frame spriteId="1004" time="200"/>
+		</Animation>
+	</Animations>
+
+	<Stats>
+	</Stats>
+
+</Prefab>

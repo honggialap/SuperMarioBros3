@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<Scene>
-	<GameObject actor="1003" name="controller" source="Data/Asset/WorldMap/WorldMapController.xml" x="0" y="0" gridX="0" gridY="0" layer="0" active="true" />
-</Scene>

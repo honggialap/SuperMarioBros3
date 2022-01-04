@@ -1,0 +1,144 @@
+<Prefab>
+
+	<Sprites>
+		<!--BBOX-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+
+		<!--KOOPA-->
+		<Sprite id="1001" textureId="2" left="4" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
+		<Sprite id="1002" textureId="2" left="76" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
+		<Sprite id="1101" textureId="2" left="220" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
+		<Sprite id="1102" textureId="2" left="148" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
+		<Sprite id="1201" textureId="2" left="4" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1202" textureId="2" left="76" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1203" textureId="2" left="148" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1204" textureId="2" left="220" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1205" textureId="2" left="292" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1301" textureId="2" left="4" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1302" textureId="2" left="76" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1303" textureId="2" left="148" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1304" textureId="2" left="220" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1305" textureId="2" left="292" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+
+		<!--RED KOOPA-->
+		<Sprite id="2001" textureId="2" left="364" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
+		<Sprite id="2002" textureId="2" left="436" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
+		<Sprite id="2101" textureId="2" left="580" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
+		<Sprite id="2102" textureId="2" left="508" top="76" width="64" height="128" offsetX="0" offsetY="52"/>
+		<Sprite id="2201" textureId="2" left="364" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2202" textureId="2" left="436" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2203" textureId="2" left="508" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2204" textureId="2" left="580" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2205" textureId="2" left="652" top="212" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2301" textureId="2" left="364" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2302" textureId="2" left="436" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2303" textureId="2" left="508" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2304" textureId="2" left="580" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="2305" textureId="2" left="652" top="284" width="64" height="64" offsetX="0" offsetY="32"/>
+
+		<!--KOOPA WING-->
+		<Sprite id="3001" textureId="2" left="212" top="1036" width="32" height="64" offsetX="24" offsetY="64"/>
+		<Sprite id="3002" textureId="2" left="252" top="1036" width="32" height="64" offsetX="24" offsetY="64"/>
+		<Sprite id="3101" textureId="2" left="332" top="1036" width="32" height="64" offsetX="-24" offsetY="64"/>
+		<Sprite id="3102" textureId="2" left="292" top="1036" width="32" height="64" offsetX="-24" offsetY="64"/>
+	</Sprites>
+
+	<Animations>
+		<!--KOOPA-->
+		<Animation id="1001">
+			<Frame spriteId="1001" time="200"/>
+			<Frame spriteId="1002" time="200"/>
+		</Animation>
+		<Animation id="1101">
+			<Frame spriteId="1101" time="200"/>
+			<Frame spriteId="1102" time="200"/>
+		</Animation>
+		<Animation id="1201">
+			<Frame spriteId="1202" time="200"/>
+			<Frame spriteId="1203" time="200"/>
+			<Frame spriteId="1204" time="200"/>
+			<Frame spriteId="1205" time="200"/>
+		</Animation>
+		<Animation id="1202">
+			<Frame spriteId="1201" time="200"/>
+			<Frame spriteId="1202" time="200"/>
+			<Frame spriteId="1201" time="200"/>
+			<Frame spriteId="1202" time="200"/>
+		</Animation>
+		<Animation id="1301">
+			<Frame spriteId="1302" time="200"/>
+			<Frame spriteId="1303" time="200"/>
+			<Frame spriteId="1304" time="200"/>
+			<Frame spriteId="1305" time="200"/>
+		</Animation>
+		<Animation id="1302">
+			<Frame spriteId="1301" time="200"/>
+			<Frame spriteId="1302" time="200"/>
+			<Frame spriteId="1301" time="200"/>
+			<Frame spriteId="1302" time="200"/>
+		</Animation>
+
+		<!--RED KOOPA-->
+		<Animation id="2001">
+			<Frame spriteId="2001" time="200"/>
+			<Frame spriteId="2002" time="200"/>
+		</Animation>
+		<Animation id="2101">
+			<Frame spriteId="2101" time="200"/>
+			<Frame spriteId="2102" time="200"/>
+		</Animation>
+		<Animation id="2201">
+			<Frame spriteId="2202" time="200"/>
+			<Frame spriteId="2203" time="200"/>
+			<Frame spriteId="2204" time="200"/>
+			<Frame spriteId="2205" time="200"/>
+		</Animation>
+		<Animation id="2202">
+			<Frame spriteId="2201" time="200"/>
+			<Frame spriteId="2202" time="200"/>
+			<Frame spriteId="2201" time="200"/>
+			<Frame spriteId="2202" time="200"/>
+		</Animation>
+		<Animation id="2301">
+			<Frame spriteId="2302" time="200"/>
+			<Frame spriteId="2303" time="200"/>
+			<Frame spriteId="2304" time="200"/>
+			<Frame spriteId="2305" time="200"/>
+		</Animation>
+		<Animation id="2302">
+			<Frame spriteId="2301" time="200"/>
+			<Frame spriteId="2302" time="200"/>
+			<Frame spriteId="2301" time="200"/>
+			<Frame spriteId="2302" time="200"/>
+		</Animation>
+
+		<!--KOOPA WING-->
+		<Animation id="3001">
+			<Frame spriteId="3001" time="200"/>
+			<Frame spriteId="3002" time="200"/>
+			<Frame spriteId="3001" time="200"/>
+			<Frame spriteId="3002" time="200"/>
+		</Animation>
+		<Animation id="3101">
+			<Frame spriteId="3101" time="200"/>
+			<Frame spriteId="3102" time="200"/>
+			<Frame spriteId="3101" time="200"/>
+			<Frame spriteId="3102" time="200"/>
+		</Animation>
+	</Animations>
+
+	<Stats
+		renderBody="true"
+		type ="0"
+		wing ="true"
+		GRAVITY="0.0025"
+		WALK_SPEED ="0.25"
+		JUMP_FORCE ="1"
+		DECAY_INTERVAL="2000"
+		SPIN_SPEED = "0.8"
+		RESTORE_LIMIT = "6000"
+		/>
+	<Body tag="small" width ="64" height="60" offsetX="0" offsetY="28"/>
+	<GameObject actor="2005" name="sensor" source="Data/Asset/Character/KoopaSensor.xml"/>
+
+</Prefab>

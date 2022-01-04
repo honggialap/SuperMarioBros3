@@ -1,0 +1,13 @@
+<Prefab>
+	<Sprites>
+		<!--BBOX-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+	</Sprites>
+
+	<Stats
+		renderBody = "true"
+		/>
+	<Body tag="small" width ="62.0" height="64.0" offsetX="0.0" offsetY="32.0"/>
+
+
+</Prefab>

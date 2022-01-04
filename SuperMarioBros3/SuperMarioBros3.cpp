@@ -1,48 +1,43 @@
 #include "SuperMarioBros3.h"
 
-#include "Actor/GameMaster.h"
-#include "Actor/Background.h"
-#include "Actor/HUD.h"
+#include "Actor/Controller/GameMaster.h"
+#include "Actor/Controller/World.h"
 
-#include "Actor/Intro/IntroController.h"
-#include "Actor/WorldMap/WorldMapController.h"
+#include "Actor/Character/Mario.h"
+#include "Actor/Character/MarioTail.h"
+#include "Actor/Character/Goomba.h"
+#include "Actor/Character/Koopa.h"
+#include "Actor/Character/KoopaSensor.h"
+#include "Actor/Character/Piranha.h"
+#include "Actor/Character/PiranhaSensor.h"
+#include "Actor/Character/Venus.h"
+#include "Actor/Character/VenusFireball.h"
+#include "Actor/Character/VenusSensor.h"
 
-#include "Actor/World/WorldController.h"
-#include "Actor/World/Score.h"
-#include "Actor/World/Character/Goomba/Goomba.h"
-#include "Actor/World/Character/Koopa/Koopa.h"
-#include "Actor/World/Character/Koopa/KoopaSensor.h"
-#include "Actor/World/Character/Mario/Mario.h"
-#include "Actor/World/Character/Mario/MarioTail.h"
-#include "Actor/World/Character/Mario/MarioFireball.h"
-#include "Actor/World/Character/Plant/Piranha.h"
-#include "Actor/World/Character/Plant/PiranhaSensor.h"
-#include "Actor/World/Character/Plant/Venus.h"
-#include "Actor/World/Character/Plant/VenusFireball.h"
-#include "Actor/World/Character/Plant/VenusSensor.h"
-#include "Actor/World/Item/Coin.h"
-#include "Actor/World/Item/ExtraLife.h"
-#include "Actor/World/Item/Flower.h"
-#include "Actor/World/Item/Leaf.h"
-#include "Actor/World/Item/Mushroom.h"
-#include "Actor/World/Prop/DeadZone.h"
-#include "Actor/World/Prop/Goal.h"
-#include "Actor/World/Prop/Switch.h"
-#include "Actor/World/Prop/Spawner.h"
-#include "Actor/World/Prop/Block/Brick.h"
-#include "Actor/World/Prop/Block/Block.h"
-#include "Actor/World/Prop/Pipe/Pipe.h"
-#include "Actor/World/Prop/Pipe/EntryPipe.h"
-#include "Actor/World/Prop/Pipe/ExitPipe.h"
-#include "Actor/World/Prop/Pipe/EmptyPipe.h"
-#include "Actor/World/Prop/Platform/HollowedPlatform.h"
-#include "Actor/World/Prop/Platform/SolidPlatform.h"
+#include "Actor/Item/Coin.h"
+#include "Actor/Item/ExtraLife.h"
+#include "Actor/Item/Mushroom.h"
+#include "Actor/Item/Leaf.h"
+
+#include "Actor/Misc/Background.h"
+#include "Actor/Misc/HUD.h"
+#include "Actor/Misc/ScoreEffect.h"
+
+#include "Actor/Prop/SolidPlatform.h"
+#include "Actor/Prop/HollowedPlatform.h"
+#include "Actor/Prop/Brick.h"
+#include "Actor/Prop/Block.h"
+#include "Actor/Prop/SpawnZone.h"
+#include "Actor/Prop/DeadZone.h"
+#include "Actor/Prop/Switch.h"
+#include "Actor/Prop/Pipe.h"
+#include "Actor/Prop/Goal.h"
 
 pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, std::string prefabSource, float posX, float posY, int gridX, int gridY, unsigned int layer, bool active)
 {
 	switch (actorID)
 	{
-
+		/* Controller */
 	case ACT_GAMEMASTER:
 	{
 		auto gameObject = new CGameMaster(
@@ -57,9 +52,9 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	}
 	break;
 
-	case ACT_INTRO_CONTROLLER:
+	case ACT_WORLD:
 	{
-		auto gameObject = new CIntroController(
+		auto gameObject = new CWorld(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer
@@ -71,76 +66,7 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	}
 	break;
 
-	case ACT_WORLDMAP_CONTROLLER:
-	{
-		auto gameObject = new CWorldMapController(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_WORLD_CONTROLLER:
-	{
-		auto gameObject = new CWorldController(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_HUD:
-	{
-		auto gameObject = new CHUD(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_BACKGROUND:
-	{
-		auto gameObject = new CBackground(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_SCORE:
-	{
-		auto gameObject = new CScore(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
+		/* Character */
 	case ACT_MARIO:
 	{
 		auto gameObject = new CMario(
@@ -158,20 +84,6 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	case ACT_MARIO_TAIL:
 	{
 		auto gameObject = new CMarioTail(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_MARIO_FIREBALL:
-	{
-		auto gameObject = new CMarioFireball(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer
@@ -295,6 +207,7 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	}
 	break;
 
+		/* Item */
 	case ACT_COIN:
 	{
 		auto gameObject = new CCoin(
@@ -309,23 +222,9 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	}
 	break;
 
-	case ACT_FLOWER:
+	case ACT_EXTRALIFE:
 	{
-		auto gameObject = new CFlower(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_LEAF:
-	{
-		auto gameObject = new CLeaf(
+		auto gameObject = new CExtraLife(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer
@@ -351,9 +250,38 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	}
 	break;
 
-	case ACT_EXTRALIFE:
+	case ACT_LEAF:
 	{
-		auto gameObject = new CExtraLife(
+		auto gameObject = new CLeaf(
+			this, scene, nextGameObjectId++,
+			name, prefabSource,
+			posX, posY, gridX, gridY, layer
+		);
+		Add(gameObject);
+		if (active) gameObject->Active();
+		gameObject->Load();
+		return gameObject;
+	}
+	break;
+
+		/* Prop */
+	case ACT_SOLID_PLATFORM:
+	{
+		auto gameObject = new CSolidPlatform(
+			this, scene, nextGameObjectId++,
+			name, prefabSource,
+			posX, posY, gridX, gridY, layer
+		);
+		Add(gameObject);
+		if (active) gameObject->Active();
+		gameObject->Load();
+		return gameObject;
+	}
+	break;
+
+	case ACT_HOLLOWED_PLATFORM:
+	{
+		auto gameObject = new CHollowedPlatform(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer
@@ -393,9 +321,9 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	}
 	break;
 
-	case ACT_PIPE:
+	case ACT_SPAWN_ZONE:
 	{
-		auto gameObject = new CPipe(
+		auto gameObject = new CSpawnZone(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer
@@ -407,79 +335,9 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	}
 	break;
 
-	case ACT_ENTRY_PIPE:
+	case ACT_DEAD_ZONE:
 	{
-		auto gameObject = new CEntryPipe(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_EXIT_PIPE:
-	{
-		auto gameObject = new CExitPipe(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_EMPTY_PIPE:
-	{
-		auto gameObject = new CEmptyPipe(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_SOLID_PLATFORM:
-	{
-		auto gameObject = new CSolidPlatform(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_HOLLOWED_PLATFORM:
-	{
-		auto gameObject = new CHollowedPlatform(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_GOAL:
-	{
-		auto gameObject = new CGoal(
+		auto gameObject = new CDeadZone(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer
@@ -505,9 +363,9 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	}
 	break;
 
-	case ACT_SPAWNER:
+	case ACT_PIPE:
 	{
-		auto gameObject = new CSpawner(
+		auto gameObject = new CPipe(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer
@@ -519,9 +377,52 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	}
 	break;
 
-	case ACT_DEADZONE:
+	case ACT_GOAL:
 	{
-		auto gameObject = new CDeadZone(
+		auto gameObject = new CGoal(
+			this, scene, nextGameObjectId++,
+			name, prefabSource,
+			posX, posY, gridX, gridY, layer
+		);
+		Add(gameObject);
+		if (active) gameObject->Active();
+		gameObject->Load();
+		return gameObject;
+	}
+	break;
+
+		/* Misc */
+	case ACT_BACKGROUND:
+	{
+		auto gameObject = new CBackground(
+			this, scene, nextGameObjectId++,
+			name, prefabSource,
+			posX, posY, gridX, gridY, layer
+		);
+		Add(gameObject);
+		if (active) gameObject->Active();
+		gameObject->Load();
+		return gameObject;
+	}
+	break;
+
+	case ACT_HUD:
+	{
+		auto gameObject = new CHUD(
+			this, scene, nextGameObjectId++,
+			name, prefabSource,
+			posX, posY, gridX, gridY, layer
+		);
+		Add(gameObject);
+		if (active) gameObject->Active();
+		gameObject->Load();
+		return gameObject;
+	}
+	break;
+
+	case ACT_SCORE_EFFECT:
+	{
+		auto gameObject = new CScoreEffect(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer

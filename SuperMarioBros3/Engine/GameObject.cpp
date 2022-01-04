@@ -1,9 +1,6 @@
 #include "GameObject.h"
 #include "Game.h"
 
-#include "Framework/Debug.h"
-#include "Library/pugixml.hpp"
-
 CGameObject::CGameObject(
 	pGame game, pScene scene,
 	unsigned int id, std::string name, std::string prefabSource,

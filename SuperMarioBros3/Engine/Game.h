@@ -3,10 +3,14 @@
 #include "Framework/Graphics.h"
 #include "Framework/Input.h"
 #include "Framework/Time.h"
+#include "Framework/Debug.h"
+#include "Library/pugixml.hpp"
 #include "GameObject.h"
 
 #include <algorithm>
 #include <map>
+#include <codecvt>
+#include <locale>
 
 
 struct CScene
