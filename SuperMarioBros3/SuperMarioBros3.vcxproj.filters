@@ -211,10 +211,7 @@
     <ClCompile Include="Actor\Misc\ScoreEffect.cpp">
       <Filter>Misc\ScoreEffect</Filter>
     </ClCompile>
-    <ClCompile Include="Actor\Prop\HollowedPlatform.cpp">
-      <Filter>Props\Platform</Filter>
-    </ClCompile>
-    <ClCompile Include="Actor\Prop\SolidPlatform.cpp">
+    <ClCompile Include="Actor\Prop\Platform.cpp">
       <Filter>Props\Platform</Filter>
     </ClCompile>
   </ItemGroup>
@@ -336,10 +333,7 @@
     <ClInclude Include="Actor\Misc\ScoreEffect.h">
       <Filter>Misc\ScoreEffect</Filter>
     </ClInclude>
-    <ClInclude Include="Actor\Prop\HollowedPlatform.h">
-      <Filter>Props\Platform</Filter>
-    </ClInclude>
-    <ClInclude Include="Actor\Prop\SolidPlatform.h">
+    <ClInclude Include="Actor\Prop\Platform.h">
       <Filter>Props\Platform</Filter>
     </ClInclude>
   </ItemGroup>

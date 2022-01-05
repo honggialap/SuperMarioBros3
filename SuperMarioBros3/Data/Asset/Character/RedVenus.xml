@@ -70,18 +70,23 @@
 			<Frame spriteId="2202" time="200"/>
 		</Animation>
 	</Animations>
-	
+
 	<Stats
 		renderBody="true"
-		HIDE_INTERVAL = "0"
-		STAND_INTERVAL = "0"
-		SHOOT_INTERVAL = "0"
-		GROW_LIMIT = "0"
-		BORROW_LIMIT = "0"
+		target ="mario"
+		type ="1"
+		HIDE_INTERVAL = "1000"
+		STAND_INTERVAL = "1000"
+		SHOOT_INTERVAL = "500"
+		SPEED = "0.1"
+		GROW_LIMIT = "96"
+		SHOT_OFFSET ="96"
+		FIREBALL_VX ="0.1"
+		FIREBALL_VY ="0.1"
 		/>
-	<Body tag="small" width ="64" height="64" offsetX="0" offsetY="32"/>
-	<GameObject actor="3010" name="fireball" source="Data/Asset/World/Character/Plant/VenusFireball.xml"/>
-	<GameObject actor="3011" name="sensor" source="Data/Asset/World/Character/Plant/VenusSensor.xml"/>
+	<Body tag="small" width ="64" height="128" offsetX="0" offsetY="64"/>
+	<Fireball actor="2009" name="fireball" source="Data/Asset/Character/VenusFireball.xml"/>
+	<Sensor actor="2010" name="sensor" source="Data/Asset/Character/VenusSensor.xml"/>
 
 
 </Prefab>

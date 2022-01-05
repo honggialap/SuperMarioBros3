@@ -380,13 +380,19 @@ void CGame::Deactivate(unsigned int gameObjectId)
 
 pGameObject CGame::Get(unsigned int gameObjectId)
 {
-    return _gameObjects[gameObjectId];
+    if (_gameObjects.find(gameObjectId) == _gameObjects.end())
+        return nullptr;
+    else
+        return _gameObjects[gameObjectId];
 }
 
 
 pGameObject CGame::Get(std::string gameObjectName)
 {
-    return _gameObjects[_dictionary[gameObjectName]];
+    if (_dictionary.find(gameObjectName) == _dictionary.end())
+        return nullptr;
+    else
+        return Get(_dictionary[gameObjectName]);
 }
 
 

@@ -6,6 +6,7 @@
 
 	<Stats
 		renderBody="true"
+		solid="true"
 		/>
 	<Body tag="2x1" width="128" height="64" offsetX="64" offsetY="32"/>
 </Prefab>

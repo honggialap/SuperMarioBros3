@@ -42,8 +42,7 @@
     <ClCompile Include="Actor\Prop\DeadZone.cpp" />
     <ClCompile Include="Actor\Prop\Goal.cpp" />
     <ClCompile Include="Actor\Prop\Pipe.cpp" />
-    <ClCompile Include="Actor\Prop\HollowedPlatform.cpp" />
-    <ClCompile Include="Actor\Prop\SolidPlatform.cpp" />
+    <ClCompile Include="Actor\Prop\Platform.cpp" />
     <ClCompile Include="Actor\Prop\Switch.cpp" />
     <ClCompile Include="Actor\Misc\ScoreEffect.cpp" />
     <ClCompile Include="Actor\Prop\SpawnZone.cpp" />
@@ -85,8 +84,7 @@
     <ClInclude Include="Actor\Prop\DeadZone.h" />
     <ClInclude Include="Actor\Prop\Goal.h" />
     <ClInclude Include="Actor\Prop\Pipe.h" />
-    <ClInclude Include="Actor\Prop\HollowedPlatform.h" />
-    <ClInclude Include="Actor\Prop\SolidPlatform.h" />
+    <ClInclude Include="Actor\Prop\Platform.h" />
     <ClInclude Include="Actor\Prop\Switch.h" />
     <ClInclude Include="Actor\Misc\ScoreEffect.h" />
     <ClInclude Include="Actor\Prop\SpawnZone.h" />

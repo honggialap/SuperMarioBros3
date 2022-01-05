@@ -2,9 +2,7 @@
 #include "../../Engine/GameObject.h"
 
 #pragma region Sprite ID
-#pragma endregion
-
-#pragma region Animation ID
+#define BBOX					9991
 #pragma endregion
 
 
@@ -22,6 +20,16 @@ public:
 	virtual void Start();
 	virtual void Update(float elapsedMs);
 	virtual void Render();
+
+	/* Body */
+	bool _renderBody = false;
+	float BODY_WIDTH = 0;
+	float BODY_HEIGHT = 0;
+	float BODY_OFFSETX = 0;
+	float BODY_OFFSETY = 0;
+
+	/* Logic */
+	bool _activate = false;
 
 	int IsCollidable();
 	int IsBlocking();

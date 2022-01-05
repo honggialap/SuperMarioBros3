@@ -24,15 +24,14 @@
 #define ACT_LEAF				3004
 
 /* PROP */
-#define ACT_SOLID_PLATFORM		4001
-#define ACT_HOLLOWED_PLATFORM	4002
-#define ACT_BRICK				4003
-#define ACT_BLOCK				4004
-#define ACT_SPAWN_ZONE			4005
-#define ACT_DEAD_ZONE			4006
-#define ACT_SWITCH				4007
-#define ACT_PIPE				4008
-#define ACT_GOAL				4009
+#define ACT_PLATFORM			4001
+#define ACT_BRICK				4002
+#define ACT_BLOCK				4003
+#define ACT_SPAWN_ZONE			4004
+#define ACT_DEAD_ZONE			4005
+#define ACT_SWITCH				4006
+#define ACT_PIPE				4007
+#define ACT_GOAL				4008
 
 /* MISC */
 #define ACT_BACKGROUND			5001

@@ -50,11 +50,14 @@ public:
 	float HIDE_INTERVAL = 0;
 	float STAND_INTERVAL = 0;
 	float GROW_LIMIT = 0;
-	float BORROW_LIMIT = 0;
+	float BURROW_LIMIT = 0;
+	float SPEED = 0;
 
 	/* Logic */
-	float _currentHideInterval = 0;
-	float _currentStandInterval = 0;
+	float _hideInterval = 0;
+	float _standInterval = 0;
+	float _growLimit = 0;
+	float _burrowLimit = 0;
 
 
 	/* State */
@@ -99,6 +102,7 @@ public:
 	void Burrow(float elapsedMs);
 	void Die(float elapsedMs);
 
+	void UpdateSensor();
 
 	/* Collision */
 	int IsCollidable();

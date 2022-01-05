@@ -50,7 +50,7 @@
 #define SPR_MARIO_L_HOLD_IDLE_LEFT		2011
 #define SPR_MARIO_L_HOLD_WALK1_LEFT		2012
 #define SPR_MARIO_L_HOLD_WALK2_LEFT		2013
-#define SPR_MARIO_L_HOLD_KICK_LEFT		2014
+#define SPR_MARIO_L_KICK_LEFT			2014
 #define SPR_MARIO_L_GROW_LEFT			2015
 
 #define SPR_MARIO_L_IDLE_RIGHT			2101
@@ -66,7 +66,7 @@
 #define SPR_MARIO_L_HOLD_IDLE_RIGHT		2111
 #define SPR_MARIO_L_HOLD_WALK1_RIGHT	2112
 #define SPR_MARIO_L_HOLD_WALK2_RIGHT	2113
-#define SPR_MARIO_L_HOLD_KICK_RIGHT		2114
+#define SPR_MARIO_L_KICK_RIGHT			2114
 #define SPR_MARIO_L_GROW_RIGHT			2115
 
 #define SPR_MARIO_L_FRONT				2201
@@ -225,6 +225,10 @@ public:
 	int RIGHT = 0;
 	int JUMP = 0;
 	int ACTION = 0;
+	int HOT1 = 0;
+	int HOT2 = 0;
+	int HOT3 = 0;
+	int HOT4 = 0;
 
 
 	/* Stats */
@@ -248,6 +252,9 @@ public:
 	float INVINCIBLE_COUNTDOWN = 0;
 	float DEFLECT_FORCE = 0;
 	float SHELL_OFFSET = 0;
+	float TAIL_ENTRY = 0;
+	float TAIL_PROGRESS = 0;
+	float TAIL_RECOVER = 0;
 
 	/* Logic */
 	enum class EPower
@@ -273,7 +280,9 @@ public:
 	float _kickInterval = 0;
 	float _powerUpInterval = 0;
 	float _invincibleCountdown = 0;
-
+	float _tailEntry = 0;
+	float _tailProgress = 0;
+	float _tailRecover = 0;
 
 	/* State */
 	enum class EAction
@@ -338,6 +347,12 @@ public:
 	void Die(float elapsedMs);
 	void PipeIn(float elapsedMs);
 	void PipeOut(float elapsedMs);
+
+	void HotCheat();
+	void UpdateTail();
+	void UpdateShell();
+	void UpdatePowerBar(float elapsedMs);
+	void UpdateInvincible(float elapsedMs);
 	void Hit();
 
 
@@ -348,5 +363,7 @@ public:
 
 	void OnNoCollision(float elapsedMs);
 	void OnCollisionWith(pCollision e);
+
+	void OnCollisionWithGoomba(pCollision e);
 };
 typedef CMario* pMario;

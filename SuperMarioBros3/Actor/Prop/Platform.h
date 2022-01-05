@@ -9,10 +9,10 @@
 #pragma endregion
 
 
-class CSolidPlatform : public CGameObject
+class CPlatform : public CGameObject
 {
 public:
-	CSolidPlatform(
+	CPlatform(
 		pGame game, pScene scene,
 		unsigned int id, std::string name, std::string prefabSource,
 		float posX, float posY, int gridX, int gridY, unsigned int layer
@@ -34,6 +34,10 @@ public:
 	float BODY_OFFSETY = 0;
 
 
+	/* Logic */
+	bool _solid = false;
+
+
 	/* Collision */
 	virtual int IsCollidable();
 	virtual int IsBlocking();
@@ -42,4 +46,4 @@ public:
 	virtual void OnNoCollision(float elapsedMs);
 	virtual void OnCollisionWith(pCollision e);
 };
-typedef CSolidPlatform* pSolidPlatform;
+typedef CPlatform* pPlatform;

@@ -1,6 +1,6 @@
 #include "Goomba.h"
 #include "../../SuperMarioBros3.h"
-#include "../Prop/HollowedPlatform.h"
+#include "../Prop/Platform.h"
 
 void CGoomba::Load()
 {
@@ -19,14 +19,17 @@ void CGoomba::Load()
 
 	/* Stats */
 	pugi::xml_node statsNode = prefab.child("Prefab").child("Stats");
-	_renderBody = statsNode.attribute("renderBody").as_bool();
-	_type = EType(statsNode.attribute("type").as_int());
-	_wing = statsNode.attribute("wing").as_bool();
 	GRAVITY = statsNode.attribute("GRAVITY").as_float();
 	WALK_SPEED = statsNode.attribute("WALK_SPEED").as_float();
 	JUMP_FORCE = statsNode.attribute("JUMP_FORCE").as_float();
 	JUMP_INTERVAL = statsNode.attribute("JUMP_INTERVAL").as_float();
 	DECAY_INTERVAL = statsNode.attribute("DECAY_INTERVAL").as_float();
+
+	/* Logics */
+	_renderBody = statsNode.attribute("renderBody").as_bool();
+	_type = EType(statsNode.attribute("type").as_int());
+	_wing = statsNode.attribute("wing").as_bool();
+	_targetName = statsNode.attribute("target").as_string();
 }
 
 void CGoomba::Start()
@@ -56,45 +59,71 @@ void CGoomba::Render()
 	switch (_action)
 	{
 	case CGoomba::EAction::WALK:
-	case CGoomba::EAction::JUMP:
-		if(_renderBody) _sprites[BBOX]->Render(_x, _y);
-	case CGoomba::EAction::THROWN:
-		if (_wing)
-		{
-			_animations[ANI_GOOMBA_WING_FLAP]->Render(_x, _y);
-		}
+	{
+		if (_renderBody) _sprites[BBOX]->Render(_x, _y);
+		if (_wing) _sprites[SPR_GOOMBA_WING2]->Render(_x, _y);
+
 		switch (_type)
 		{
 		case CGoomba::EType::GOOMBA:
-		{
 			_animations[ANI_GOOMBA_WALK]->Render(_x, _y);
-		}
-		break;
+			break;
 
 		case CGoomba::EType::RED_GOOMBA:
-		{
 			_animations[ANI_RED_GOOMBA_WALK]->Render(_x, _y);
+			break;
 		}
-		break;
+	}
+	break;
+
+	case CGoomba::EAction::JUMP:
+	{
+		if (_renderBody) _sprites[BBOX]->Render(_x, _y);
+		if (_wing) _animations[ANI_GOOMBA_WING_FLAP]->Render(_x, _y);
+
+		switch (_type)
+		{
+		case CGoomba::EType::GOOMBA:
+			_sprites[SPR_GOOMBA_WALK1]->Render(_x, _y);
+			break;
+
+		case CGoomba::EType::RED_GOOMBA:
+			_sprites[SPR_RED_GOOMBA_WALK1]->Render(_x, _y);
+			break;
 		}
-		break;
+	}
+	break;
+
+	case CGoomba::EAction::THROWN:
+	{
+		switch (_type)
+		{
+		case CGoomba::EType::GOOMBA:
+			_sprites[SPR_GOOMBA_THROWN]->Render(_x, _y);
+			break;
+
+		case CGoomba::EType::RED_GOOMBA:
+			_sprites[SPR_RED_GOOMBA_THROWN]->Render(_x, _y);
+			break;
+		}
+	}
+	break;
 
 	case CGoomba::EAction::DIE:
+	{
 		switch (_type)
 		{
 		case CGoomba::EType::GOOMBA:
-		{
 			_sprites[SPR_GOOMBA_DIE]->Render(_x, _y);
-		}
-		break;
+			break;
 
 		case CGoomba::EType::RED_GOOMBA:
-		{
 			_sprites[SPR_RED_GOOMBA_DIE]->Render(_x, _y);
+			break;
 		}
-		break;
-		}
-		break;
+	}
+	break;
+
 	}
 }
 
@@ -126,77 +155,66 @@ void CGoomba::Walk(float elapsedMs)
 	{
 	case CGoomba::EActionStage::START:
 	{
-		if (_wing)
+		/* Animation Start */
 		{
-			float targetX = _game->Get(_targetId)->_x;
-			if (targetX < _x)
+			switch (_type)
 			{
-				_left = true;
+			case CGoomba::EType::GOOMBA:
+				_animations[ANI_GOOMBA_WALK]->Play(true);
+				break;
+
+			case CGoomba::EType::RED_GOOMBA:
+				_animations[ANI_RED_GOOMBA_WALK]->Play(true);
+				break;
 			}
-			else
-			{
-				_left = false;
-			}
-			_currentJumpInterval = JUMP_INTERVAL;
 		}
-		switch (_type)
-		{
-		case CGoomba::EType::GOOMBA:
-			_animations[ANI_GOOMBA_WALK]->Play(true);
-			break;
-		case CGoomba::EType::RED_GOOMBA:
-			_animations[ANI_RED_GOOMBA_WALK]->Play(true);
-			break;
-		}
+
+		if (_wing) _jumpInterval = JUMP_INTERVAL;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CGoomba::EActionStage::PROGRESS:
 	{
+		/* Animation Update */
+		{
+			switch (_type)
+			{
+			case CGoomba::EType::GOOMBA:
+				_animations[ANI_GOOMBA_WALK]->Update(elapsedMs);
+				break;
+
+			case CGoomba::EType::RED_GOOMBA:
+				_animations[ANI_RED_GOOMBA_WALK]->Update(elapsedMs);
+				break;
+			}
+		}
+
 		if (_wing)
 		{
-			if (_currentJumpInterval > 0)
-			{
-				_currentJumpInterval -= elapsedMs;
-			}
-			else
-			{
-				SetNextAction(EAction::JUMP);
-			}
+			if (_jumpInterval > 0) _jumpInterval -= elapsedMs;
+			else SetNextAction(EAction::JUMP);
 		}
 
-		if (!_left)
-		{
-			_vx = -WALK_SPEED;
-		}
-		else
-		{
-			_vx = WALK_SPEED;
-		}
-
-		switch (_type)
-		{
-		case CGoomba::EType::GOOMBA:
-			_animations[ANI_GOOMBA_WALK]->Update(elapsedMs);
-			break;
-		case CGoomba::EType::RED_GOOMBA:
-			_animations[ANI_RED_GOOMBA_WALK]->Update(elapsedMs);
-			break;
-		}
+		if (!_left) _vx = -WALK_SPEED;
+		else _vx = WALK_SPEED;
 	}
 	break;
 
 	case CGoomba::EActionStage::EXIT:
 	{
-		switch (_type)
+		/* Animation Stop */
 		{
-		case CGoomba::EType::GOOMBA:
-			_animations[ANI_GOOMBA_WALK]->Stop();
-			break;
-		case CGoomba::EType::RED_GOOMBA:
-			_animations[ANI_RED_GOOMBA_WALK]->Stop();
-			break;
+			switch (_type)
+			{
+			case CGoomba::EType::GOOMBA:
+				_animations[ANI_GOOMBA_WALK]->Stop();
+				break;
+
+			case CGoomba::EType::RED_GOOMBA:
+				_animations[ANI_RED_GOOMBA_WALK]->Stop();
+				break;
+			}
 		}
 	}
 	NextAction();
@@ -210,70 +228,37 @@ void CGoomba::Jump(float elapsedMs)
 	{
 	case CGoomba::EActionStage::START:
 	{
-		if (_wing)
+		/* Animation Start */
 		{
 			_animations[ANI_GOOMBA_WING_FLAP]->Play(true);
 		}
 
+		AcquireTarget();
 		_vy = JUMP_FORCE;
 		_ground = false;
-
-		switch (_type)
-		{
-		case CGoomba::EType::GOOMBA:
-			_animations[ANI_GOOMBA_WALK]->Play(true);
-			break;
-		case CGoomba::EType::RED_GOOMBA:
-			_animations[ANI_RED_GOOMBA_WALK]->Play(true);
-			break;
-		}
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CGoomba::EActionStage::PROGRESS:
 	{
-		if (!_left)
-		{
-			_vx = -WALK_SPEED;
-		}
-		else
-		{
-			_vx = WALK_SPEED;
-		}
-
-		if (_wing)
+		/* Animation Update */
 		{
 			_animations[ANI_GOOMBA_WING_FLAP]->Update(elapsedMs);
 		}
 
-		switch (_type)
-		{
-		case CGoomba::EType::GOOMBA:
-			_animations[ANI_GOOMBA_WALK]->Update(elapsedMs);
-			break;
-		case CGoomba::EType::RED_GOOMBA:
-			_animations[ANI_RED_GOOMBA_WALK]->Update(elapsedMs);
-			break;
-		}
+		if (!_left) _vx = -WALK_SPEED;
+		else _vx = WALK_SPEED;
 
-		if (_ground)
-		{
-			SetNextAction(EAction::WALK);
-		}
+		if (_ground) SetNextAction(EAction::WALK);
 	}
 	break;
 
 	case CGoomba::EActionStage::EXIT:
 	{
-		switch (_type)
+		/* Animation Stop */
 		{
-		case CGoomba::EType::GOOMBA:
-			_animations[ANI_GOOMBA_WALK]->Stop();
-			break;
-		case CGoomba::EType::RED_GOOMBA:
-			_animations[ANI_RED_GOOMBA_WALK]->Stop();
-			break;
+			_animations[ANI_GOOMBA_WING_FLAP]->Stop();
 		}
 	}
 	NextAction();
@@ -287,22 +272,17 @@ void CGoomba::Die(float elapsedMs)
 	{
 	case CGoomba::EActionStage::START:
 	{
-		_currentDecayInterval = DECAY_INTERVAL;
+		_decayInterval = DECAY_INTERVAL;
+		_vx = 0;
+		_vy = 0;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CGoomba::EActionStage::PROGRESS:
 	{
-		if (_currentDecayInterval > 0)
-		{
-			_currentDecayInterval -= elapsedMs;
-		}
-		else
-		{
-			_start = false;
-			Deactive();
-		}
+		if (_decayInterval > 0) _decayInterval -= elapsedMs;
+		else Destroy();
 	}
 	break;
 
@@ -320,23 +300,15 @@ void CGoomba::Thrown(float elapsedMs)
 	{
 	case CGoomba::EActionStage::START:
 	{
-		_vy = JUMP_FORCE;
-		_currentDecayInterval = DECAY_INTERVAL;
+		_decayInterval = DECAY_INTERVAL;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CGoomba::EActionStage::PROGRESS:
 	{
-		if (_currentDecayInterval > 0)
-		{
-			_currentDecayInterval -= elapsedMs;
-		}
-		else
-		{
-			_start = false;
-			Deactive();
-		}
+		if (_decayInterval > 0) _decayInterval -= elapsedMs;
+		else Destroy();
 	}
 	break;
 
@@ -348,16 +320,52 @@ void CGoomba::Thrown(float elapsedMs)
 	}
 }
 
+void CGoomba::AcquireTarget()
+{
+	if (_game->Get(_targetName) != nullptr)
+	{
+		float targetX = _game->Get(_targetName)->_x;
+		if (targetX > _x)
+		{
+			_left = true;
+		}
+		else
+		{
+			_left = false;
+		}
+	}
+}
+
+void CGoomba::HitTop()
+{
+	if (_wing)
+	{
+		_wing = false;
+		_vy = 0;
+	}
+	else
+	{
+		SetNextAction(EAction::DIE);
+	}
+}
+
+void CGoomba::HitSide()
+{
+	_vy = JUMP_FORCE;
+	_vx = -_vx;
+	SetNextAction(EAction::THROWN);
+}
+
 int CGoomba::IsCollidable()
 {
 	switch (_action)
 	{
 	case CGoomba::EAction::WALK:
 	case CGoomba::EAction::JUMP:
+	case CGoomba::EAction::DIE:
 		return 1;
 		break;
 
-	case CGoomba::EAction::DIE:
 	case CGoomba::EAction::THROWN:
 		return 0;
 		break;
@@ -376,12 +384,13 @@ void CGoomba::GetBoundingBox(float& left, float& top, float& right, float& botto
 	{
 	case CGoomba::EAction::WALK:
 	case CGoomba::EAction::JUMP:
+	case CGoomba::EAction::DIE:
 		left = _x + BODY_OFFSETX - (BODY_WIDTH / 2);
 		right = _x + BODY_OFFSETX + (BODY_WIDTH / 2);
 		top = _y + BODY_OFFSETY + (BODY_HEIGHT / 2);
 		bottom = _y + BODY_OFFSETY - (BODY_HEIGHT / 2);
 		break;
-	case CGoomba::EAction::DIE:
+
 	case CGoomba::EAction::THROWN:
 		left = 0;
 		right = 0;
@@ -399,6 +408,7 @@ void CGoomba::OnNoCollision(float elapsedMs)
 
 void CGoomba::OnCollisionWith(pCollision e)
 {
+	/* Blocking */
 	if (e->_ny != 0 && e->_target->IsBlocking())
 	{
 		_vy = 0;
@@ -410,16 +420,20 @@ void CGoomba::OnCollisionWith(pCollision e)
 		_left = !_left;
 	}
 
-	if (dynamic_cast<pHollowedPlatform>(e->_target))
+	/* Prop */
+	if (dynamic_cast<pPlatform>(e->_target))
+		OnCollisionWithPlatform(e);
+}
+
+void CGoomba::OnCollisionWithPlatform(pCollision e)
+{
+	if (e->_ny > 0 && !e->_target->IsBlocking())
 	{
-		if (e->_ny > 0 && !e->_target->IsBlocking())
-		{
-			float top = 0;
-			float temp = 0;
-			e->_target->GetBoundingBox(temp, top, temp, temp);
-			_y = top + BLOCK_PUSH_FACTOR;
-			_vy = 0;
-			if (e->_ny > 0) _ground = true;
-		}
+		float top = 0;
+		float temp = 0;
+		e->_target->GetBoundingBox(temp, top, temp, temp);
+		_y = top + BLOCK_PUSH_FACTOR;
+		_vy = 0;
+		_ground = true;
 	}
 }

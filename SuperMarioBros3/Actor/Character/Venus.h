@@ -75,7 +75,11 @@ public:
 	float STAND_INTERVAL = 0;
 	float SHOOT_INTERVAL = 0;
 	float GROW_LIMIT = 0;
-	float BORROW_LIMIT = 0;
+	float BURROW_LIMIT = 0;
+	float SPEED = 0;
+	float SHOT_OFFSET = 0;
+	float FIREBALL_VX = 0;
+	float FIREBALL_VY = 0;
 
 	/* Logic */
 	enum class EType
@@ -86,9 +90,13 @@ public:
 	EType _type = EType::VENUS;
 	bool _left = false;
 	bool _up = false;
-	float _currentHideInterval = 0;
-	float _currentStandInterval = 0;
-	float _shootStandInterval = 0;
+	float _hideInterval = 0;
+	float _standInterval = 0;
+	float _shootInterval = 0;
+	float _growLimit = 0;
+	float _burrowLimit = 0;
+	std::string _targetName;
+
 
 	/* State */
 	enum class EAction
@@ -133,6 +141,10 @@ public:
 	void Burrow(float elapsedMs);
 	void Shoot(float elapsedMs);
 	void Die(float elapsedMs);
+
+	void UpdateSensor();
+	void AcquireTarget();
+	void ShootFireball();
 
 	/* Collision */
 	int IsCollidable();

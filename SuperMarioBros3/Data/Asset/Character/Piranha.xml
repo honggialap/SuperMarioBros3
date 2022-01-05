@@ -2,7 +2,7 @@
 
 	<Sprites>
 		<!--BBox-->
-		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="9991" textureId="0" left="0" top="0" width ="64" height="128" offsetX="0" offsetY="64"/>
 
 		<Sprite id="1201" textureId="2" left="4" top="356" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="1202" textureId="2" left="76" top="356" width="64" height="128" offsetX="0" offsetY="64"/>
@@ -23,12 +23,13 @@
 
 	<Stats
 		renderBody="true"
-		HIDE_INTERVAL = "0"
-		STAND_INTERVAL = "0"
-		GROW_LIMIT = "0"
-		BORROW_LIMIT = "0"
+		
+		HIDE_INTERVAL = "1000"
+		STAND_INTERVAL = "1000"
+		GROW_LIMIT = "128"
+		SPEED = "0.1"
 		/>
-	<Body tag="small" width ="64" height="64" offsetX="0" offsetY="32"/>
+	<Body tag="small" width ="64" height="128" offsetX="0" offsetY="64"/>
 	<GameObject actor="2007" name="sensor" source="Data/Asset/Character/PiranhaSensor.xml"/>
 
 </Prefab>

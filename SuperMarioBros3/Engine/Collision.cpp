@@ -111,8 +111,6 @@ pCollision CCollider::Overlapping(pGameObject target)
 {
 	float sl, st, sr, sb;		// static object bbox
 	float ml, mt, mr, mb;		// moving object bbox
-	float nx = 0.0f;
-	float ny = 0.0f;
 	float t = -1.0f;
 	_gameObject->GetBoundingBox(ml, mt, mr, mb);
 	target->GetBoundingBox(sl, st, sr, sb);
@@ -130,7 +128,7 @@ pCollision CCollider::Overlapping(pGameObject target)
 		t = 0.0f;
 	}
 
-	pCollision e = new CCollision(t, nx, ny, 0, 0, true, target);
+	pCollision e = new CCollision(t, 0, 0, 0, 0, true, target);
 	return e;
 }
 
@@ -277,7 +275,6 @@ void CCollider::Process(float elapsedMs, std::vector<pGameObject>* coObjects)
 				_gameObject->OnCollisionWith(e);
 			}
 			if (e->_target->IsBlocking()) continue;  // blocking collisions will be handled later, skip them
-
 		}
 		for (UINT i = 0; i < _coEvents.size(); i++) delete _coEvents[i];
 	}

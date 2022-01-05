@@ -22,7 +22,8 @@ void CPiranha::Load()
 	HIDE_INTERVAL = statsNode.attribute("HIDE_INTERVAL").as_float();
 	STAND_INTERVAL = statsNode.attribute("STAND_INTERVAL").as_float();
 	GROW_LIMIT = statsNode.attribute("GROW_LIMIT").as_float();
-	BORROW_LIMIT = _y;
+	BURROW_LIMIT = _y;
+	SPEED = statsNode.attribute("SPEED").as_float();
 
 	/* Sensor */
 	pugi::xml_node sensorNode = prefab.child("Prefab").child("GameObject");
@@ -42,13 +43,14 @@ void CPiranha::Start()
 	_start = true;
 	_ax = 0.0f;
 	_ay = 0.0f;
-	_sensor->Active();
 	SetAction(EAction::STAND);
 }
 
 void CPiranha::Update(float elapsedMs)
 {
 	if (!_start) Start();
+
+	UpdateSensor();
 
 	std::vector<pGameObject> colidables = _game->GetLocal(_id);
 	_collider->Process(elapsedMs, &colidables);
@@ -104,12 +106,19 @@ void CPiranha::Hide(float elapsedMs)
 	{
 	case CPiranha::EActionStage::START:
 	{
+		_hideInterval = HIDE_INTERVAL;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CPiranha::EActionStage::PROGRESS:
 	{
+		if (!_sensor->_activate)
+		{
+			if (_hideInterval > 0) _hideInterval -= elapsedMs;
+			else SetNextAction(EAction::GROW);
+		}
+		else _hideInterval = HIDE_INTERVAL;
 	}
 	break;
 
@@ -127,17 +136,38 @@ void CPiranha::Grow(float elapsedMs)
 	{
 	case CPiranha::EActionStage::START:
 	{
+		/* Animation Start */
+		{
+			_animations[ANI_PIRANHA]->Play(true);
+		}
+
+		_growLimit = _y + GROW_LIMIT;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CPiranha::EActionStage::PROGRESS:
 	{
+		/* Animation Update */
+		{
+			_animations[ANI_PIRANHA]->Update(elapsedMs);
+		}
+
+		if (_y < _growLimit) _y += SPEED * elapsedMs;
+		else
+		{
+			_y = _growLimit;
+			SetNextAction(EAction::STAND);
+		}
 	}
 	break;
 
 	case CPiranha::EActionStage::EXIT:
 	{
+		/* Animation Stop */
+		{
+			_animations[ANI_PIRANHA]->Stop();
+		}
 	}
 	NextAction();
 	break;
@@ -150,12 +180,15 @@ void CPiranha::Stand(float elapsedMs)
 	{
 	case CPiranha::EActionStage::START:
 	{
+		_standInterval = STAND_INTERVAL;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CPiranha::EActionStage::PROGRESS:
 	{
+		if (_standInterval > 0) _standInterval -= elapsedMs;
+		else SetNextAction(EAction::BURROW);
 	}
 	break;
 
@@ -173,6 +206,52 @@ void CPiranha::Burrow(float elapsedMs)
 	{
 	case CPiranha::EActionStage::START:
 	{
+		/* Animation Start */
+		{
+			_animations[ANI_PIRANHA]->Play(true);
+		}
+
+		_burrowLimit = BURROW_LIMIT;
+	}
+	_actionStage = EActionStage::PROGRESS;
+	break;
+
+	case CPiranha::EActionStage::PROGRESS:
+	{
+		/* Animation Update */
+		{
+			_animations[ANI_PIRANHA]->Update(elapsedMs);
+		}
+
+		if (_y > _burrowLimit) _y += -SPEED * elapsedMs;
+		else
+		{
+			_y = _burrowLimit;
+			SetNextAction(EAction::HIDE);
+		}
+	}
+	break;
+
+	case CPiranha::EActionStage::EXIT:
+	{
+		/* Animation Stop */
+		{
+			_animations[ANI_PIRANHA]->Stop();
+		}
+	}
+	NextAction();
+	break;
+	}
+}
+
+void CPiranha::Die(float elapsedMs)
+{
+	switch (_actionStage)
+	{
+	case CPiranha::EActionStage::START:
+	{
+		_sensor->Destroy();
+		Destroy();
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
@@ -190,26 +269,11 @@ void CPiranha::Burrow(float elapsedMs)
 	}
 }
 
-void CPiranha::Die(float elapsedMs)
+void CPiranha::UpdateSensor()
 {
-	switch (_actionStage)
+	if (_sensor != nullptr)
 	{
-	case CPiranha::EActionStage::START:
-	{
-	}
-	_actionStage = EActionStage::PROGRESS;
-	break;
-
-	case CPiranha::EActionStage::PROGRESS:
-	{
-	}
-	break;
-
-	case CPiranha::EActionStage::EXIT:
-	{
-	}
-	NextAction();
-	break;
+		_sensor->SetPosition(_x, _y);
 	}
 }
 

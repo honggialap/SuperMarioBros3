@@ -108,9 +108,11 @@ public:
 	EType _type = EType::KOOPA;
 	bool _wing = false;
 	bool _left = false;
+	bool _up = false;
 	bool _ground = false;
-	float _decayInterval = 0;
 	float _restoreLimit = 0;
+	float _decayInterval = 0;
+
 
 	/* State */
 	enum class EAction
@@ -118,7 +120,7 @@ public:
 		MOVE,
 		RETRACT,
 		SPIN,
-		DIE,
+		THROWN,
 	};
 	enum class EActionStage
 	{
@@ -150,8 +152,12 @@ public:
 	void Move(float elapsedMs);
 	void Retract(float elapsedMs);
 	void Spin(float elapsedMs);
-	void Die(float elapsedMs);
+	void Thrown(float elapsedMs);
 
+	void UpdateSensor();
+	void HitTop();
+	void HitSide();
+	void HitByTail(bool left);
 
 	/* Collision */
 	int IsCollidable();
@@ -160,5 +166,14 @@ public:
 
 	void OnNoCollision(float elapsedMs);
 	void OnCollisionWith(pCollision e);
+
+	void OnCollisionWithGoomba(pCollision e);
+	void OnCollisionWithKoopa(pCollision e);
+	void OnCollisionWithPiranha(pCollision e);
+	void OnCollisionWithVenus(pCollision e);
+
+	void OnCollisionWithPlatform(pCollision e);
+	void OnCollisionWithBrick(pCollision e);
+	void OnCollisionWithBlock(pCollision e);
 };
 typedef CKoopa* pKoopa;

@@ -4,8 +4,8 @@
 
 #pragma region Sprite ID
 /* BBOX */
-#define BBOX_SMALL						9991
-#define BBOX_LARGE						9992
+#define BBOX_LEFT						9991
+#define BBOX_RIGHT						9992
 #pragma endregion
 
 
@@ -18,7 +18,6 @@ public:
 		float posX, float posY, int gridX, int gridY, unsigned int layer
 	) : CGameObject(game, scene, id, name, prefabSource, posX, posY, gridX, gridY, layer) {};
 
-	/* Stats */
 
 	/* Lifecycle */
 	virtual void Load();
@@ -26,52 +25,34 @@ public:
 	virtual void Update(float elapsedMs);
 	virtual void Render();
 
+
+	/* Body */
+	bool _renderBody = false;
+	float LEFT_BODY_WIDTH = 0;
+	float LEFT_BODY_HEIGHT = 0;
+	float LEFT_BODY_OFFSETX = 0;
+	float LEFT_BODY_OFFSETY = 0;
+	float RIGHT_BODY_WIDTH = 0;
+	float RIGHT_BODY_HEIGHT = 0;
+	float RIGHT_BODY_OFFSETX = 0;
+	float RIGHT_BODY_OFFSETY = 0;
+
+
 	/* Logic */
-	enum class EAction
-	{
-		STANDBY,
-		ENTRY,
-		PROGRESS,
-		RECOVER
-	};
-	enum class EActionStage
-	{
-		START,
-		PROGRESS,
-		EXIT
-	};
-	EActionStage _actionStage = EActionStage::START;
-	EAction _action = EAction::STANDBY;
-	EAction _nextAction = EAction::STANDBY;
+	bool _left;
+	bool _activate;
 
-	void SetAction(EAction action)
-	{
-		_action = action;
-		_actionStage = EActionStage::START;
-	};
-	void SetNextAction(EAction action)
-	{
-		_nextAction = action;
-		_actionStage = EActionStage::EXIT;
-	};
-	void NextAction()
-	{
-		_action = _nextAction;
-		_actionStage = EActionStage::START;
-	};
 
-	void HandleAction(float elapsedMs);
-	void Standby(float elapsedMs);
-	void Entry(float elapsedMs);
-	void Progress(float elapsedMs);
-	void Recover(float elapsedMs);
-
+	/* Collision */
 	int IsCollidable();
 	int IsBlocking();
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 
 	void OnNoCollision(float elapsedMs);
 	void OnCollisionWith(pCollision e);
-	void OnCollisionWithItem(pCollision e);
+
+	void OnCollisionWithGoomba(pCollision e);
+	void OnCollisionWithKoopa(pCollision e);
+
 };
 typedef CMarioTail* pMarioTail;

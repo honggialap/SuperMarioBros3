@@ -23,8 +23,7 @@
 #include "Actor/Misc/HUD.h"
 #include "Actor/Misc/ScoreEffect.h"
 
-#include "Actor/Prop/SolidPlatform.h"
-#include "Actor/Prop/HollowedPlatform.h"
+#include "Actor/Prop/Platform.h"
 #include "Actor/Prop/Brick.h"
 #include "Actor/Prop/Block.h"
 #include "Actor/Prop/SpawnZone.h"
@@ -265,23 +264,9 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	break;
 
 		/* Prop */
-	case ACT_SOLID_PLATFORM:
+	case ACT_PLATFORM:
 	{
-		auto gameObject = new CSolidPlatform(
-			this, scene, nextGameObjectId++,
-			name, prefabSource,
-			posX, posY, gridX, gridY, layer
-		);
-		Add(gameObject);
-		if (active) gameObject->Active();
-		gameObject->Load();
-		return gameObject;
-	}
-	break;
-
-	case ACT_HOLLOWED_PLATFORM:
-	{
-		auto gameObject = new CHollowedPlatform(
+		auto gameObject = new CPlatform(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer

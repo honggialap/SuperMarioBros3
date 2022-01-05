@@ -22,6 +22,7 @@ void CKoopaSensor::Load()
 	RIGHT_BODY_OFFSETX = bodyNode.attribute("offsetX").as_float();
 	RIGHT_BODY_OFFSETY = bodyNode.attribute("offsetY").as_float();
 
+	/* Logic */
 	pugi::xml_node statsNode = prefab.child("Prefab").child("Stats");
 	_renderBody = statsNode.attribute("renderBody").as_bool();
 }

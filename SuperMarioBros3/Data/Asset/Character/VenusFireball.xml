@@ -1,6 +1,9 @@
 <Prefab>
 
 	<Sprites>
+		<!--BBox-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width ="32" height ="32" offsetX="0" offsetY="0"/>
+
 		<Sprite id="1001" textureId="2" left="372" top="1036" width="32" height="64" offsetX="0" offsetY="0"/>
 		<Sprite id="1002" textureId="2" left="412" top="1036" width="32" height="64" offsetX="0" offsetY="0"/>
 		<Sprite id="1003" textureId="2" left="452" top="1036" width="32" height="64" offsetX="0" offsetY="0"/>
@@ -16,7 +19,10 @@
 		</Animation>
 	</Animations>
 
-	<Stats>
-	</Stats>
+	<Stats
+		renderBody="true"
+		DECAY_INTERVAL="10000"
+	/>
+	<Body tag="bla" width ="32" height ="32" offsetX="0" offsetY="0"/>
 
 </Prefab>

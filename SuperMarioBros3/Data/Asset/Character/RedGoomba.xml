@@ -36,23 +36,22 @@
 
 		<!--GOOMBA WING-->
 		<Animation id="3001">
-			<Frame spriteId="3001" time="150"/>
-			<Frame spriteId="3002" time="150"/>
-			<Frame spriteId="3001" time="150"/>
-			<Frame spriteId="3002" time="150"/>
-			<Frame spriteId="3001" time="150"/>
+			<Frame spriteId="3001" time="100"/>
+			<Frame spriteId="3002" time="100"/>
 		</Animation>
 	</Animations>
 
 	<Stats
-		renderBody="false"
+		renderBody="true"
 		type ="1"
 		wing ="true"
+		target ="mario"
+		
 		GRAVITY="0.0025"
-		WALK_SPEED ="0.25"
-		JUMP_FORCE ="1"
+		WALK_SPEED ="0.2"
+		JUMP_FORCE ="1.1"
 		JUMP_INTERVAL ="2000"
-		DECAY_INTERVAL="2000"
+		DECAY_INTERVAL="1500"
 		/>
-	<Body tag="small" width ="64" height="64" offsetX="0" offsetY="32"/>
+	<Body tag="small" width ="64" height="60" offsetX="0" offsetY="30"/>
 </Prefab>

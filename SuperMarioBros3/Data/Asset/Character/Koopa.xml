@@ -131,13 +131,15 @@
 		renderBody="true"
 		type ="0"
 		wing ="false"
-		GRAVITY="0.01"
-		WALK_SPEED ="0.3"
+		
+		GRAVITY="0.0025"
+		WALK_SPEED ="0.25"
 		JUMP_FORCE ="1"
-		JUMP_INTERVAL ="2000"
 		DECAY_INTERVAL="2000"
+		SPIN_SPEED = "0.8"
+		RESTORE_LIMIT = "6000"
 		/>
-	<Body tag="nah" width ="64" height="64" offsetX="0" offsetY="32"/>
+	<Body tag="bla" width ="64" height="60" offsetX="0" offsetY="30"/>
 	<GameObject actor="2005" name="sensor" source="Data/Asset/Character/KoopaSensor.xml"/>
 
 </Prefab>

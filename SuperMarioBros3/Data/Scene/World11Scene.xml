@@ -13,19 +13,20 @@
 	<GameObject actor="2001" name="mario" source="Data/Asset/Character/Mario.xml" x="2000" y="200" gridX="0" gridY="0" layer="2" active="true" />
 
 	<!--NPC	-->
-	<GameObject actor="2003" name="goomba01" source="Data/Asset/Character/Goomba.xml" x="100" y="100" gridX="1" gridY="1" layer="1" active="true" />
+	<GameObject actor="2003" name="goomba01" source="Data/Asset/Character/Goomba.xml" x="2300" y="300" gridX="1" gridY="1" layer="1" active="true" />
 	<GameObject actor="2003" name="goomba02" source="Data/Asset/Character/Goomba.xml" x="200" y="100" gridX="1" gridY="1" layer="1" active="true" />
 	<GameObject actor="2003" name="goomba03" source="Data/Asset/Character/Goomba.xml" x="300" y="100" gridX="1" gridY="1" layer="1" active="true" />
 	<GameObject actor="2003" name="goomba04" source="Data/Asset/Character/Goomba.xml" x="400" y="100" gridX="1" gridY="1" layer="1" active="true" />
 	<GameObject actor="2003" name="redGoomba01" source="Data/Asset/Character/RedGoomba.xml" x="500" y="80" gridX="1" gridY="1" layer="1" active="true" />
-	
+
+	<GameObject actor="2004" name="redKoopa01" source="Data/Asset/Character/RedKoopa.xml" x="2300" y="600" gridX="1" gridY="-1" layer="1" active="true" />
+	<!---->
 	<GameObject actor="2004" name="koopa01" source="Data/Asset/Character/Koopa.xml" x="100" y="400" gridX="1" gridY="-1" layer="1" active="true" />
-	<GameObject actor="2004" name="redKoopa01" source="Data/Asset/Character/RedKoopa.xml" x="2300" y="400" gridX="1" gridY="-1" layer="1" active="true" />
 	<GameObject actor="2004" name="wingKoopa01" source="Data/Asset/Character/WingKoopa.xml" x="400" y="400" gridX="0" gridY="0" layer="1" active="true" />
 	<GameObject actor="2004" name="wingKoopa02" source="Data/Asset/Character/WingKoopa.xml" x="500" y="400" gridX="0" gridY="0" layer="1" active="true" />
 	<GameObject actor="2004" name="wingKoopa03" source="Data/Asset/Character/WingKoopa.xml" x="600" y="400" gridX="0" gridY="0" layer="1" active="true" />
-
-	<GameObject actor="2006" name="piranha01" source="Data/Asset/Character/Piranha.xml" x="100" y="600" gridX="0" gridY="0" layer="1" active="true" />
+	
+	<GameObject actor="2006" name="piranha01" source="Data/Asset/Character/Piranha.xml" x="100" y="100" gridX="0" gridY="0" layer="1" active="true" />
 	<GameObject actor="2008" name="venus01" source="Data/Asset/Character/Venus.xml" x="200" y="600" gridX="0" gridY="0" layer="1" active="true" />
 	<GameObject actor="2008" name="redVenus01" source="Data/Asset/Character/RedVenus.xml" x="300" y="400" gridX="0" gridY="0" layer="1" active="true" />
 
@@ -217,33 +218,33 @@
 	<GameObject actor="4001" name="floor49" source="Data/Asset/Prop/PlatformS11Tile.xml" x="6720" y="960" gridX="0" gridY="0" layer="1" active="true" />
 
 	<!--Main Secion Hollowed-->
-	<GameObject actor="4002" name="hollowed01" source="Data/Asset/Prop/PlatformH21.xml" x="960" y="192" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed02" source="Data/Asset/Prop/PlatformH11.xml" x="1088" y="192" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed03" source="Data/Asset/Prop/PlatformH21.xml" x="1088" y="320" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed04" source="Data/Asset/Prop/PlatformH11.xml" x="1216" y="320" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed01" source="Data/Asset/Prop/PlatformH21.xml" x="960" y="192" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed02" source="Data/Asset/Prop/PlatformH11.xml" x="1088" y="192" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed03" source="Data/Asset/Prop/PlatformH21.xml" x="1088" y="320" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed04" source="Data/Asset/Prop/PlatformH11.xml" x="1216" y="320" gridX="0" gridY="0" layer="1" active="true" />
 	<!---->																   
-	<GameObject actor="4002" name="hollowed05" source="Data/Asset/Prop/PlatformH41.xml" x="1600" y="192" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed06" source="Data/Asset/Prop/PlatformH11.xml" x="1856" y="192" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed07" source="Data/Asset/Prop/PlatformH41.xml" x="1856" y="320" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed08" source="Data/Asset/Prop/PlatformH41.xml" x="2048" y="448" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed09" source="Data/Asset/Prop/PlatformH41.xml" x="2048" y="128" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed10" source="Data/Asset/Prop/PlatformH21.xml" x="2304" y="128" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed05" source="Data/Asset/Prop/PlatformH41.xml" x="1600" y="192" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed06" source="Data/Asset/Prop/PlatformH11.xml" x="1856" y="192" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed07" source="Data/Asset/Prop/PlatformH41.xml" x="1856" y="320" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed08" source="Data/Asset/Prop/PlatformH41.xml" x="2048" y="448" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed09" source="Data/Asset/Prop/PlatformH41.xml" x="2048" y="128" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed10" source="Data/Asset/Prop/PlatformH21.xml" x="2304" y="128" gridX="0" gridY="0" layer="1" active="true" />
+	<!---->															   
+	<GameObject actor="4001" name="hollowed11" source="Data/Asset/Prop/PlatformH41.xml" x="5056" y="128" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed12" source="Data/Asset/Prop/PlatformH21.xml" x="5312" y="128" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed13" source="Data/Asset/Prop/PlatformH11.xml" x="5440" y="128" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed14" source="Data/Asset/Prop/PlatformH41.xml" x="5184" y="256" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed15" source="Data/Asset/Prop/PlatformH21.xml" x="5440" y="256" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed16" source="Data/Asset/Prop/PlatformH11.xml" x="5568" y="256" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed17" source="Data/Asset/Prop/PlatformH41.xml" x="5315" y="384" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed18" source="Data/Asset/Prop/PlatformH21.xml" x="5568" y="384" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed19" source="Data/Asset/Prop/PlatformH11.xml" x="5696" y="384" gridX="0" gridY="0" layer="1" active="true" />
 	<!---->																   
-	<GameObject actor="4002" name="hollowed11" source="Data/Asset/Prop/PlatformH41.xml" x="5056" y="128" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed12" source="Data/Asset/Prop/PlatformH21.xml" x="5312" y="128" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed13" source="Data/Asset/Prop/PlatformH11.xml" x="5440" y="128" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed14" source="Data/Asset/Prop/PlatformH41.xml" x="5184" y="256" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed15" source="Data/Asset/Prop/PlatformH21.xml" x="5440" y="256" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed16" source="Data/Asset/Prop/PlatformH11.xml" x="5568" y="256" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed17" source="Data/Asset/Prop/PlatformH41.xml" x="5315" y="384" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed18" source="Data/Asset/Prop/PlatformH21.xml" x="5568" y="384" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed19" source="Data/Asset/Prop/PlatformH11.xml" x="5696" y="384" gridX="0" gridY="0" layer="1" active="true" />
-	<!---->																   
-	<GameObject actor="4002" name="hollowed20" source="Data/Asset/Prop/PlatformH41.xml" x="5248" y="1088" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed21" source="Data/Asset/Prop/PlatformH21.xml" x="8576" y="192" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed22" source="Data/Asset/Prop/PlatformH11.xml" x="8704" y="192" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed23" source="Data/Asset/Prop/PlatformH21.xml" x="8704" y="576" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="4002" name="hollowed24" source="Data/Asset/Prop/PlatformH11.xml" x="8832" y="576" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed20" source="Data/Asset/Prop/PlatformH41.xml" x="5248" y="1088" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed21" source="Data/Asset/Prop/PlatformH21.xml" x="8576" y="192" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed22" source="Data/Asset/Prop/PlatformH11.xml" x="8704" y="192" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed23" source="Data/Asset/Prop/PlatformH21.xml" x="8704" y="576" gridX="0" gridY="0" layer="1" active="true" />
+	<GameObject actor="4001" name="hollowed24" source="Data/Asset/Prop/PlatformH11.xml" x="8832" y="576" gridX="0" gridY="0" layer="1" active="true" />
 
 	<!--Sub Secion-->
 	<GameObject actor="4001" name="sub01" source="Data/Asset/Prop/PlatformS12.xml" x="11776" y="640" gridX="0" gridY="0" layer="1" active="true" />

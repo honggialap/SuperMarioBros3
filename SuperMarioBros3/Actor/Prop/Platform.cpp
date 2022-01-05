@@ -1,7 +1,7 @@
-#include "HollowedPlatform.h"
+#include "Platform.h"
 #include "../../SuperMarioBros3.h"
 
-void CHollowedPlatform::Load()
+void CPlatform::Load()
 {
 	CGameObject::Load();
 
@@ -9,9 +9,11 @@ void CHollowedPlatform::Load()
 	pugi::xml_document prefab;
 	prefab.load_file(_source.c_str());
 
-	/* Body */	
+	/* Body */
 	pugi::xml_node statsNode = prefab.child("Prefab").child("Stats");
 	_renderBody = statsNode.attribute("renderBody").as_bool();
+	_solid = statsNode.attribute("solid").as_bool();
+
 	pugi::xml_node bodyNode = prefab.child("Prefab").child("Body");
 	BODY_WIDTH = bodyNode.attribute("width").as_float();
 	BODY_HEIGHT = bodyNode.attribute("height").as_float();
@@ -19,32 +21,42 @@ void CHollowedPlatform::Load()
 	BODY_OFFSETY = bodyNode.attribute("offsetY").as_float();
 }
 
-void CHollowedPlatform::Start()
+void CPlatform::Start()
 {
 	_start = true;
 }
 
-void CHollowedPlatform::Update(float elapsedMs)
+void CPlatform::Update(float elapsedMs)
 {
 	if (_start) Start();
 }
 
-void CHollowedPlatform::Render()
+void CPlatform::Render()
 {
 	if (_renderBody) _sprites[BBOX]->Render(_x, _y);
 }
 
-int CHollowedPlatform::IsCollidable()
+int CPlatform::IsCollidable()
 {
 	return 1;
 }
 
-int CHollowedPlatform::IsBlocking()
+int CPlatform::IsBlocking()
 {
-	return 0;
+	switch (_solid)
+	{
+	case true:
+		return 1;
+		break;
+
+	case false:
+		return 0;
+		break;
+	}
+	return 1;
 }
 
-void CHollowedPlatform::GetBoundingBox(float& left, float& top, float& right, float& bottom)
+void CPlatform::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
 	left = _x + BODY_OFFSETX - (BODY_WIDTH / 2);
 	right = _x + BODY_OFFSETX + (BODY_WIDTH / 2);
@@ -52,10 +64,10 @@ void CHollowedPlatform::GetBoundingBox(float& left, float& top, float& right, fl
 	bottom = _y + BODY_OFFSETY - (BODY_HEIGHT / 2);
 }
 
-void CHollowedPlatform::OnNoCollision(float elapsedMs)
+void CPlatform::OnNoCollision(float elapsedMs)
 {
 }
 
-void CHollowedPlatform::OnCollisionWith(pCollision e)
+void CPlatform::OnCollisionWith(pCollision e)
 {
 }

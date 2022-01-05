@@ -3,10 +3,6 @@
 
 #pragma region Sprite ID
 #define BBOX					9991
-
-#pragma endregion
-
-#pragma region Animation ID
 #pragma endregion
 
 
@@ -19,46 +15,21 @@ public:
 		float posX, float posY, int gridX, int gridY, unsigned int layer
 	) : CGameObject(game, scene, id, name, prefabSource, posX, posY, gridX, gridY, layer) {};
 
-	/* Binding Command */
-	/* Stats */
 	/* Lifecycle */
 	virtual void Load();
 	virtual void Start();
 	virtual void Update(float elapsedMs);
 	virtual void Render();
 
+	/* Body */
+	bool _renderBody = false;
+	float BODY_WIDTH = 0;
+	float BODY_HEIGHT = 0;
+	float BODY_OFFSETX = 0;
+	float BODY_OFFSETY = 0;
+
 	/* Logic */
-	enum class EAction
-	{
-		DEFAULT
-	};
-	enum class EActionStage
-	{
-		START,
-		PROGRESS,
-		EXIT
-	};
-	EActionStage _actionStage = EActionStage::START;
-	EAction _action = EAction::DEFAULT;
-	EAction _nextAction = EAction::DEFAULT;
-
-	void SetAction(EAction action)
-	{
-		_action = action;
-		_actionStage = EActionStage::START;
-	};
-	void SetNextAction(EAction action)
-	{
-		_nextAction = action;
-		_actionStage = EActionStage::EXIT;
-	};
-	void NextAction()
-	{
-		_action = _nextAction;
-		_actionStage = EActionStage::START;
-	};
-
-	void HandleAction(float elapsedMs);
+	bool _activate = false;
 
 	int IsCollidable();
 	int IsBlocking();

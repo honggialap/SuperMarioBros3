@@ -68,9 +68,9 @@ public:
 	bool _wing = false;
 	bool _left = false;
 	bool _ground = false;
-	unsigned int _targetId = 0;
-	float _currentDecayInterval = 0;
-	float _currentJumpInterval = 0;
+	std::string _targetName;
+	float _decayInterval = 0;
+	float _jumpInterval = 0;
 
 
 	/* State */
@@ -113,6 +113,9 @@ public:
 	void Die(float elapsedMs);
 	void Thrown(float elapsedMs);
 
+	void AcquireTarget();
+	void HitTop();
+	void HitSide();
 
 	/* Collision */
 	int IsCollidable();
@@ -121,5 +124,7 @@ public:
 
 	void OnNoCollision(float elapsedMs);
 	void OnCollisionWith(pCollision e);
+
+	void OnCollisionWithPlatform(pCollision e);
 };
 typedef CGoomba* pGoomba;

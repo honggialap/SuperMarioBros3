@@ -1,6 +1,6 @@
 #include "ExtraLife.h"
 #include "../../SuperMarioBros3.h"
-#include "../Prop/HollowedPlatform.h"
+#include "../Prop/Platform.h"
 
 void CExtraLife::Load()
 {
@@ -229,7 +229,7 @@ void CExtraLife::OnCollisionWith(pCollision e)
 		_left = !_left;
 	}
 
-	if (dynamic_cast<pHollowedPlatform>(e->_target))
+	if (dynamic_cast<pPlatform>(e->_target))
 	{
 		if (e->_ny > 0 && !e->_target->IsBlocking())
 		{
