@@ -31,7 +31,8 @@
 #define ACT_DEAD_ZONE			4005
 #define ACT_SWITCH				4006
 #define ACT_PIPE				4007
-#define ACT_GOAL				4008
+#define ACT_TRANSPORT_PIPE		4008
+#define ACT_GOAL				4009
 
 /* MISC */
 #define ACT_BACKGROUND			5001

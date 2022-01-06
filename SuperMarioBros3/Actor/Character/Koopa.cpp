@@ -4,9 +4,11 @@
 #include "../Character/Koopa.h"
 #include "../Character/Piranha.h"
 #include "../Character/Venus.h"
+#include "../Prop/Platform.h"
+#include "../Prop/Pipe.h"
 #include "../Prop/Brick.h"
 #include "../Prop/Block.h"
-#include "../Prop/Platform.h"
+#include "../Prop/DeadZone.h"
 
 void CKoopa::Load()
 {
@@ -24,12 +26,13 @@ void CKoopa::Load()
 	BODY_OFFSETY = bodyNode.attribute("offsetY").as_float();
 
 	/* Sensor */
-	pugi::xml_node sensorNode = prefab.child("Prefab").child("GameObject");
+	pugi::xml_node sensorNode = prefab.child("Prefab").child("Sensor");
+	std::string sensorName = _name + sensorNode.attribute("name").as_string();
 	_sensor = dynamic_cast<pKoopaSensor>(
 		_game->Create(
 			_scene,
 			sensorNode.attribute("actor").as_uint(),
-			_name.append(sensorNode.attribute("name").as_string()),
+			sensorName,
 			sensorNode.attribute("source").as_string(),
 			_x, _y, _gridX, _gridY, _layer, _active
 		)
@@ -57,7 +60,6 @@ void CKoopa::Start()
 	_up = false;
 	_ax = 0.0f;
 	_ay = 0.0f;
-	_sensor->Active();
 	SetAction(EAction::MOVE);
 }
 
@@ -562,6 +564,7 @@ void CKoopa::OnNoCollision(float elapsedMs)
 
 void CKoopa::OnCollisionWith(pCollision e)
 {
+	/* Blocking */
 	if (e->_ny != 0 && e->_target->IsBlocking())
 	{
 		_vy = 0;
@@ -590,11 +593,18 @@ void CKoopa::OnCollisionWith(pCollision e)
 	else if (dynamic_cast<pPlatform>(e->_target))
 		OnCollisionWithPlatform(e);
 
+	else if (dynamic_cast<pPipe>(e->_target))
+		OnCollisionWithPipe(e);
+
 	else if (dynamic_cast<pBrick>(e->_target))
 		OnCollisionWithBrick(e);
 
 	else if (dynamic_cast<pBlock>(e->_target))
 		OnCollisionWithBlock(e);
+
+	else if (dynamic_cast<pDeadZone>(e->_target))
+		OnCollisionWithDeadZone(e);
+
 }
 
 void CKoopa::OnCollisionWithGoomba(pCollision e)
@@ -634,6 +644,52 @@ void CKoopa::OnCollisionWithPlatform(pCollision e)
 	}
 }
 
+void CKoopa::OnCollisionWithPipe(pCollision e)
+{
+	float pipeTop = 0;
+	float pipeLeft = 0;
+	float pipeRight = 0;
+	float pipeBottom = 0;
+	e->_target->GetBoundingBox(pipeLeft, pipeTop, pipeRight, pipeBottom);
+
+	float top = 0;
+	float left = 0;
+	float right = 0;
+	float bottom = 0;
+	GetBoundingBox(left, top, right, bottom);
+
+	if (e->_ny == 0 && e->_nx != 0)
+	{
+		if (e->_nx > 0)
+		{
+			_left = !_left;
+			_vx = 0;
+			_x = pipeRight + ((right - left) / 2) + BLOCK_PUSH_FACTOR;
+		}
+		else
+		{
+			_left = !_left;
+			_vx = 0;
+			_x = pipeLeft - ((right - left) / 2) - BLOCK_PUSH_FACTOR;
+		}
+	}
+	else if (e->_ny != 0 && e->_nx == 0)
+	{
+
+		if (e->_ny > 0)
+		{
+			_vy = 0;
+			_ground = true;
+			_y = pipeTop + BLOCK_PUSH_FACTOR;
+		}
+		else
+		{
+			_vy = 0;
+			_y = pipeBottom - ((top - bottom) / 2) - BLOCK_PUSH_FACTOR;
+		}
+	}
+}
+
 void CKoopa::OnCollisionWithBrick(pCollision e)
 {
 	pBrick brick = dynamic_cast<pBrick>(e->_target);
@@ -641,6 +697,10 @@ void CKoopa::OnCollisionWithBrick(pCollision e)
 	{
 		if (_action == EAction::SPIN)
 			brick->SetNextAction(CBrick::EAction::BROKE);
+	}
+	else if (e->_ny > 0 && brick->_action != CBrick::EAction::IDLE)
+	{
+		HitSide();
 	}
 }
 
@@ -660,4 +720,13 @@ void CKoopa::OnCollisionWithBlock(pCollision e)
 			}
 		}
 	}
+	else if (e->_ny > 0 && block->_action == CBlock::EAction::SPAWN)
+	{
+		HitSide();
+	}
+}
+
+void CKoopa::OnCollisionWithDeadZone(pCollision e)
+{
+	SetNextAction(EAction::THROWN);
 }

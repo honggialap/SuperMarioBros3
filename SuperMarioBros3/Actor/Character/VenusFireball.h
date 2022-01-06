@@ -2,6 +2,8 @@
 #include "../../Engine/GameObject.h"
 
 #pragma region Sprite ID
+#define BBOX								9991
+
 #define SPR_VENUS_FIREBALL1			1001
 #define SPR_VENUS_FIREBALL2			1002
 #define SPR_VENUS_FIREBALL3			1003

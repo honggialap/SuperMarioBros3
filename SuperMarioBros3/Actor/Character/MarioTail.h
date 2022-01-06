@@ -39,8 +39,8 @@ public:
 
 
 	/* Logic */
-	bool _left;
-	bool _activate;
+	bool _left = false;
+	bool _activate = false;
 
 
 	/* Collision */
@@ -53,6 +53,11 @@ public:
 
 	void OnCollisionWithGoomba(pCollision e);
 	void OnCollisionWithKoopa(pCollision e);
+	void OnCollisionWithPiranha(pCollision e);
+	void OnCollisionWithVenus(pCollision e);
+
+	void OnCollisionWithBrick(pCollision e);
+	void OnCollisionWithBlock(pCollision e);
 
 };
 typedef CMarioTail* pMarioTail;

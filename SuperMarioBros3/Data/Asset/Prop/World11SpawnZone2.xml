@@ -1,0 +1,16 @@
+<Prefab>
+	<Sprites>
+		<!--BBOX-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width ="512.0" height="128.0" offsetX="256.0" offsetY="64.0"/>
+	</Sprites>
+
+	<Stats
+	renderBody="true"
+	SPAWN_COUNTDOWN="5000"
+		/>
+	<Body tag="small" width ="512.0" height="128.0" offsetX="256.0" offsetY="64.0"/>
+	<GameObject actor="2004" name="wingKoopa01" source="Data/Asset/Character/WingKoopa.xml" x="5440" y="640"/>
+	<GameObject actor="2004" name="wingKoopa02" source="Data/Asset/Character/WingKoopa.xml" x="5568" y="704"/>
+	<GameObject actor="2004" name="wingKoopa03" source="Data/Asset/Character/WingKoopa.xml" x="5696" y="768"/>
+
+</Prefab>

@@ -30,6 +30,7 @@
 #include "Actor/Prop/DeadZone.h"
 #include "Actor/Prop/Switch.h"
 #include "Actor/Prop/Pipe.h"
+#include "Actor/Prop/TransportPipe.h"
 #include "Actor/Prop/Goal.h"
 
 pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, std::string prefabSource, float posX, float posY, int gridX, int gridY, unsigned int layer, bool active)
@@ -351,6 +352,20 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	case ACT_PIPE:
 	{
 		auto gameObject = new CPipe(
+			this, scene, nextGameObjectId++,
+			name, prefabSource,
+			posX, posY, gridX, gridY, layer
+		);
+		Add(gameObject);
+		if (active) gameObject->Active();
+		gameObject->Load();
+		return gameObject;
+	}
+	break;
+
+	case ACT_TRANSPORT_PIPE:
+	{
+		auto gameObject = new CTransportPipe(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer

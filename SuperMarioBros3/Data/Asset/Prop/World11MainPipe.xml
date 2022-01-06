@@ -1,13 +1,17 @@
 <Prefab>
 
 	<Sprites>
-		<Sprite id="1001" textureId="4" left="4" top="220" width="128" height="128" offsetX="0" offsetY="0"/>
-		<Sprite id="1002" textureId="4" left="140" top="220" width="128" height="128" offsetX="0" offsetY="0"/>
-		<Sprite id="2001" textureId="4" left="276" top="220" width="128" height="128" offsetX="0" offsetY="0"/>
-		<Sprite id="2002" textureId="4" left="412" top="220" width="128" height="128" offsetX="0" offsetY="0"/>
+		<!--BBOX-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="16" height="64" offsetX="0" offsetY="32"/>
+
 	</Sprites>
 
-	<Stats>
-	</Stats>
-
+	<Stats
+		renderBody="true"
+		up ="true"
+		CAMERA_SWITCH = "1"
+		DESTINATION_X = "11904"
+		DESTINATION_Y = "640"
+		/>
+	<Body tag="small" width="16" height="64" offsetX="0" offsetY="32"/>
 </Prefab>

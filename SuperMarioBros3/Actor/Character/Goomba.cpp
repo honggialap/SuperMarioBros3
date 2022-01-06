@@ -1,6 +1,10 @@
 #include "Goomba.h"
 #include "../../SuperMarioBros3.h"
 #include "../Prop/Platform.h"
+#include "../Prop/Pipe.h"
+#include "../Prop/Block.h"
+#include "../Prop/Brick.h"
+#include "../Prop/DeadZone.h"
 
 void CGoomba::Load()
 {
@@ -169,6 +173,7 @@ void CGoomba::Walk(float elapsedMs)
 			}
 		}
 
+		AcquireTarget();
 		if (_wing) _jumpInterval = JUMP_INTERVAL;
 	}
 	_actionStage = EActionStage::PROGRESS;
@@ -423,6 +428,18 @@ void CGoomba::OnCollisionWith(pCollision e)
 	/* Prop */
 	if (dynamic_cast<pPlatform>(e->_target))
 		OnCollisionWithPlatform(e);
+
+	else if (dynamic_cast<pPipe>(e->_target))
+		OnCollisionWithPipe(e);
+
+	else if (dynamic_cast<pBrick>(e->_target))
+		OnCollisionWithBrick(e);
+
+	else if (dynamic_cast<pBlock>(e->_target))
+		OnCollisionWithBlock(e);
+
+	else if (dynamic_cast<pDeadZone>(e->_target))
+		OnCollisionWithDeadZone(e);
 }
 
 void CGoomba::OnCollisionWithPlatform(pCollision e)
@@ -436,4 +453,71 @@ void CGoomba::OnCollisionWithPlatform(pCollision e)
 		_vy = 0;
 		_ground = true;
 	}
+}
+
+void CGoomba::OnCollisionWithPipe(pCollision e)
+{
+	float pipeTop = 0;
+	float pipeLeft = 0;
+	float pipeRight = 0;
+	float pipeBottom = 0;
+	e->_target->GetBoundingBox(pipeLeft, pipeTop, pipeRight, pipeBottom);
+
+	float top = 0;
+	float left = 0;
+	float right = 0;
+	float bottom = 0;
+	GetBoundingBox(left, top, right, bottom);
+
+	if (e->_ny == 0 && e->_nx != 0)
+	{
+		if (e->_nx > 0)
+		{
+			_left = !_left;
+			_vx = 0;
+			_x = pipeRight + ((right - left) / 2) + BLOCK_PUSH_FACTOR;
+		}
+		else
+		{
+			_left = !_left;
+			_vx = 0;
+			_x = pipeLeft - ((right - left) / 2) - BLOCK_PUSH_FACTOR;
+		}
+	}
+	else if (e->_ny != 0 && e->_nx == 0)
+	{
+
+		if (e->_ny > 0)
+		{
+			_vy = 0;
+			_ground = true;
+			_y = pipeTop + BLOCK_PUSH_FACTOR;
+		}
+		else
+		{
+			_vy = 0;
+			_y = pipeBottom - ((top - bottom) / 2) - BLOCK_PUSH_FACTOR;
+		}
+	}
+}
+
+void CGoomba::OnCollisionWithBrick(pCollision e)
+{
+	pBrick brick = dynamic_cast<pBrick>(e->_target);
+	if (e->_ny > 0 
+		&& brick->_action != CBrick::EAction::IDLE)
+		HitSide();
+}
+
+void CGoomba::OnCollisionWithBlock(pCollision e)
+{
+	pBlock block = dynamic_cast<pBlock>(e->_target);
+	if (e->_ny > 0 
+		&& block->_action == CBlock::EAction::SPAWN)
+		HitSide();
+}
+
+void CGoomba::OnCollisionWithDeadZone(pCollision e)
+{
+	HitSide();
 }

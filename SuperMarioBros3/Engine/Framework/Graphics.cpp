@@ -113,6 +113,9 @@ void CGraphics::Initialize(HWND hWnd)
 	desc.MaxLOD = FLT_MAX;
 
 	_device->CreateSamplerState(&desc, &this->_pointSamplerState);
+	_device->VSSetSamplers(0, 1, &_pointSamplerState);
+	_device->GSSetSamplers(0, 1, &_pointSamplerState);
+	_device->PSSetSamplers(0, 1, &_pointSamplerState);
 
 	// create the sprite object to handle sprite drawing 
 	hr = D3DX10CreateSprite(_device, 0, &_spriteHandler);

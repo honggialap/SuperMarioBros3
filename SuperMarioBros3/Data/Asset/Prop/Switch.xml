@@ -1,17 +1,28 @@
 <Prefab>
 
 	<Sprites>
-		<Sprite id="" textureId=""
-				left="" top="" width="" height="" offsetX="" offsetY=""/>
+		<!--BBox-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+
+		<Sprite id="1001" textureId="4" left="4" top="148" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1002" textureId="4" left="76" top="148" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="1003" textureId="4" left="148" top="148" width="64" height="64" offsetX="0" offsetY="32"/>
 	</Sprites>
 
 	<Animations>
-		<Animation id="">
-			<Frame spriteId="" time=""/>
+		<Animation id="1001">
+			<Frame spriteId="1001" time="150"/>
+			<Frame spriteId="1002" time="150"/>
 		</Animation>
 	</Animations>
 
-	<Stats>
-	</Stats>
+	<Stats
+	renderBody="true"
+	TIMER ="30000"
+		/>
+	<Body tag="small" width ="64.0" height="64.0" offsetX="0.0" offsetY="32.0"/>
+
+	<Coin actor="3001" name="Coin" source="Data/Asset/Item/Coin.xml"/>
+	<Brick actor="4002" name="Brick" source="Data/Asset/Prop/Brick.xml"/>
 
 </Prefab>

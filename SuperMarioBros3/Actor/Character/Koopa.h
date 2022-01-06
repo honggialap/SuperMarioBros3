@@ -173,7 +173,10 @@ public:
 	void OnCollisionWithVenus(pCollision e);
 
 	void OnCollisionWithPlatform(pCollision e);
+	void OnCollisionWithPipe(pCollision e);
 	void OnCollisionWithBrick(pCollision e);
 	void OnCollisionWithBlock(pCollision e);
+	void OnCollisionWithDeadZone(pCollision e);
+
 };
 typedef CKoopa* pKoopa;

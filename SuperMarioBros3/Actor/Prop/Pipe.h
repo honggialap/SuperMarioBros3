@@ -2,9 +2,12 @@
 #include "../../Engine/GameObject.h"
 
 #pragma region Sprite ID
-#pragma endregion
+#define BBOX							9991
 
-#pragma region Animation ID
+#define SPR_PIPE_GREEN_UP				1001
+#define SPR_PIPE_GREEN_DOWN				1002
+#define SPR_PIPE_BLACK_UP				1003
+#define SPR_PIPE_BLACK_DOWN				1004
 #pragma endregion
 
 
@@ -17,48 +20,25 @@ public:
 		float posX, float posY, int gridX, int gridY, unsigned int layer
 	) : CGameObject(game, scene, id, name, prefabSource, posX, posY, gridX, gridY, layer) {};
 
-	/* Binding Command */
-	/* Stats */
 	/* Lifecycle */
 	virtual void Load();
 	virtual void Start();
 	virtual void Update(float elapsedMs);
 	virtual void Render();
 
+	/* Body */
+	bool _renderBody = false;
+	float BODY_WIDTH = 0;
+	float BODY_HEIGHT = 0;
+	float BODY_OFFSETX = 0;
+	float BODY_OFFSETY = 0;
+
 	/* Logic */
-	enum class EAction
-	{
-	};
-	enum class EActionStage
-	{
-		START,
-		PROGRESS,
-		EXIT
-	};
-	EActionStage _actionStage = EActionStage::START;
-	EAction _action;
-	EAction _nextAction;
-
-	void SetAction(EAction action)
-	{
-		_action = action;
-		_actionStage = EActionStage::START;
-	};
-	void SetNextAction(EAction action)
-	{
-		_nextAction = action;
-		_actionStage = EActionStage::EXIT;
-	};
-	void NextAction()
-	{
-		_action = _nextAction;
-		_actionStage = EActionStage::START;
-	};
-
-	void HandleAction(float elapsedMs);
+	bool _green = false;
+	bool _up = false;
 
 	int IsCollidable();
-	int IsPipeing();
+	int IsBlocking();
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);
 
 	void OnNoCollision(float elapsedMs);

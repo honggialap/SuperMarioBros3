@@ -30,6 +30,6 @@
 		SPEED = "0.1"
 		/>
 	<Body tag="small" width ="64" height="128" offsetX="0" offsetY="64"/>
-	<GameObject actor="2007" name="sensor" source="Data/Asset/Character/PiranhaSensor.xml"/>
+	<Sensor actor="2007" name="sensor" source="Data/Asset/Character/PiranhaSensor.xml"/>
 
 </Prefab>

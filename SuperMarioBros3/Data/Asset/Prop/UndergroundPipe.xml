@@ -1,0 +1,19 @@
+<Prefab>
+	<Sprites>
+		<!--BBox-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="128" height="128" offsetX="0" offsetY="64"/>
+
+		<Sprite id="1001" textureId="4" left="4" top="292" width="128" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="1002" textureId="4" left="140" top="292" width="128" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="1003" textureId="4" left="276" top="292" width="128" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="1004" textureId="4" left="412" top="292" width="128" height="128" offsetX="0" offsetY="64"/>
+	</Sprites>
+
+	<Stats
+		renderBody="true"
+		green="false"
+		up="false"
+		/>
+	<Body tag="small" width="128" height="128" offsetX="0" offsetY="64"/>
+
+</Prefab>

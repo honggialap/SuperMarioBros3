@@ -265,56 +265,87 @@ void CBlock::Empty(float elapsedMs)
 
 void CBlock::SpawnItem()
 {
-	unsigned int spawnId = 0;
+	/* Read file */
+	pugi::xml_document prefab;
+	prefab.load_file(_source.c_str());
+
 	switch (_spawn)
 	{
 	case CBlock::ESpawn::COIN:
-		spawnId = 0;
+	{
+		auto coinNode = prefab.child("Prefab").child("Coin");
+		std::string coinName = _name + coinNode.attribute("name").as_string();
+		auto gameObject = _game->Create(
+			_scene,
+			coinNode.attribute("actor").as_uint(),
+			coinName,
+			coinNode.attribute("source").as_string(),
+			_x, _y, _gridX, _gridY, _layer, _active
+		);
+		dynamic_cast<pCoin>(gameObject)->SetAction(CCoin::EAction::CONSUMED);
+	}
 		break;
 
 	case CBlock::ESpawn::POWER_UP:
-		spawnId = 2;
+	{
 		if (_target != nullptr)
 		{
 			if (_target->_power != CMario::EPower::SMALL)
 			{
-				spawnId = 1;
+				auto leafNode = prefab.child("Prefab").child("Leaf");
+				std::string leafName = _name + leafNode.attribute("name").as_string();
+				auto gameObject = _game->Create(
+					_scene,
+					leafNode.attribute("actor").as_uint(),
+					leafName,
+					leafNode.attribute("source").as_string(),
+					_x, _y, _gridX, _gridY, _layer, _active
+				);
+			}
+			else
+			{
+				auto mushroomNode = prefab.child("Prefab").child("Mushroom");
+				std::string mushroomName = _name + mushroomNode.attribute("name").as_string();
+				auto gameObject = _game->Create(
+					_scene,
+					mushroomNode.attribute("actor").as_uint(),
+					mushroomName,
+					mushroomNode.attribute("source").as_string(),
+					_x, _y, _gridX, _gridY, _layer, _active
+				);
 			}
 		}
+	}
 		break;
 
 	case CBlock::ESpawn::EXTRA_LIFE:
-		spawnId = 3;
+	{
+		auto extraLifeNode = prefab.child("Prefab").child("ExtraLife");
+		std::string extraLifeName = _name + extraLifeNode.attribute("name").as_string();
+		auto gameObject = _game->Create(
+			_scene,
+			extraLifeNode.attribute("actor").as_uint(),
+			extraLifeName,
+			extraLifeNode.attribute("source").as_string(),
+			_x, _y, _gridX, _gridY, _layer, _active
+		);
+	}
 		break;
 
 	case CBlock::ESpawn::SWITCH:
-		spawnId = 4;
+	{
+		auto switchNode = prefab.child("Prefab").child("Switch");
+		std::string switchName = _name + switchNode.attribute("name").as_string();
+		auto gameObject = _game->Create(
+			_scene,
+			switchNode.attribute("actor").as_uint(),
+			switchName,
+			switchNode.attribute("source").as_string(),
+			_x, _y + 64, _gridX, _gridY, _layer, _active
+		);
+	}
 		break;
 	}
-
-	/* Read file */
-	pugi::xml_document prefab;
-	prefab.load_file(_source.c_str());
-	for (auto gameObjectNode = prefab.child("Prefab").child("GameObject");
-		gameObjectNode;
-		gameObjectNode = gameObjectNode.next_sibling("GameObject"))
-	{
-		if (spawnId == gameObjectNode.attribute("id").as_uint())
-		{
-			auto gameObject = _game->Create(
-				_scene,
-				gameObjectNode.attribute("actor").as_uint(),
-				_name.append(gameObjectNode.attribute("name").as_string()),
-				gameObjectNode.attribute("source").as_string(),
-				_x, _y, _gridX, _gridY, _layer, _active
-			);
-			if (dynamic_cast<pCoin>(gameObject))
-			{
-				dynamic_cast<pCoin>(gameObject)->SetAction(CCoin::EAction::CONSUMED);
-			}
-		}
-	}
-
 }
 
 int CBlock::IsCollidable()

@@ -17,10 +17,6 @@ void CGoal::Render()
 {
 }
 
-void CGoal::HandleAction(float elapsedMs)
-{
-}
-
 int CGoal::IsCollidable()
 {
 	return 0;

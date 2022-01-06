@@ -17,7 +17,15 @@ void CHUD::Render()
 {
 }
 
-void CHUD::HandleAction(float elapsedMs)
+void CHUD::RenderMarioPowerMeter()
+{
+}
+
+void CHUD::RenderScore()
+{
+}
+
+void CHUD::RenderMarioLife()
 {
 }
 

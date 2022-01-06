@@ -320,8 +320,10 @@ void CGame::LoadScene()
         {
             for (auto gameObject : scene->_gameObjects)
             {
-                _gameObjects[gameObject]->Destroy();
+                if(Get(gameObject) != nullptr)
+                    Get(gameObject)->Destroy();
             }
+            scene->_gameObjects.clear();
             scene->_load = false;
         }
     }

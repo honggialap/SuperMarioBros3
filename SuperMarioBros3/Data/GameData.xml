@@ -52,8 +52,6 @@
 		<Texture id="4" source="Data/Texture/Prop.png"/>
 		<Texture id="5" source="Data/Texture/Goal.png"/>
 		<Texture id="6" source="Data/Texture/HUD.png"/>
-		<Texture id="7" source="Data/Texture/Intro.png"/>
-		<Texture id="8" source="Data/Texture/WorldMap.png"/>
 		<Texture id="9" source="Data/Texture/World11MainSection.png"/>
 		<Texture id="10" source="Data/Texture/World11SubSection.png"/>
 	</Textures>

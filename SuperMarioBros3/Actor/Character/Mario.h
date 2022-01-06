@@ -2,6 +2,7 @@
 #include "../../Engine/GameObject.h"
 #include "../Character/Koopa.h"
 #include "../Prop/Pipe.h"
+#include "../Prop/TransportPipe.h"
 #include "MarioTail.h"
 
 
@@ -204,7 +205,7 @@ public:
 	/* Child */
 	pMarioTail _tail = nullptr;
 	pKoopa _shell = nullptr;
-
+	pTransportPipe _pipe = nullptr;
 
 	/* Body */
 	bool _renderBody = false;
@@ -255,8 +256,11 @@ public:
 	float TAIL_ENTRY = 0;
 	float TAIL_PROGRESS = 0;
 	float TAIL_RECOVER = 0;
+	float PIPE_MOVEMENT = 0;
 
 	/* Logic */
+	std::string _controllerName;
+	std::string _gameMasterName;
 	enum class EPower
 	{
 		SMALL,
@@ -283,6 +287,8 @@ public:
 	float _tailEntry = 0;
 	float _tailProgress = 0;
 	float _tailRecover = 0;
+	float _pipeMovement = 0;
+	float _pipeLimit = 0;
 
 	/* State */
 	enum class EAction
@@ -365,5 +371,22 @@ public:
 	void OnCollisionWith(pCollision e);
 
 	void OnCollisionWithGoomba(pCollision e);
+	void OnCollisionWithKoopa(pCollision e);
+	void OnCollisionWithPiranha(pCollision e);
+	void OnCollisionWithVenus(pCollision e);
+	void OnCollisionWithVenusFireball(pCollision e);
+
+	void OnCollisionWithPlatform(pCollision e);
+	void OnCollisionWithPipe(pCollision e);
+	void OnCollisionWithTransportPipe(pCollision e);
+	void OnCollisionWithBrick(pCollision e);
+	void OnCollisionWithBlock(pCollision e);
+	void OnCollisionWithDeadZone(pCollision e);
+	void OnCollisionWithSwitch(pCollision e);
+
+	void OnCollisionWithCoin(pCollision e);
+	void OnCollisionWithExtraLife(pCollision e);
+	void OnCollisionWithMushroom(pCollision e);
+	void OnCollisionWithLeaf(pCollision e);
 };
 typedef CMario* pMario;

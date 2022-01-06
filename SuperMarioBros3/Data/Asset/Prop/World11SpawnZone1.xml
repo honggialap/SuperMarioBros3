@@ -1,0 +1,16 @@
+<Prefab>
+	<Sprites>
+		<!--BBOX-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width ="512.0" height="128.0" offsetX="256.0" offsetY="64.0"/>
+	</Sprites>
+
+	<Stats
+	renderBody="true"
+	SPAWN_COUNTDOWN="5000"
+		/>
+	<Body tag="small" width ="512.0" height="128.0" offsetX="256.0" offsetY="64.0"/>
+	<GameObject actor="2003" name="goomba03" source="Data/Asset/Character/Goomba.xml" x="4032" y="192"/>
+	<GameObject actor="2003" name="goomba04" source="Data/Asset/Character/Goomba.xml" x="4160" y="192"/>
+	<GameObject actor="2003" name="redGoomba01" source="Data/Asset/Character/RedGoomba.xml" x="4288" y="192"/>
+
+</Prefab>

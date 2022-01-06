@@ -140,6 +140,6 @@
 		RESTORE_LIMIT = "6000"
 		/>
 	<Body tag="small" width ="64" height="60" offsetX="0" offsetY="30"/>
-	<GameObject actor="2005" name="sensor" source="Data/Asset/Character/KoopaSensor.xml"/>
+	<Sensor actor="2005" name="sensor" source="Data/Asset/Character/KoopaSensor.xml"/>
 
 </Prefab>

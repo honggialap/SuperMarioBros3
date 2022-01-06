@@ -1,0 +1,17 @@
+<Prefab>
+
+	<Sprites>
+		<!--BBOX-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width="16" height="64" offsetX="0" offsetY="32"/>
+
+	</Sprites>
+
+	<Stats
+		renderBody="true"
+		up ="false"
+		CAMERA_SWITCH = "0"
+		DESTINATION_X = "9344"
+		DESTINATION_Y = "64"
+		/>
+	<Body tag="small" width="16" height="64" offsetX="0" offsetY="32"/>
+</Prefab>

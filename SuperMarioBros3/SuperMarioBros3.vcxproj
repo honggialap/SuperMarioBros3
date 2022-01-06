@@ -59,6 +59,7 @@
     <ClCompile Include="Engine\Library\pugixml.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SuperMarioBros3.cpp" />
+    <ClCompile Include="Actor\Prop\TransportPipe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Actor\Controller\GameMaster.h" />
@@ -101,6 +102,7 @@
     <ClInclude Include="Engine\Library\pugiconfig.hpp" />
     <ClInclude Include="Engine\Library\pugixml.hpp" />
     <ClInclude Include="SuperMarioBros3.h" />
+    <ClInclude Include="Actor\Prop\TransportPipe.h" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Data\Asset\Misc\ScoreEffect.xml" />
@@ -148,18 +150,19 @@
     <Xml Include="Data\Asset\Prop\PlatformS81.xml" />
     <Xml Include="Data\Asset\Prop\Switch.xml" />
     <Xml Include="Data\Asset\Prop\World11MainPipe.xml" />
-    <Xml Include="Data\Asset\Prop\World11SpawnZone.xml" />
+    <Xml Include="Data\Asset\Prop\World11SpawnZone1.xml" />
     <Xml Include="Data\Asset\Misc\World11MainBackground.xml" />
     <Xml Include="Data\Asset\Controller\World11.xml" />
     <Xml Include="Data\Asset\Prop\World11SubPipe.xml" />
     <Xml Include="Data\GameData.xml" />
     <Xml Include="Data\Scene\MainGameScene.xml" />
     <Xml Include="Data\Scene\World11Scene.xml" />
+    <Xml Include="Data\Asset\Prop\OnLandPipe.xml" />
+    <Xml Include="Data\Asset\Prop\UndergroundPipe.xml" />
+    <Xml Include="Data\Asset\Prop\World11SpawnZone2.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Scene\GridMaker.exe" />
-    <None Include="Data\Texture\World11MainSection-origin_map.tmx" />
-    <None Include="Data\Texture\World11SubSection-origin_map.tmx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -167,18 +170,11 @@
     <Image Include="Data\Texture\Enemy.png" />
     <Image Include="Data\Texture\Goal.png" />
     <Image Include="Data\Texture\HUD.png" />
-    <Image Include="Data\Texture\Intro.png" />
     <Image Include="Data\Texture\Item.png" />
     <Image Include="Data\Texture\Mario.png" />
     <Image Include="Data\Texture\Prop.png" />
-    <Image Include="Data\Texture\SMB3_1-1_map.png" />
-    <Image Include="Data\Texture\w11mapb.png" />
-    <Image Include="Data\Texture\World11MainSection-origin.png" />
     <Image Include="Data\Texture\World11MainSection.png" />
-    <Image Include="Data\Texture\World11SubSection-origin.png" />
     <Image Include="Data\Texture\World11SubSection.png" />
-    <Image Include="Data\Texture\WorldMap.png" />
-    <Image Include="Data\Texture\ww11map.png" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

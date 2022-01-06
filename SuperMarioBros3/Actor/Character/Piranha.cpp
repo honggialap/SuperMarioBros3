@@ -26,12 +26,13 @@ void CPiranha::Load()
 	SPEED = statsNode.attribute("SPEED").as_float();
 
 	/* Sensor */
-	pugi::xml_node sensorNode = prefab.child("Prefab").child("GameObject");
+	pugi::xml_node sensorNode = prefab.child("Prefab").child("Sensor");
+	std::string sensorName = _name + sensorNode.attribute("name").as_string();
 	_sensor = dynamic_cast<pPiranhaSensor>(
 		_game->Create(
 			_scene,
 			sensorNode.attribute("actor").as_uint(),
-			_name.append(sensorNode.attribute("name").as_string()),
+			sensorName,
 			sensorNode.attribute("source").as_string(),
 			_x, _y, _gridX, _gridY, _layer, _active
 		)
@@ -63,17 +64,14 @@ void CPiranha::Render()
 	switch (_action)
 	{
 	case CPiranha::EAction::HIDE:
+	case CPiranha::EAction::DIE:
 		break;
 	case CPiranha::EAction::GROW:
+	case CPiranha::EAction::BURROW:
 		_animations[ANI_PIRANHA]->Render(_x, _y);
 		break;
 	case CPiranha::EAction::STAND:
 		_sprites[SPR_PIRANHA1]->Render(_x, _y);
-		break;
-	case CPiranha::EAction::BURROW:
-		_animations[ANI_PIRANHA]->Render(_x, _y);
-		break;
-	case CPiranha::EAction::DIE:
 		break;
 	}
 }
@@ -272,14 +270,24 @@ void CPiranha::Die(float elapsedMs)
 void CPiranha::UpdateSensor()
 {
 	if (_sensor != nullptr)
-	{
 		_sensor->SetPosition(_x, _y);
-	}
 }
 
 int CPiranha::IsCollidable()
 {
-	return 0;
+	switch (_action)
+	{
+	case CPiranha::EAction::GROW:
+	case CPiranha::EAction::STAND:
+	case CPiranha::EAction::BURROW:
+		return 1;
+		break;
+	case CPiranha::EAction::DIE:
+	case CPiranha::EAction::HIDE:
+		return 0;
+		break;
+	}
+	return 1;
 }
 
 int CPiranha::IsBlocking()
@@ -289,6 +297,24 @@ int CPiranha::IsBlocking()
 
 void CPiranha::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
+	switch (_action)
+	{
+	case CPiranha::EAction::GROW:
+	case CPiranha::EAction::STAND:
+	case CPiranha::EAction::BURROW:
+		left = _x + BODY_OFFSETX - (BODY_WIDTH / 2);
+		right = _x + BODY_OFFSETX + (BODY_WIDTH / 2);
+		top = _y + BODY_OFFSETY + (BODY_HEIGHT / 2);
+		bottom = _y + BODY_OFFSETY - (BODY_HEIGHT / 2);
+		break;
+	case CPiranha::EAction::HIDE:
+	case CPiranha::EAction::DIE:
+		left = 0;
+		right = 0;
+		top = 0;
+		bottom = 0;
+		break;
+	}
 }
 
 void CPiranha::OnNoCollision(float elapsedMs)

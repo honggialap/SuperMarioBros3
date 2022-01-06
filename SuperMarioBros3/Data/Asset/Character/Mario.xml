@@ -2,7 +2,7 @@
 
 	<Sprites>
 		<!--BBOX-->
-		<Sprite id="9991" textureId="0" left="0" top="0" width="64" height="64" offsetX="0" offsetY="32"/>
+		<Sprite id="9991" textureId="0" left="0" top="0" width ="62.0" height="60.0" offsetX="0.0" offsetY="30.0"/>
 		<Sprite id="9992" textureId="0" left="0" top="0" width ="64" height="96" offsetX="0" offsetY="48"/>
 		
 		<!--SMALL-->
@@ -402,6 +402,8 @@
 
 	<Stats
 		renderBody = "true"
+		controllerName ="world"
+		gameMasterName ="gameMaster"
 		ACCELERATE = "0.005"
 		FAST_ACCELERATE = "0.01"
 		DRAG_FORCE = "1.1"
@@ -425,10 +427,11 @@
 		TAIL_ENTRY = "200"
 		TAIL_PROGRESS = "100"
 		TAIL_RECOVER = "100"
+		PIPE_MOVEMENT = "128"
 		/>
 	
-	<Body tag="small" width ="62.0" height="64.0" offsetX="0.0" offsetY="32.0"/>
+	<Body tag="small" width ="62.0" height="60.0" offsetX="0.0" offsetY="30.0"/>
 	<Body tag="big" width ="62.0" height="96.0" offsetX="0.0" offsetY="48.0"/>
-	<GameObject actor="2002" name="tail" source="Data/Asset/Character/MarioTail.xml"/>
+	<Tail actor="2002" name="tail" source="Data/Asset/Character/MarioTail.xml"/>
 
 </Prefab>

@@ -94,6 +94,9 @@
     <Filter Include="Game\Scene">
       <UniqueIdentifier>{e8dbbcc0-88ab-4f36-a3da-84c46e4d02ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Props\TransportPipe">
+      <UniqueIdentifier>{476532bb-1e66-46b5-8b4b-a10a8cc94dd6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Animation.cpp">
@@ -213,6 +216,9 @@
     </ClCompile>
     <ClCompile Include="Actor\Prop\Platform.cpp">
       <Filter>Props\Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Prop\TransportPipe.cpp">
+      <Filter>Props\TransportPipe</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -335,6 +341,9 @@
     </ClInclude>
     <ClInclude Include="Actor\Prop\Platform.h">
       <Filter>Props\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Prop\TransportPipe.h">
+      <Filter>Props\TransportPipe</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -467,9 +476,6 @@
     <Xml Include="Data\Asset\Prop\Switch.xml">
       <Filter>Props\Switch</Filter>
     </Xml>
-    <Xml Include="Data\Asset\Prop\World11SpawnZone.xml">
-      <Filter>Props\SpawnZone</Filter>
-    </Xml>
     <Xml Include="Data\Asset\Misc\HUD.xml">
       <Filter>Misc\HUD</Filter>
     </Xml>
@@ -488,20 +494,26 @@
     <Xml Include="Data\Scene\MainGameScene.xml">
       <Filter>Game\Scene</Filter>
     </Xml>
+    <Xml Include="Data\Asset\Prop\World11MainPipe.xml">
+      <Filter>Props\TransportPipe</Filter>
+    </Xml>
     <Xml Include="Data\Asset\Prop\World11SubPipe.xml">
+      <Filter>Props\TransportPipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\Prop\OnLandPipe.xml">
       <Filter>Props\Pipe</Filter>
     </Xml>
-    <Xml Include="Data\Asset\Prop\World11MainPipe.xml">
+    <Xml Include="Data\Asset\Prop\UndergroundPipe.xml">
       <Filter>Props\Pipe</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\Prop\World11SpawnZone1.xml">
+      <Filter>Props\SpawnZone</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\Prop\World11SpawnZone2.xml">
+      <Filter>Props\SpawnZone</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Data\Texture\World11MainSection-origin_map.tmx">
-      <Filter>Assets</Filter>
-    </None>
-    <None Include="Data\Texture\World11SubSection-origin_map.tmx">
-      <Filter>Assets</Filter>
-    </None>
     <None Include="packages.config" />
     <None Include="Data\Scene\GridMaker.exe">
       <Filter>Game\Scene</Filter>
@@ -520,9 +532,6 @@
     <Image Include="Data\Texture\HUD.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="Data\Texture\Intro.png">
-      <Filter>Assets</Filter>
-    </Image>
     <Image Include="Data\Texture\Item.png">
       <Filter>Assets</Filter>
     </Image>
@@ -532,28 +541,10 @@
     <Image Include="Data\Texture\Prop.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="Data\Texture\SMB3_1-1_map.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Data\Texture\w11mapb.png">
-      <Filter>Assets</Filter>
-    </Image>
     <Image Include="Data\Texture\World11MainSection.png">
       <Filter>Assets</Filter>
     </Image>
-    <Image Include="Data\Texture\World11MainSection-origin.png">
-      <Filter>Assets</Filter>
-    </Image>
     <Image Include="Data\Texture\World11SubSection.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Data\Texture\World11SubSection-origin.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Data\Texture\WorldMap.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Data\Texture\ww11map.png">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>

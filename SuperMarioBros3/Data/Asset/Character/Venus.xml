@@ -81,12 +81,10 @@
 		SPEED = "0.1"
 		GROW_LIMIT = "96"
 		SHOT_OFFSET ="96"
-		FIREBALL_VX ="0.1"
+		FIREBALL_VX ="0.2"
 		FIREBALL_VY ="0.1"
 		/>
 	<Body tag="small" width ="64" height="128" offsetX="0" offsetY="64"/>
 	<Fireball actor="2009" name="fireball" source="Data/Asset/Character/VenusFireball.xml"/>
 	<Sensor actor="2010" name="sensor" source="Data/Asset/Character/VenusSensor.xml"/>
-
-
 </Prefab>

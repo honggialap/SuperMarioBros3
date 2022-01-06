@@ -42,11 +42,11 @@
 		/>
 	<Body tag="small" width ="64.0" height="64.0" offsetX="0.0" offsetY="32.0"/>
 
-	<GameObject id="0" actor="4001" name="Coin" source="Data/Asset/World/Item/Coin.xml"/>
-	<GameObject id="1" actor="4003" name="Leaf" source="Data/Asset/World/Item/Leaf.xml"/>
-	<GameObject id="2" actor="4004" name="Mushroom" source="Data/Asset/World/Item/Mushroom.xml"/>
-	<GameObject id="3" actor="4005" name="ExtraLife" source="Data/Asset/World/Item/ExtraLife.xml"/>
-	<GameObject id="4" actor="5010" name="Switch" source="Data/Asset/World/Prop/Switch.xml"/>
+	<Coin actor="3001" name="Coin" source="Data/Asset/Item/Coin.xml"/>
+	<Leaf actor="3004" name="Leaf" source="Data/Asset/Item/Leaf.xml"/>
+	<Mushroom actor="3003" name="Mushroom" source="Data/Asset/Item/Mushroom.xml"/>
+	<ExtraLife actor="3002" name="ExtraLife" source="Data/Asset/Item/ExtraLife.xml"/>
+	<Switch actor="4006" name="Switch" source="Data/Asset/Prop/Switch.xml"/>
 
 
 </Prefab>

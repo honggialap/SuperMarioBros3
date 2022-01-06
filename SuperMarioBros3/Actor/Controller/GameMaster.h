@@ -23,12 +23,13 @@ public:
 	virtual void Update(float elapsedMs);
 	virtual void Render();
 
-	/* Stats */
-	unsigned int _scene = 1;
+	/* Logic */
+	bool _skipFrame = false;
 	unsigned int _marioLife = 0;
-	unsigned int _marioPower = 0;
 	unsigned int _score = 0;
-	std::unordered_map<unsigned int, bool> _levelClear;
+	unsigned int _worldIndex = 0;
+
+	void Restart();
 
 	/* Collision */
 	void GetBoundingBox(float& left, float& top, float& right, float& bottom);

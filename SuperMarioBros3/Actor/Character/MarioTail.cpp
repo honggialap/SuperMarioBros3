@@ -93,12 +93,25 @@ void CMarioTail::OnNoCollision(float elapsedMs)
 
 void CMarioTail::OnCollisionWith(pCollision e)
 {
+	/* Characters */
 	if (dynamic_cast<pGoomba>(e->_target))
 		OnCollisionWithGoomba(e);
 
 	else if (dynamic_cast<pKoopa>(e->_target))
 		OnCollisionWithKoopa(e);
 
+	else if (dynamic_cast<pPiranha>(e->_target))
+		OnCollisionWithPiranha(e);
+
+	else if (dynamic_cast<pVenus>(e->_target))
+		OnCollisionWithVenus(e);
+
+	/* Props */
+	else if (dynamic_cast<pBrick>(e->_target))
+		OnCollisionWithBrick(e);
+
+	else if (dynamic_cast<pBlock>(e->_target))
+		OnCollisionWithBlock(e);
 }
 
 void CMarioTail::OnCollisionWithGoomba(pCollision e)
@@ -117,5 +130,35 @@ void CMarioTail::OnCollisionWithKoopa(pCollision e)
 	if (koopa->_action != CKoopa::EAction::THROWN)
 	{
 		koopa->HitByTail(_left);
+	}
+}
+
+void CMarioTail::OnCollisionWithPiranha(pCollision e)
+{
+	pPiranha piranha = dynamic_cast<pPiranha>(e->_target);
+	piranha->SetNextAction(CPiranha::EAction::DIE);
+}
+
+void CMarioTail::OnCollisionWithVenus(pCollision e)
+{
+	pVenus venus = dynamic_cast<pVenus>(e->_target);
+	venus->SetNextAction(CVenus::EAction::DIE);
+}
+
+void CMarioTail::OnCollisionWithBrick(pCollision e)
+{
+	pBrick brick = dynamic_cast<pBrick>(e->_target);
+	brick->SetNextAction(CBrick::EAction::BROKE);
+}
+
+void CMarioTail::OnCollisionWithBlock(pCollision e)
+{
+	pBlock block = dynamic_cast<pBlock>(e->_target);
+	if (block->_action != CBlock::EAction::EMTPY)
+	{
+		block->_topBounce = false;
+		if (e->_nx > 0) block->_leftBounce = false;
+		else block->_leftBounce = true;
+		block->SetNextAction(CBlock::EAction::SPAWN);
 	}
 }

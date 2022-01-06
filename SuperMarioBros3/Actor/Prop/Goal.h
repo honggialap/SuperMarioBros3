@@ -17,45 +17,22 @@ public:
 		float posX, float posY, int gridX, int gridY, unsigned int layer
 	) : CGameObject(game, scene, id, name, prefabSource, posX, posY, gridX, gridY, layer) {};
 
-	/* Binding Command */
-	/* Stats */
 	/* Lifecycle */
 	virtual void Load();
 	virtual void Start();
 	virtual void Update(float elapsedMs);
 	virtual void Render();
 
-	/* Logic */
-	enum class EAction
-	{
-	};
-	enum class EActionStage
-	{
-		START,
-		PROGRESS,
-		EXIT
-	};
-	EActionStage _actionStage = EActionStage::START;
-	EAction _action;
-	EAction _nextAction;
+	/* Body */
+	bool _renderBody = false;
+	float BODY_WIDTH = 0;
+	float BODY_HEIGHT = 0;
+	float BODY_OFFSETX = 0;
+	float BODY_OFFSETY = 0;
 
-	void SetAction(EAction action)
-	{
-		_action = action;
-		_actionStage = EActionStage::START;
-	};
-	void SetNextAction(EAction action)
-	{
-		_nextAction = action;
-		_actionStage = EActionStage::EXIT;
-	};
-	void NextAction()
-	{
-		_action = _nextAction;
-		_actionStage = EActionStage::START;
-	};
-
-	void HandleAction(float elapsedMs);
+	/* Stats */
+	unsigned int CURRENT_SCENE = 0;
+	unsigned int NEXT_SCENE = 0;
 
 	int IsCollidable();
 	int IsBlocking();

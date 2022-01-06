@@ -1,5 +1,7 @@
 #include "Mario.h"
 #include "../../SuperMarioBros3.h"
+#include "../Controller/GameMaster.h"
+#include "../Controller/World.h"
 #include "../Character/Goomba.h"
 #include "../Character/Koopa.h"
 #include "../Character/Piranha.h"
@@ -16,6 +18,7 @@
 #include "../Prop/SpawnZone.h"
 #include "../Prop/Switch.h"
 #include "../Prop/Pipe.h"
+#include "../Prop/TransportPipe.h"
 #include "../Prop/Goal.h"
 
 
@@ -51,6 +54,8 @@ void CMario::Load()
 	/* Stats */
 	pugi::xml_node statsNode = prefab.child("Prefab").child("Stats");
 	_renderBody = statsNode.attribute("renderBody").as_bool();
+	_controllerName = statsNode.attribute("controllerName").as_string();
+	_gameMasterName = statsNode.attribute("gameMasterName").as_string();
 	ACCELERATE = statsNode.attribute("ACCELERATE").as_float();
 	FAST_ACCELERATE = statsNode.attribute("FAST_ACCELERATE").as_float();
 	DRAG_FORCE = statsNode.attribute("DRAG_FORCE").as_float();
@@ -73,15 +78,16 @@ void CMario::Load()
 	TAIL_ENTRY = statsNode.attribute("TAIL_ENTRY").as_float();
 	TAIL_PROGRESS = statsNode.attribute("TAIL_PROGRESS").as_float();
 	TAIL_RECOVER = statsNode.attribute("TAIL_RECOVER").as_float();
-
+	PIPE_MOVEMENT = statsNode.attribute("PIPE_MOVEMENT").as_float();
 
 	/* Weapon */
-	pugi::xml_node sensorNode = prefab.child("Prefab").child("GameObject");
+	pugi::xml_node sensorNode = prefab.child("Prefab").child("Tail");
+	std::string tailName = _name + sensorNode.attribute("name").as_string();
 	_tail = dynamic_cast<pMarioTail>(
 		_game->Create(
 			_scene,
 			sensorNode.attribute("actor").as_uint(),
-			_name.append(sensorNode.attribute("name").as_string()),
+			tailName,
 			sensorNode.attribute("source").as_string(),
 			_x, _y, _gridX, _gridY, _layer, _active
 		)
@@ -112,9 +118,14 @@ void CMario::Update(float elapsedMs)
 		_ay = -HOVER_FORCE;
 	}
 
-	_vx += _ax * elapsedMs;
-	_vy += _ay * elapsedMs;
-	_vx = _vx / DRAG_FORCE;
+	if ((_action != EAction::DIE)
+		&& (_action != EAction::PIPE_IN)
+		&& (_action != EAction::PIPE_OUT))
+	{
+		_vx += _ax * elapsedMs;
+		_vy += _ay * elapsedMs;
+		_vx = _vx / DRAG_FORCE;
+	}
 
 	HotCheat();
 	UpdateShell();
@@ -756,6 +767,9 @@ void CMario::Walk(float elapsedMs)
 			&& _game->IsReleased(ACTION))
 			SetNextAction(EAction::KICK);
 
+		if (_game->IsDown(DOWN))
+			SetNextAction(EAction::CROUNCH);
+
 		if ((!_game->IsDown(LEFT) && !_game->IsDown(RIGHT))
 			|| (_game->IsDown(LEFT) && _game->IsDown(RIGHT)))
 		{
@@ -1074,6 +1088,9 @@ void CMario::Run(float elapsedMs)
 		if (_hold
 			&& _game->IsReleased(ACTION))
 			SetNextAction(EAction::KICK);
+
+		if (_game->IsDown(DOWN))
+			SetNextAction(EAction::CROUNCH);
 
 		if (_powerMeter < POWER_LIMIT) _powerMeter += elapsedMs * 2;
 		else _fly = true;
@@ -1607,12 +1624,15 @@ void CMario::Die(float elapsedMs)
 	{
 	case CMario::EActionStage::START:
 	{
+		_vy = 0;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CMario::EActionStage::PROGRESS:
 	{
+		auto gameMaster = dynamic_cast<pGameMaster>(_game->Get(_gameMasterName));
+		gameMaster->Restart();
 	}
 	break;
 
@@ -1630,17 +1650,33 @@ void CMario::PipeIn(float elapsedMs)
 	{
 	case CMario::EActionStage::START:
 	{
+		if (_pipe->_up) _pipeLimit = _pipe->_y - PIPE_MOVEMENT;
+		else _pipeLimit = _pipe->_y + _pipe->BODY_HEIGHT;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CMario::EActionStage::PROGRESS:
 	{
+		if (_pipe->_up)
+		{
+			if (_y > _pipeLimit) _y -= MOVE_SPEED_LIMIT/4 * elapsedMs;
+			else SetNextAction(EAction::PIPE_OUT);
+		}
+		else
+		{
+			if (_y < _pipeLimit) _y += MOVE_SPEED_LIMIT/4 * elapsedMs;
+			else SetNextAction(EAction::PIPE_OUT);
+		}
 	}
 	break;
 
 	case CMario::EActionStage::EXIT:
 	{
+		SetPosition(_pipe->DESTINATION_X, _pipe->DESTINATION_Y);
+
+		pWorld world = dynamic_cast<pWorld>(_game->Get(_controllerName));
+		world->SetCamera(_pipe->CAMERA_SWITCH);
 	}
 	NextAction();
 	break;
@@ -1653,17 +1689,30 @@ void CMario::PipeOut(float elapsedMs)
 	{
 	case CMario::EActionStage::START:
 	{
+		if (_pipe->_up) _pipeLimit = _pipe->DESTINATION_Y - PIPE_MOVEMENT;
+		else _pipeLimit = _pipe->DESTINATION_Y + PIPE_MOVEMENT;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CMario::EActionStage::PROGRESS:
 	{
+		if (_pipe->_up)
+		{
+			if (_y > _pipeLimit) _y -= MOVE_SPEED_LIMIT / 4 * elapsedMs;
+			else SetNextAction(EAction::IDLE);
+		}
+		else
+		{
+			if (_y < _pipeLimit) _y += MOVE_SPEED_LIMIT / 4 * elapsedMs;
+			else SetNextAction(EAction::IDLE);
+		}
 	}
 	break;
 
 	case CMario::EActionStage::EXIT:
 	{
+		_pipe = nullptr;
 	}
 	NextAction();
 	break;
@@ -1744,29 +1793,31 @@ void CMario::UpdateInvincible(float elapsedMs)
 
 void CMario::Hit()
 {
-	if (_power == EPower::SMALL)
+	if (!_invincible) 
 	{
-		SetNextAction(CMario::EAction::DIE);
+		if (_power == EPower::SMALL)
+		{
+			SetNextAction(CMario::EAction::DIE);
+		}
+		else if (_power == EPower::LARGE)
+		{
+			_invincible = true;
+			_invincibleCountdown = INVINCIBLE_COUNTDOWN;
+			_vy = DEFLECT_FORCE;
+			if (_left) _vx = DEFLECT_FORCE;
+			else _vx = -DEFLECT_FORCE;
+			SetNextAction(CMario::EAction::POWERDOWN);
+		}
+		else if (_power == EPower::RACCOON)
+		{
+			_invincible = true;
+			_invincibleCountdown = INVINCIBLE_COUNTDOWN;
+			_vy = DEFLECT_FORCE;
+			if (_left) _vx = DEFLECT_FORCE;
+			else _vx = -DEFLECT_FORCE;
+			SetNextAction(CMario::EAction::POWERDOWN);
+		}
 	}
-	else if (_power == EPower::LARGE)
-	{
-		_invincible = true;
-		_invincibleCountdown = INVINCIBLE_COUNTDOWN;
-		_vy = DEFLECT_FORCE;
-		if (_left) _vx = DEFLECT_FORCE;
-		else _vx = -DEFLECT_FORCE;
-		SetNextAction(CMario::EAction::POWERDOWN);
-	}
-	else if (_power == EPower::RACCOON)
-	{
-		_invincible = true;
-		_invincibleCountdown = INVINCIBLE_COUNTDOWN;
-		_vy = DEFLECT_FORCE;
-		if (_left) _vx = DEFLECT_FORCE;
-		else _vx = -DEFLECT_FORCE;
-		SetNextAction(CMario::EAction::POWERDOWN);
-	}
-
 }
 
 int CMario::IsCollidable()
@@ -1884,13 +1935,19 @@ void CMario::GetBoundingBox(float& left, float& top, float& right, float& bottom
 
 void CMario::OnNoCollision(float elapsedMs)
 {
-	_x += _vx * elapsedMs;
-	_y += _vy * elapsedMs;
-	_ground = false;
+	if ((_action != EAction::DIE)
+		&& (_action != EAction::PIPE_IN)
+		&& (_action != EAction::PIPE_OUT))
+	{
+		_x += _vx * elapsedMs;
+		_y += _vy * elapsedMs;
+		_ground = false;
+	}
 }
 
 void CMario::OnCollisionWith(pCollision e)
 {
+	/* Blocking */
 	if (e->_ny != 0 && e->_target->IsBlocking())
 	{
 		_vy = 0;
@@ -1902,147 +1959,57 @@ void CMario::OnCollisionWith(pCollision e)
 		_vx = 0;
 	}
 
-	if (dynamic_cast<pPlatform>(e->_target))
-	{
-		if (e->_ny > 0 && !e->_target->IsBlocking())
-		{
-			float top = 0;
-			float temp = 0;
-			e->_target->GetBoundingBox(temp, top, temp, temp);
-			_y = top + BLOCK_PUSH_FACTOR;
-			_vy = 0;
-			_ground = true;
-		}
-	}
-
-	/* Items */
-	else if (dynamic_cast<pMushroom>(e->_target))
-	{
-		pMushroom mushroom = dynamic_cast<pMushroom>(e->_target);
-		if (_power == EPower::SMALL)
-		{
-			SetNextAction(EAction::POWERUP);
-		}
-		mushroom->SetNextAction(CMushroom::EAction::CONSUMED);
-	}
-	else if (dynamic_cast<pCoin>(e->_target))
-	{
-		pCoin coin = dynamic_cast<pCoin>(e->_target);
-		coin->SetNextAction(CCoin::EAction::CONSUMED);
-	}
-	else if (dynamic_cast<pExtraLife>(e->_target))
-	{
-		pExtraLife extraLife = dynamic_cast<pExtraLife>(e->_target);
-		extraLife->SetNextAction(CExtraLife::EAction::CONSUMED);
-	}
-	else if (dynamic_cast<pLeaf>(e->_target))
-	{
-		pLeaf leaf = dynamic_cast<pLeaf>(e->_target);
-		if (_power != EPower::RACCOON)
-		{
-			SetNextAction(EAction::POWERUP_TAIL);
-		}
-		leaf->SetNextAction(CLeaf::EAction::CONSUMED);
-	}
-
 	/* Character */
-	else if (dynamic_cast<pGoomba>(e->_target))
+	if (dynamic_cast<pGoomba>(e->_target))
 		OnCollisionWithGoomba(e);
 
 	else if (dynamic_cast<pKoopa>(e->_target))
-	{
-		pKoopa koopa = dynamic_cast<pKoopa>(e->_target);
-		if (e->_ny > 0)
-		{
-			koopa->HitTop();
-			_vy = DEFLECT_FORCE;
-		}
-		else if (e->_nx != 0)
-		{
-			if (koopa->_action == CKoopa::EAction::RETRACT)
-			{
-				if (!_hold && _game->IsDown(ACTION))
-				{
-					_shell = koopa;
-					_hold = true;
-				}
-				else
-				{
-					if (e->_nx > 0) koopa->_left = true;
-					else koopa->_left = false;
-					koopa->SetNextAction(CKoopa::EAction::SPIN);
-					SetNextAction(CMario::EAction::KICK);
-				}
-			}
-			else
-			{
-				if (!_invincible)
-				{
-					Hit();
-					_vy = DEFLECT_FORCE;
-					_shell = nullptr;
-					_hold = false;
-				}
-			}
-		}
-	}
+		OnCollisionWithKoopa(e);
 
 	else if (dynamic_cast<pPiranha>(e->_target))
-	{
-		pPiranha piranha = dynamic_cast<pPiranha>(e->_target);
-		if (!_invincible) Hit();
-		_vy = DEFLECT_FORCE;
-	}
+		OnCollisionWithPiranha(e);
 
 	else if (dynamic_cast<pVenus>(e->_target))
-	{
-		pVenus venus = dynamic_cast<pVenus>(e->_target);
-		if (!_invincible) Hit();
-		_vy = DEFLECT_FORCE;
-	}
+		OnCollisionWithVenus(e);
 
 	else if (dynamic_cast<pVenusFireball>(e->_target))
-	{
-		pVenusFireball venusFireball = dynamic_cast<pVenusFireball>(e->_target);
-		if (!_invincible) Hit();
-		_vy = DEFLECT_FORCE;
-	}
+		OnCollisionWithVenusFireball(e);
 
-	/* Props */
+	/* Item */
+	else if (dynamic_cast<pCoin>(e->_target))
+		OnCollisionWithCoin(e);
+
+	else if (dynamic_cast<pExtraLife>(e->_target))
+		OnCollisionWithExtraLife(e);
+
+	else if (dynamic_cast<pMushroom>(e->_target))
+		OnCollisionWithMushroom(e);
+
+	else if (dynamic_cast<pLeaf>(e->_target))
+		OnCollisionWithLeaf(e);
+
+	/* Prop*/
+	if (dynamic_cast<pPlatform>(e->_target))
+		OnCollisionWithPlatform(e);
+
+	else if (dynamic_cast<pPipe>(e->_target))
+		OnCollisionWithPipe(e);
+
+	else if (dynamic_cast<pTransportPipe>(e->_target))
+		OnCollisionWithTransportPipe(e);
+
 	else if (dynamic_cast<pBrick>(e->_target))
-	{
-		pBrick brick = dynamic_cast<pBrick>(e->_target);
-		if (e->_ny < 0)
-		{
-			_vy = -DEFLECT_FORCE / 2;
-			if (_power != EPower::SMALL) brick->SetNextAction(CBrick::EAction::BOUNCE);
-			else brick->SetNextAction(CBrick::EAction::BROKE);
-		}
-	}
+		OnCollisionWithBrick(e);
+
 	else if (dynamic_cast<pBlock>(e->_target))
-	{
-		pBlock block = dynamic_cast<pBlock>(e->_target);
-		if (e->_ny < 0)
-		{
-			_vy = -DEFLECT_FORCE / 2;
-			if (block->_action != CBlock::EAction::EMTPY)
-			{
-				block->_topBounce = true;
-				block->_leftBounce = false;
-				block->SetNextAction(CBlock::EAction::SPAWN);
-			}
-		}
-	}
+		OnCollisionWithBlock(e);
+
 	else if (dynamic_cast<pSwitch>(e->_target))
-	{
-		pSwitch relay = dynamic_cast<pSwitch>(e->_target);
+		OnCollisionWithSwitch(e);
 
-	}
 	else if (dynamic_cast<pDeadZone>(e->_target))
-	{
-		pDeadZone deadZone = dynamic_cast<pDeadZone>(e->_target);
-
-	}
+		OnCollisionWithDeadZone(e);
+	
 }
 
 void CMario::OnCollisionWithGoomba(pCollision e)
@@ -2058,8 +2025,213 @@ void CMario::OnCollisionWithGoomba(pCollision e)
 		}
 		else if (e->_nx != 0)
 		{
-			if (!_invincible) Hit();
+			if(_action != EAction::SPIN) Hit();
 		}
 	}
 }
 
+void CMario::OnCollisionWithKoopa(pCollision e)
+{
+	pKoopa koopa = dynamic_cast<pKoopa>(e->_target);
+	if (e->_ny > 0)
+	{
+		koopa->HitTop();
+		_vy = DEFLECT_FORCE;
+	}
+	else if (e->_nx != 0)
+	{
+		if (koopa->_action == CKoopa::EAction::RETRACT)
+		{
+			if (!_hold && _game->IsDown(ACTION))
+			{
+				_shell = koopa;
+				_hold = true;
+			}
+			else
+			{
+				if (e->_nx > 0) koopa->_left = true;
+				else koopa->_left = false;
+				koopa->SetNextAction(CKoopa::EAction::SPIN);
+				SetNextAction(CMario::EAction::KICK);
+			}
+		}
+		else
+		{
+			if (_action != EAction::SPIN) Hit();
+			_shell = nullptr;
+			_hold = false;
+		}
+	}
+}
+
+void CMario::OnCollisionWithPiranha(pCollision e)
+{
+	pPiranha piranha = dynamic_cast<pPiranha>(e->_target);
+	if (_action != EAction::SPIN) Hit();
+}
+
+void CMario::OnCollisionWithVenus(pCollision e)
+{
+	pVenus venus = dynamic_cast<pVenus>(e->_target);
+	if (_action != EAction::SPIN) Hit();
+}
+
+void CMario::OnCollisionWithVenusFireball(pCollision e)
+{
+	pVenusFireball venusFireball = dynamic_cast<pVenusFireball>(e->_target);
+	Hit();
+	venusFireball->Destroy();
+}
+
+void CMario::OnCollisionWithPlatform(pCollision e)
+{
+	if (e->_ny > 0 && !e->_target->IsBlocking())
+	{
+		float top = 0;
+		float temp = 0;
+		e->_target->GetBoundingBox(temp, top, temp, temp);
+		_y = top + BLOCK_PUSH_FACTOR;
+		_vy = 0;
+		_ground = true;
+	}
+}
+
+void CMario::OnCollisionWithPipe(pCollision e)
+{
+	float pipeTop = 0;
+	float pipeLeft = 0;
+	float pipeRight = 0;
+	float pipeBottom = 0;
+	e->_target->GetBoundingBox(pipeLeft, pipeTop, pipeRight, pipeBottom);
+	
+	float top = 0;
+	float left = 0;
+	float right = 0;
+	float bottom = 0;
+	GetBoundingBox(left, top, right, bottom);
+
+	if (e->_ny == 0 && e->_nx != 0)
+	{
+		if (e->_nx > 0)
+		{
+			_vx = 0;
+			_x = pipeRight + ((right - left) / 2) + BLOCK_PUSH_FACTOR;
+		}
+		else
+		{
+			_vx = 0;
+			_x = pipeLeft - ((right - left) / 2) - BLOCK_PUSH_FACTOR;
+		}
+	}
+	else if (e->_ny != 0 && e->_nx == 0)
+	{
+
+		if (e->_ny > 0)
+		{
+			_vy = 0;
+			_ground = true;
+			_y = pipeTop + BLOCK_PUSH_FACTOR;
+		}
+		else
+		{
+			_vy = 0;
+			_y = pipeBottom - (top - bottom) - BLOCK_PUSH_FACTOR;
+		}
+	}
+}
+
+void CMario::OnCollisionWithTransportPipe(pCollision e)
+{
+	pTransportPipe transportPipe = dynamic_cast<pTransportPipe>(e->_target);
+	if ((transportPipe->_up && _game->IsDown(DOWN))
+		|| (!transportPipe->_up && _game->IsDown(UP)))
+	{
+		_pipe = transportPipe;
+		SetNextAction(EAction::PIPE_IN);
+	}
+}
+
+void CMario::OnCollisionWithBrick(pCollision e)
+{
+	pBrick brick = dynamic_cast<pBrick>(e->_target);
+	if (e->_ny < 0)
+	{
+		_vy = -DEFLECT_FORCE / 2;
+		_fall = true;
+		if (brick->_action == CBrick::EAction::IDLE)
+		{
+			if (_power == EPower::SMALL)
+				brick->SetNextAction(CBrick::EAction::BOUNCE);
+			else
+				brick->SetNextAction(CBrick::EAction::BROKE);
+		}
+	}
+}
+
+void CMario::OnCollisionWithBlock(pCollision e)
+{
+	pBlock block = dynamic_cast<pBlock>(e->_target);
+	if (e->_ny < 0)
+	{
+		_vy = -DEFLECT_FORCE;
+		_fall = true;
+		if (block->_action == CBlock::EAction::IDLE)
+		{
+			block->_topBounce = true;
+			block->_leftBounce = false;
+			block->SetNextAction(CBlock::EAction::SPAWN);
+		}
+	}
+	else if (e->_nx != 0 && _action == EAction::SPIN)
+	{
+		if (e->_nx > 0) _vx = DEFLECT_FORCE / 4;
+		else _vx = -DEFLECT_FORCE / 4;
+	}
+}
+
+void CMario::OnCollisionWithDeadZone(pCollision e)
+{
+	SetNextAction(EAction::DIE);
+}
+
+void CMario::OnCollisionWithSwitch(pCollision e)
+{
+	pSwitch relay = dynamic_cast<pSwitch>(e->_target);
+	if (e->_ny > 0)
+	{
+		if (!relay->_activate)
+		{
+			relay->_activate = true;
+			relay->Transform();
+		}
+	}
+}
+
+void CMario::OnCollisionWithCoin(pCollision e)
+{
+	pCoin coin = dynamic_cast<pCoin>(e->_target);
+	coin->SetNextAction(CCoin::EAction::CONSUMED);
+}
+
+void CMario::OnCollisionWithExtraLife(pCollision e)
+{
+	pExtraLife extraLife = dynamic_cast<pExtraLife>(e->_target);
+	extraLife->SetNextAction(CExtraLife::EAction::CONSUMED);
+}
+
+void CMario::OnCollisionWithMushroom(pCollision e)
+{
+	pMushroom mushroom = dynamic_cast<pMushroom>(e->_target);
+	if (_power == EPower::SMALL)
+		SetNextAction(EAction::POWERUP);
+
+	mushroom->SetNextAction(CMushroom::EAction::CONSUMED);
+}
+
+void CMario::OnCollisionWithLeaf(pCollision e)
+{
+	pLeaf leaf = dynamic_cast<pLeaf>(e->_target);
+	if (_power != EPower::RACCOON)
+		SetNextAction(EAction::POWERUP_TAIL);
+	leaf->SetNextAction(CLeaf::EAction::CONSUMED);
+}

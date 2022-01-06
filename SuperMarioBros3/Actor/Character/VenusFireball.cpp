@@ -1,6 +1,5 @@
 #include "VenusFireball.h"
 #include "../../SuperMarioBros3.h"
-#include "../Character/Mario.h"
 
 
 void CVenusFireball::Load()
@@ -80,12 +79,4 @@ void CVenusFireball::OnNoCollision(float elapsedMs)
 void CVenusFireball::OnCollisionWith(pCollision e)
 {
 	if (e->_target->IsBlocking()) Destroy();
-
-	/* Character */
-	if (dynamic_cast<pMario>(e->_target))
-	{
-		pMario mario = dynamic_cast<pMario>(e->_target);
-		mario->Hit();
-		Destroy();
-	}
 }

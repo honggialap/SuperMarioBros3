@@ -27,6 +27,7 @@ void CVenus::Load()
 	SPEED = statsNode.attribute("SPEED").as_float();
 	FIREBALL_VX = statsNode.attribute("FIREBALL_VX").as_float();
 	FIREBALL_VY = statsNode.attribute("FIREBALL_VY").as_float();
+	SHOT_OFFSET = statsNode.attribute("SHOT_OFFSET").as_float();
 
 	/* Logic */
 	_targetName = statsNode.attribute("target").as_string();
@@ -34,11 +35,12 @@ void CVenus::Load()
 
 	/* Sensor */
 	pugi::xml_node sensorNode = prefab.child("Prefab").child("Sensor");
+	std::string sensorName = _name + sensorNode.attribute("name").as_string();
 	_sensor = dynamic_cast<pVenusSensor>(
 		_game->Create(
 			_scene,
 			sensorNode.attribute("actor").as_uint(),
-			_name.append(sensorNode.attribute("name").as_string()),
+			sensorName,
 			sensorNode.attribute("source").as_string(),
 			_x, _y, _gridX, _gridY, _layer, _active
 		)
@@ -71,6 +73,7 @@ void CVenus::Render()
 	switch (_action)
 	{
 	case CVenus::EAction::HIDE:
+	case CVenus::EAction::DIE:
 		break;
 	case CVenus::EAction::BURROW:
 	case CVenus::EAction::GROW:
@@ -147,9 +150,6 @@ void CVenus::Render()
 			}
 			break;
 		}
-		break;
-
-	case CVenus::EAction::DIE:
 		break;
 	}
 
@@ -451,7 +451,7 @@ void CVenus::AcquireTarget()
 		if (_x > _game->Get(_targetName)->_x) _left = true;
 		else _left = false;
 
-		if (_y < _game->Get(_targetName)->_y) _up = true;
+		if (_y + SHOT_OFFSET < _game->Get(_targetName)->_y) _up = true;
 		else _up = false;
 	}
 }
@@ -485,7 +485,21 @@ void CVenus::ShootFireball()
 
 int CVenus::IsCollidable()
 {
-	return 0;
+	switch (_action)
+	{
+	case CVenus::EAction::GROW:
+	case CVenus::EAction::STAND:
+	case CVenus::EAction::BURROW:
+	case CVenus::EAction::SHOOT:
+		return 1;
+		break;
+
+	case CVenus::EAction::HIDE:
+	case CVenus::EAction::DIE:
+		return 0;
+		break;
+	}
+	return 1;
 }
 
 int CVenus::IsBlocking()
@@ -495,6 +509,26 @@ int CVenus::IsBlocking()
 
 void CVenus::GetBoundingBox(float& left, float& top, float& right, float& bottom)
 {
+	switch (_action)
+	{
+	case CVenus::EAction::GROW:
+	case CVenus::EAction::STAND:
+	case CVenus::EAction::BURROW:
+	case CVenus::EAction::SHOOT:
+		left = _x + BODY_OFFSETX - (BODY_WIDTH / 2);
+		right = _x + BODY_OFFSETX + (BODY_WIDTH / 2);
+		top = _y + BODY_OFFSETY + (BODY_HEIGHT / 2);
+		bottom = _y + BODY_OFFSETY - (BODY_HEIGHT / 2);
+		break;
+
+	case CVenus::EAction::HIDE:
+	case CVenus::EAction::DIE:
+		left = 0;
+		right = 0;
+		top = 0;
+		bottom = 0;
+		break;
+	}
 }
 
 void CVenus::OnNoCollision(float elapsedMs)
