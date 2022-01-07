@@ -1,16 +1,14 @@
 <?xml version="1.0"?>
 <Scene>
 	<GameObject actor="1002" name="world" source="Data/Asset/Controller/World11.xml" x="0" y="0" gridX="0" gridY="0" layer="1" active="true" />
-	
-	<GameObject actor="2001" name="mario" source="Data/Asset/Character/Mario.xml" x="128" y="256" gridX="4" gridY="0" layer="2" active="true" />
-	<GameObject actor="2003" name="goomba01" source="Data/Asset/Character/Goomba.xml" x="1280" y="128" gridX="1" gridY="0" layer="1" active="true" />
-	<GameObject actor="2003" name="goomba02" source="Data/Asset/Character/Goomba.xml" x="1920" y="128" gridX="1" gridY="0" layer="1" active="true" />
+	<GameObject actor="2001" name="mario" source="Data/Asset/Character/Mario.xml" x="128" y="256" gridX="0" gridY="1" layer="2" active="true" />
+	<GameObject actor="2003" name="goomba01" source="Data/Asset/Character/Goomba.xml" x="1280" y="128" gridX="3" gridY="0" layer="1" active="true" />
+	<GameObject actor="2003" name="goomba02" source="Data/Asset/Character/Goomba.xml" x="1920" y="128" gridX="4" gridY="0" layer="1" active="true" />
 	<GameObject actor="2004" name="redKoopa01" source="Data/Asset/Character/RedKoopa.xml" x="2240" y="256" gridX="4" gridY="1" layer="1" active="true" />
-	<GameObject actor="2004" name="redKoopa02" source="Data/Asset/Character/RedKoopa.xml" x="8448" y="256" gridX="4" gridY="1" layer="1" active="true" />
-	<GameObject actor="2006" name="piranha01" source="Data/Asset/Character/Piranha.xml" x="7232" y="64" gridX="0" gridY="0" layer="1" active="true" />
-	<GameObject actor="2008" name="venus01" source="Data/Asset/Character/Venus.xml" x="7488" y="128" gridX="0" gridY="1" layer="1" active="true" />
-	<GameObject actor="2008" name="redVenus01" source="Data/Asset/Character/RedVenus.xml" x="1472" y="128" gridX="1" gridY="1" layer="1" active="true" />
-
+	<GameObject actor="2004" name="redKoopa02" source="Data/Asset/Character/RedKoopa.xml" x="8448" y="256" gridX="17" gridY="1" layer="1" active="true" />
+	<GameObject actor="2006" name="piranha01" source="Data/Asset/Character/Piranha.xml" x="7232" y="64" gridX="14" gridY="0" layer="1" active="true" />
+	<GameObject actor="2008" name="venus01" source="Data/Asset/Character/Venus.xml" x="7488" y="128" gridX="15" gridY="0" layer="1" active="true" />
+	<GameObject actor="2008" name="redVenus01" source="Data/Asset/Character/RedVenus.xml" x="1472" y="128" gridX="3" gridY="0" layer="1" active="true" />
 	<GameObject actor="3001" name="coin01" source="Data/Asset/Item/Coin.xml" x="4320" y="384" gridX="8" gridY="1" layer="1" active="true" />
 	<GameObject actor="3001" name="coin02" source="Data/Asset/Item/Coin.xml" x="4448" y="512" gridX="9" gridY="1" layer="1" active="true" />
 	<GameObject actor="3001" name="coin03" source="Data/Asset/Item/Coin.xml" x="4576" y="640" gridX="9" gridY="1" layer="1" active="true" />
@@ -46,7 +44,6 @@
 	<GameObject actor="3001" name="coin33" source="Data/Asset/Item/Coin.xml" x="12320" y="576" gridX="24" gridY="1" layer="1" active="true" />
 	<GameObject actor="3001" name="coin34" source="Data/Asset/Item/Coin.xml" x="12256" y="576" gridX="24" gridY="1" layer="1" active="true" />
 	<GameObject actor="3001" name="coin35" source="Data/Asset/Item/Coin.xml" x="12192" y="512" gridX="24" gridY="1" layer="1" active="true" />
-
 	<GameObject actor="4002" name="brick01" source="Data/Asset/Prop/Brick.xml" x="7840" y="64" gridX="15" gridY="0" layer="1" active="true" />
 	<GameObject actor="4002" name="brick02" source="Data/Asset/Prop/Brick.xml" x="7904" y="64" gridX="15" gridY="0" layer="1" active="true" />
 	<GameObject actor="4002" name="brick03" source="Data/Asset/Prop/Brick.xml" x="7968" y="64" gridX="16" gridY="0" layer="1" active="true" />
@@ -65,7 +62,6 @@
 	<GameObject actor="4002" name="brick16" source="Data/Asset/Prop/Brick.xml" x="7968" y="192" gridX="16" gridY="0" layer="1" active="true" />
 	<GameObject actor="4002" name="brick17" source="Data/Asset/Prop/Brick.xml" x="8032" y="192" gridX="16" gridY="0" layer="1" active="true" />
 	<GameObject actor="4002" name="brick18" source="Data/Asset/Prop/Brick.xml" x="8096" y="192" gridX="16" gridY="0" layer="1" active="true" />
-
 	<GameObject actor="4003" name="coinBlock01" source="Data/Asset/Prop/CoinBlock.xml" x="736" y="256" gridX="1" gridY="1" layer="1" active="true" />
 	<GameObject actor="4003" name="coinBlock02" source="Data/Asset/Prop/CoinBlock.xml" x="800" y="256" gridX="2" gridY="1" layer="1" active="true" />
 	<GameObject actor="4003" name="coinBlock03" source="Data/Asset/Prop/CoinBlock.xml" x="928" y="448" gridX="2" gridY="1" layer="1" active="true" />
@@ -76,7 +72,6 @@
 	<GameObject actor="4003" name="powerUpBlock03" source="Data/Asset/Prop/PowerUpBlock.xml" x="5920" y="192" gridX="12" gridY="0" layer="1" active="true" />
 	<GameObject actor="4003" name="extraLifeBlock01" source="Data/Asset/Prop/ExtraLifeBlock.xml" x="5792" y="1152" gridX="11" gridY="2" layer="1" active="true" />
 	<GameObject actor="4003" name="switchBlock01" source="Data/Asset/Prop/SwitchBlock.xml" x="8160" y="192" gridX="16" gridY="0" layer="1" active="true" />
-
 	<GameObject actor="4001" name="topBound01" source="Data/Asset/Prop/PlatformS81.xml" x="0" y="1728" gridX="0" gridY="4" layer="1" active="true" />
 	<GameObject actor="4001" name="topBound02" source="Data/Asset/Prop/PlatformS81.xml" x="512" y="1728" gridX="1" gridY="4" layer="1" active="true" />
 	<GameObject actor="4001" name="topBound03" source="Data/Asset/Prop/PlatformS81.xml" x="1024" y="1728" gridX="2" gridY="4" layer="1" active="true" />
@@ -199,18 +194,16 @@
 	<GameObject actor="4007" name="pipe05" source="Data/Asset/Prop/OnLandPipe.xml" x="9344" y="64" gridX="18" gridY="0" layer="3" active="true" />
 	<GameObject actor="4007" name="pipe06" source="Data/Asset/Prop/UndergroundPipe.xml" x="11904" y="640" gridX="23" gridY="1" layer="3" active="true" />
 	<GameObject actor="4007" name="pipe07" source="Data/Asset/Prop/UndergroundPipe.xml" x="12800" y="640" gridX="25" gridY="1" layer="3" active="true" />
-
-	<GameObject actor="4005" name="deadZone1" source="Data/Asset/Prop/DeadZone.xml" x="4288" y="-64" gridX="18" gridY="2" layer="1" active="true" />
-	<GameObject actor="4005" name="deadZone2" source="Data/Asset/Prop/DeadZone.xml" x="5888" y="-64" gridX="18" gridY="2" layer="1" active="true" />
-	<GameObject actor="4005" name="deadZone3" source="Data/Asset/Prop/DeadZone.xml" x="6400" y="-64" gridX="18" gridY="2" layer="1" active="true" />
-	<GameObject actor="4005" name="deadZone4" source="Data/Asset/Prop/DeadZone.xml" x="8832" y="-64" gridX="18" gridY="2" layer="1" active="true" />
-
-	<GameObject actor="4004" name="spawnZone1" source="Data/Asset/Prop/World11SpawnZone1.xml" x="2688" y="128" gridX="18" gridY="2" layer="1" active="true" />
-	<GameObject actor="4004" name="spawnZone2" source="Data/Asset/Prop/World11SpawnZone2.xml" x="4608" y="64" gridX="18" gridY="2" layer="1" active="true" />
-
-	<GameObject actor="4008" name="mainPipe" source="Data/Asset/Prop/World11MainPipe.xml" x="9088" y="1280" gridX="18" gridY="2" layer="2" active="true" />
+	<GameObject actor="4005" name="deadZone1" source="Data/Asset/Prop/DeadZone.xml" x="4288" y="-64" gridX="8" gridY="0" layer="1" active="true" />
+	<GameObject actor="4005" name="deadZone2" source="Data/Asset/Prop/DeadZone.xml" x="5888" y="-64" gridX="12" gridY="0" layer="1" active="true" />
+	<GameObject actor="4005" name="deadZone3" source="Data/Asset/Prop/DeadZone.xml" x="6400" y="-64" gridX="13" gridY="0" layer="1" active="true" />
+	<GameObject actor="4005" name="deadZone4" source="Data/Asset/Prop/DeadZone.xml" x="8832" y="-64" gridX="17" gridY="0" layer="1" active="true" />
+	<GameObject actor="4004" name="spawnZone1" source="Data/Asset/Prop/World11SpawnZone1.xml" x="2688" y="128" gridX="5" gridY="0" layer="1" active="true" />
+	<GameObject actor="4004" name="spawnZone2" source="Data/Asset/Prop/World11SpawnZone2.xml" x="4608" y="64" gridX="9" gridY="0" layer="1" active="true" />
+	<GameObject actor="4008" name="mainPipe" source="Data/Asset/Prop/World11MainPipe.xml" x="9088" y="1280" gridX="18" gridY="3" layer="2" active="true" />
 	<GameObject actor="4008" name="subPipe" source="Data/Asset/Prop/World11SubPipe.xml" x="12800" y="576" gridX="25" gridY="1" layer="2" active="true" />
-
 	<GameObject actor="5001" name="mainSessionBackgound" source="Data/Asset/Misc/World11MainBackground.xml" x="0" y="1728" gridX="0" gridY="4" layer="0" active="true" />
 	<GameObject actor="5001" name="subSessionBackgound" source="Data/Asset/Misc/World11SubBackground.xml" x="11328" y="768" gridX="22" gridY="2" layer="0" active="true" />
+	<GameObject actor="5002" name="hud" source="Data/Asset/Misc/HUD.xml" x="0" y="0" gridX="0" gridY="0" layer="10" active="true" />
+
 </Scene>

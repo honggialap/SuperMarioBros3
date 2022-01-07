@@ -40,9 +40,6 @@ void CCoin::Render()
 	switch (_action)
 	{
 	case CCoin::EAction::IDLE:
-		_sprites[SPR_COIN1]->Render(_x, _y);
-		break;
-
 	case CCoin::EAction::CONSUMED:
 		_animations[ANI_COIN]->Render(_x, _y);
 		break;
@@ -69,17 +66,20 @@ void CCoin::Idle(float elapsedMs)
 	{
 	case CCoin::EActionStage::START:
 	{
+		_animations[ANI_COIN]->Play(true);
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CCoin::EActionStage::PROGRESS:
 	{
+		_animations[ANI_COIN]->Update(elapsedMs);
 	}
 	break;
 
 	case CCoin::EActionStage::EXIT:
 	{
+		_animations[ANI_COIN]->Stop();
 	}
 	NextAction();
 	break;
@@ -100,11 +100,12 @@ void CCoin::Consumed(float elapsedMs)
 
 	case CCoin::EActionStage::PROGRESS:
 	{
+		_animations[ANI_COIN]->Update(elapsedMs);
+
 		if (_currentDecayInterval > 0)
 		{
 			_currentDecayInterval -= elapsedMs;
 			_y += SPEED * elapsedMs;
-			_animations[ANI_COIN]->Update(elapsedMs);
 		}
 		else
 		{
@@ -115,7 +116,8 @@ void CCoin::Consumed(float elapsedMs)
 	break;
 
 	case CCoin::EActionStage::EXIT:
-	{
+	{		
+		_animations[ANI_COIN]->Stop();
 	}
 	NextAction();
 	break;

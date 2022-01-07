@@ -1,22 +1,41 @@
 <Prefab>
 
 	<Sprites>
-		<Sprite id="" textureId="" left="" top="" width="" height="" offsetX="" offsetY=""/>
-		<Sprite id="" textureId="" left="" top="" width="" height="" offsetX="" offsetY=""/>
-		<Sprite id="" textureId="" left="" top="" width="" height="" offsetX="" offsetY=""/>
-		<Sprite id="" textureId="" left="" top="" width="" height="" offsetX="" offsetY=""/>
+		<Sprite id="1001" textureId="6" left="3" top="315" width="1026" height="194" offsetX="513" offsetY="96"/>
+		<Sprite id="2001" textureId="6" left="76" top="204" width="32" height="28" offsetX="16" offsetY="14"/>
+		<Sprite id="2002" textureId="6" left="116" top="204" width="32" height="28" offsetX="16" offsetY="14"/>
+		<Sprite id="3001" textureId="6" left="156" top="204" width="64" height="28" offsetX="32" offsetY="14"/>
+		<Sprite id="3002" textureId="6" left="228" top="204" width="64" height="28" offsetX="32" offsetY="14"/>
 	</Sprites>
 
-	<Animations>
-		<Animation id="">
-			<Frame spriteId="" time=""/>
-		</Animation>
-		<Animation id="">
-			<Frame spriteId="" time=""/>
-		</Animation>
-	</Animations>
-
-	<Stats>
-	</Stats>
-
+	<Stats
+		marioName ="mario"
+		POWER_LIMIT = "7"
+		BLINK_INTERVAL="150"
+		
+		FRAME_X = "0"
+		FRAME_Y = "-960"
+		
+		LEVEL1_X = "256"
+		LEVEL1_Y = "-864"
+		
+		LEVEL2_X = "288"
+		LEVEL2_Y = "-864"
+		
+		LEVEL3_X = "320"
+		LEVEL3_Y = "-864"
+		
+		LEVEL4_X = "352"
+		LEVEL4_Y = "-864"
+		
+		LEVEL5_X = "384"
+		LEVEL5_Y = "-864"
+		
+		LEVEL6_X = "416"
+		LEVEL6_Y = "-864"
+		
+		POWER_X = "448"
+		POWER_Y = "-864"
+		/>
+	
 </Prefab>
