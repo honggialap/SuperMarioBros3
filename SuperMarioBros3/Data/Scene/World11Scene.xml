@@ -69,7 +69,7 @@
 	<GameObject actor="4003" name="coinBlock05" source="Data/Asset/Prop/CoinBlock.xml" x="2848" y="256" gridX="6" gridY="1" layer="1" active="true" />
 	<GameObject actor="4003" name="powerUpBlock01" source="Data/Asset/Prop/PowerUpBlock.xml" x="992" y="448" gridX="2" gridY="1" layer="1" active="true" />
 	<GameObject actor="4003" name="powerUpBlock02" source="Data/Asset/Prop/PowerUpBlock.xml" x="2656" y="128" gridX="5" gridY="0" layer="1" active="true" />
-	<GameObject actor="4003" name="powerUpBlock03" source="Data/Asset/Prop/PowerUpBlock.xml" x="5920" y="192" gridX="12" gridY="0" layer="1" active="true" />
+	<GameObject actor="4003" name="powerUpBlock03" source="Data/Asset/Prop/FlowerBlock.xml" x="5920" y="192" gridX="12" gridY="0" layer="1" active="true" />
 	<GameObject actor="4003" name="extraLifeBlock01" source="Data/Asset/Prop/ExtraLifeBlock.xml" x="5792" y="1152" gridX="11" gridY="2" layer="1" active="true" />
 	<GameObject actor="4003" name="switchBlock01" source="Data/Asset/Prop/SwitchBlock.xml" x="8160" y="192" gridX="16" gridY="0" layer="1" active="true" />
 	<GameObject actor="4001" name="topBound01" source="Data/Asset/Prop/PlatformS81.xml" x="0" y="1728" gridX="0" gridY="4" layer="1" active="true" />
@@ -205,5 +205,4 @@
 	<GameObject actor="5001" name="mainSessionBackgound" source="Data/Asset/Misc/World11MainBackground.xml" x="0" y="1728" gridX="0" gridY="4" layer="0" active="true" />
 	<GameObject actor="5001" name="subSessionBackgound" source="Data/Asset/Misc/World11SubBackground.xml" x="11328" y="768" gridX="22" gridY="2" layer="0" active="true" />
 	<GameObject actor="5002" name="hud" source="Data/Asset/Misc/HUD.xml" x="0" y="0" gridX="0" gridY="0" layer="10" active="true" />
-
 </Scene>

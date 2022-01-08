@@ -4,7 +4,7 @@
 		<!--BBOX-->
 		<Sprite id="9991" textureId="0" left="0" top="0" width ="62.0" height="60.0" offsetX="0.0" offsetY="30.0"/>
 		<Sprite id="9992" textureId="0" left="0" top="0" width ="64" height="96" offsetX="0" offsetY="48"/>
-		
+
 		<!--SMALL-->
 		<Sprite id="1001" textureId="1" left="4"   top="4" width="64" height="64" offsetX="0" offsetY="32"/>
 		<Sprite id="1002" textureId="1" left="76"  top="4" width="64" height="64" offsetX="0" offsetY="32"/>
@@ -16,7 +16,7 @@
 		<Sprite id="1008" textureId="1" left="508" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
 		<Sprite id="1009" textureId="1" left="580" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
 		<Sprite id="1010" textureId="1" left="652" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
-		
+
 		<Sprite id="1101" textureId="1" left="4"   top="76" width="64" height="64" offsetX="0" offsetY="32"/>
 		<Sprite id="1102" textureId="1" left="76"  top="76" width="64" height="64" offsetX="0" offsetY="32"/>
 		<Sprite id="1103" textureId="1" left="148" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
@@ -27,7 +27,7 @@
 		<Sprite id="1108" textureId="1" left="508" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
 		<Sprite id="1109" textureId="1" left="580" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
 		<Sprite id="1110" textureId="1" left="652" top="76" width="64" height="64" offsetX="0" offsetY="32"/>
-		
+
 		<Sprite id="1201" textureId="1" left="724" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
 		<Sprite id="1202" textureId="1" left="796" top="4" width="64" height="64" offsetX="0" offsetY="32"/>
 
@@ -46,8 +46,8 @@
 		<Sprite id="2012" textureId="1" left="860" top="148" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="2013" textureId="1" left="932" top="148" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="2014" textureId="1" left="1004" top="148" width="96" height="128" offsetX="-16" offsetY="64"/>
-		<Sprite id="2015" textureId="1" left="1188" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
-		
+		<Sprite id="2015" textureId="1" left="1108" top="148" width="64" height="128" offsetX="0" offsetY="64"/>
+
 		<Sprite id="2101" textureId="1" left="4" top="284" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="2102" textureId="1" left="76" top="284" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="2103" textureId="1" left="148" top="284" width="64" height="128" offsetX="0" offsetY="64"/>
@@ -62,8 +62,8 @@
 		<Sprite id="2112" textureId="1" left="860" top="284" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="2113" textureId="1" left="932" top="284" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="2114" textureId="1" left="1004" top="284" width="96" height="128" offsetX="16" offsetY="64"/>
-		<Sprite id="2115" textureId="1" left="1188" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
-		
+		<Sprite id="2115" textureId="1" left="1108" top="284" width="64" height="128" offsetX="0" offsetY="64"/>
+
 		<Sprite id="2201" textureId="1" left="1180" top="148" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="2202" textureId="1" left="1252" top="148" width="64" height="128" offsetX="0" offsetY="64"/>
 
@@ -86,7 +86,7 @@
 		<Sprite id="3016" textureId="1" left="1532" top="692" width="96" height="128" offsetX="16" offsetY="64"/>
 		<Sprite id="3017" textureId="1" left="1636" top="692" width="96" height="128" offsetX="16" offsetY="64"/>
 		<Sprite id="3018" textureId="1" left="1740" top="692" width="96" height="128" offsetX="-16" offsetY="64"/>
-					
+
 		<Sprite id="3101" textureId="1" left="4"	top="828" width="96" height="128" offsetX="-16" offsetY="64"/>
 		<Sprite id="3102" textureId="1" left="108"	top="828" width="96" height="128" offsetX="-16" offsetY="64"/>
 		<Sprite id="3103" textureId="1" left="212"	top="828" width="96" height="128" offsetX="-16" offsetY="64"/>
@@ -105,18 +105,57 @@
 		<Sprite id="3116" textureId="1" left="1532" top="828" width="96" height="128" offsetX="-16" offsetY="64"/>
 		<Sprite id="3117" textureId="1" left="1636" top="828" width="96" height="128" offsetX="-16" offsetY="64"/>
 		<Sprite id="3118" textureId="1" left="1740" top="828" width="96" height="128" offsetX="16" offsetY="64"/>
-		
+
 		<Sprite id="3201" textureId="1" left="1844" top="692" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="3202" textureId="1" left="1916" top="692" width="96" height="128" offsetX="16" offsetY="64"/>
 		<Sprite id="3203" textureId="1" left="2020" top="692" width="64" height="128" offsetX="0" offsetY="64"/>
 		<Sprite id="3204" textureId="1" left="2092" top="692" width="96" height="128" offsetX="-16" offsetY="64"/>
 
-		<Sprite id="3301" textureId="1" left="4"	top="692" width="64" height="64" offsetX="0" offsetY="32"/>
-		<Sprite id="3302" textureId="1" left="76"	top="692" width="64" height="64" offsetX="0" offsetY="32"/>
-		<Sprite id="3303" textureId="1" left="148"	top="692" width="64" height="64" offsetX="0" offsetY="32"/>
-		<Sprite id="3304" textureId="1" left="220"	top="692" width="64" height="64" offsetX="0" offsetY="32"/>
-		<Sprite id="3305" textureId="1" left="292"	top="692" width="64" height="64" offsetX="0" offsetY="32"/>
-		<Sprite id="3306" textureId="1" left="364"	top="692" width="64" height="64" offsetX="0" offsetY="32"/>
+		<!--FIRE-->
+		<Sprite id="4001" textureId="1" left="4" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4002" textureId="1" left="76" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4003" textureId="1" left="148" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4004" textureId="1" left="220" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4005" textureId="1" left="292" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4006" textureId="1" left="364" top="420" width="80" height="128" offsetX="8" offsetY="64"/>
+		<Sprite id="4007" textureId="1" left="452" top="420" width="80" height="128" offsetX="8" offsetY="64"/>
+		<Sprite id="4008" textureId="1" left="540" top="420" width="80" height="128" offsetX="8" offsetY="64"/>
+		<Sprite id="4009" textureId="1" left="628" top="420" width="80" height="128" offsetX="8" offsetY="64"/>
+		<Sprite id="4010" textureId="1" left="716" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4011" textureId="1" left="788" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4012" textureId="1" left="860" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4013" textureId="1" left="932" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4014" textureId="1" left="1004" top="420" width="96" height="128" offsetX="-16" offsetY="64"/>
+		<Sprite id="4015" textureId="1" left="1108" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4016" textureId="1" left="1180" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+
+		<Sprite id="4101" textureId="1" left="4" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4102" textureId="1" left="76" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4103" textureId="1" left="148" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4104" textureId="1" left="220" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4105" textureId="1" left="292" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4106" textureId="1" left="364" top="556" width="80" height="128" offsetX="-8" offsetY="64"/>
+		<Sprite id="4107" textureId="1" left="452" top="556" width="80" height="128" offsetX="-8" offsetY="64"/>
+		<Sprite id="4108" textureId="1" left="540" top="556" width="80" height="128" offsetX="-8" offsetY="64"/>
+		<Sprite id="4109" textureId="1" left="628" top="556" width="80" height="128" offsetX="-8" offsetY="64"/>
+		<Sprite id="4110" textureId="1" left="716" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4111" textureId="1" left="788" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4112" textureId="1" left="860" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4113" textureId="1" left="932" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4114" textureId="1" left="1004" top="556" width="96" height="128" offsetX="16" offsetY="64"/>
+		<Sprite id="4115" textureId="1" left="1108" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4116" textureId="1" left="1180" top="556" width="64" height="128" offsetX="0" offsetY="64"/>
+
+		<Sprite id="4201" textureId="1" left="1252" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+		<Sprite id="4202" textureId="1" left="1324" top="420" width="64" height="128" offsetX="0" offsetY="64"/>
+
+		<!--Effects-->
+		<Sprite id="5001" textureId="1" left="4"	top="964" width="64" height="64" offsetX="0" offsetY="48"/>
+		<Sprite id="5002" textureId="1" left="76"	top="964" width="64" height="64" offsetX="0" offsetY="48"/>
+		<Sprite id="5003" textureId="1" left="148"	top="964" width="64" height="64" offsetX="0" offsetY="48"/>
+		<Sprite id="5004" textureId="1" left="220"	top="964" width="64" height="64" offsetX="0" offsetY="48"/>
+		<Sprite id="5005" textureId="1" left="292"	top="964" width="64" height="64" offsetX="0" offsetY="48"/>
+		<Sprite id="5006" textureId="1" left="364"	top="964" width="64" height="64" offsetX="0" offsetY="48"/>
 	</Sprites>
 
 	<Animations>
@@ -209,18 +248,18 @@
 			<Frame spriteId="2012" time="100"/>
 		</Animation>
 		<Animation id="2007">
-			<Frame spriteId="2015" time="200"/>
-			<Frame spriteId="1001" time="200"/>
-			<Frame spriteId="2015" time="200"/>
-			<Frame spriteId="2001" time="200"/>
-			<Frame spriteId="2015" time="200"/>
+			<Frame spriteId="2015" time="80"/>
+			<Frame spriteId="1001" time="80"/>
+			<Frame spriteId="2015" time="80"/>
+			<Frame spriteId="2001" time="80"/>
+			<Frame spriteId="2015" time="80"/>
 		</Animation>
 		<Animation id="2008">
-			<Frame spriteId="2015" time="200"/>
-			<Frame spriteId="2001" time="200"/>
-			<Frame spriteId="2015" time="200"/>
-			<Frame spriteId="1001" time="200"/>
-			<Frame spriteId="2015" time="200"/>
+			<Frame spriteId="2015" time="80"/>
+			<Frame spriteId="2001" time="80"/>
+			<Frame spriteId="2015" time="80"/>
+			<Frame spriteId="1001" time="80"/>
+			<Frame spriteId="2015" time="80"/>
 		</Animation>
 
 		<Animation id="2101">
@@ -260,18 +299,18 @@
 			<Frame spriteId="2112" time="100"/>
 		</Animation>
 		<Animation id="2107">
-			<Frame spriteId="2115" time="200"/>
-			<Frame spriteId="1101" time="200"/>
-			<Frame spriteId="2115" time="200"/>
-			<Frame spriteId="2101" time="200"/>
-			<Frame spriteId="2115" time="200"/>
+			<Frame spriteId="2115" time="80"/>
+			<Frame spriteId="1101" time="80"/>
+			<Frame spriteId="2115" time="80"/>
+			<Frame spriteId="2101" time="80"/>
+			<Frame spriteId="2115" time="80"/>
 		</Animation>
 		<Animation id="2108">
-			<Frame spriteId="2115" time="200"/>
-			<Frame spriteId="2101" time="200"/>
-			<Frame spriteId="2115" time="200"/>
-			<Frame spriteId="1101" time="200"/>
-			<Frame spriteId="2115" time="200"/>
+			<Frame spriteId="2115" time="80"/>
+			<Frame spriteId="2101" time="80"/>
+			<Frame spriteId="2115" time="80"/>
+			<Frame spriteId="1101" time="80"/>
+			<Frame spriteId="2115" time="80"/>
 		</Animation>
 
 		<!--RACOON-->
@@ -322,10 +361,10 @@
 			<Frame spriteId="3016" time="100"/>
 		</Animation>
 		<Animation id="3009">
-			<Frame spriteId="3202" time="100"/>
-			<Frame spriteId="3203" time="100"/>
-			<Frame spriteId="3204" time="200"/>
-			<Frame spriteId="3201" time="100"/>
+			<Frame spriteId="3202" time="75"/>
+			<Frame spriteId="3203" time="75"/>
+			<Frame spriteId="3204" time="75"/>
+			<Frame spriteId="3201" time="75"/>
 		</Animation>
 
 		<Animation id="3101">
@@ -375,19 +414,101 @@
 			<Frame spriteId="3116" time="100"/>
 		</Animation>
 		<Animation id="3109">
-			<Frame spriteId="3204" time="100"/>
-			<Frame spriteId="3203" time="100"/>
-			<Frame spriteId="3202" time="200"/>
-			<Frame spriteId="3201" time="100"/>
+			<Frame spriteId="3204" time="75"/>
+			<Frame spriteId="3203" time="75"/>
+			<Frame spriteId="3202" time="75"/>
+			<Frame spriteId="3201" time="75"/>
 		</Animation>
 
-		<Animation id="3301">
-			<Frame spriteId="3301" time="150"/>
-			<Frame spriteId="3302" time="150"/>
-			<Frame spriteId="3303" time="150"/>
-			<Frame spriteId="3304" time="150"/>
-			<Frame spriteId="3305" time="150"/>
-			<Frame spriteId="3306" time="150"/>
+		<Animation id="5001">
+			<Frame spriteId="5001" time="80"/>
+			<Frame spriteId="5003" time="80"/>
+			<Frame spriteId="5004" time="80"/>
+			<Frame spriteId="5005" time="80"/>
+			<Frame spriteId="5006" time="80"/>
+		</Animation>
+
+		<!--FIRE-->
+		<Animation id="4001">
+			<Frame spriteId="4001" time="200"/>
+			<Frame spriteId="4002" time="200"/>
+			<Frame spriteId="4003" time="200"/>
+			<Frame spriteId="4002" time="200"/>
+		</Animation>
+		<Animation id="4002">
+			<Frame spriteId="4001" time="150"/>
+			<Frame spriteId="4002" time="150"/>
+			<Frame spriteId="4003" time="150"/>
+			<Frame spriteId="4002" time="150"/>
+		</Animation>
+		<Animation id="4003">
+			<Frame spriteId="4006" time="100"/>
+			<Frame spriteId="4007" time="100"/>
+			<Frame spriteId="4008" time="100"/>
+			<Frame spriteId="4007" time="100"/>
+		</Animation>
+		<Animation id="4004">
+			<Frame spriteId="4011" time="200"/>
+			<Frame spriteId="4012" time="200"/>
+			<Frame spriteId="4013" time="200"/>
+			<Frame spriteId="4012" time="200"/>
+		</Animation>
+		<Animation id="4005">
+			<Frame spriteId="4011" time="150"/>
+			<Frame spriteId="4012" time="150"/>
+			<Frame spriteId="4013" time="150"/>
+			<Frame spriteId="4012" time="150"/>
+		</Animation>
+		<Animation id="4006">
+			<Frame spriteId="4011" time="100"/>
+			<Frame spriteId="4012" time="100"/>
+			<Frame spriteId="4013" time="100"/>
+			<Frame spriteId="4012" time="100"/>
+		</Animation>
+		<Animation id="4007">
+			<Frame spriteId="4015" time="150"/>
+			<Frame spriteId="4016" time="150"/>
+		</Animation>
+
+		<Animation id="4101">
+			<Frame spriteId="4101" time="200"/>
+			<Frame spriteId="4102" time="200"/>
+			<Frame spriteId="4103" time="200"/>
+			<Frame spriteId="4102" time="200"/>
+		</Animation>
+		<Animation id="4102">
+			<Frame spriteId="4101" time="150"/>
+			<Frame spriteId="4102" time="150"/>
+			<Frame spriteId="4103" time="150"/>
+			<Frame spriteId="4102" time="150"/>
+		</Animation>
+		<Animation id="4103">
+			<Frame spriteId="4106" time="100"/>
+			<Frame spriteId="4107" time="100"/>
+			<Frame spriteId="4108" time="100"/>
+			<Frame spriteId="4107" time="100"/>
+		</Animation>
+		<Animation id="4104">
+			<Frame spriteId="4111" time="200"/>
+			<Frame spriteId="4112" time="200"/>
+			<Frame spriteId="4113" time="200"/>
+			<Frame spriteId="4112" time="200"/>
+		</Animation>
+		<Animation id="4105">
+			<Frame spriteId="4111" time="150"/>
+			<Frame spriteId="4112" time="150"/>
+			<Frame spriteId="4113" time="150"/>
+			<Frame spriteId="4112" time="150"/>
+		</Animation>
+		<Animation id="4106">
+			<Frame spriteId="4111" time="100"/>
+			<Frame spriteId="4112" time="100"/>
+			<Frame spriteId="4113" time="100"/>
+			<Frame spriteId="4112" time="100"/>
+		</Animation>
+		<Animation id="4107">
+			<Frame spriteId="4115" time="150"/>
+			<Frame spriteId="4116" time="150"/>
 		</Animation>
 	</Animations>
 
@@ -398,6 +519,11 @@
 		RIGHT="32"
 		JUMP="36"
 		ACTION="37"
+		HOTKEY1="2"
+		HOTKEY2="3"
+		HOTKEY3="4"
+		HOTKEY4="5"
+		HOTKEY5="6"
 		/>
 
 	<Stats
@@ -410,7 +536,7 @@
 		MOVE_SPEED_LIMIT = "1"
 		MAX_MOVE_SPEED_LIMIT = "2.5"
 		POWER_LIMIT = "2000"
-		DRIFT_LIMIT = "0.01"
+		DRIFT_LIMIT = "0.5"
 		POWER_COUNTDOWN = "3000"
 		JUMP_FORCE = "1.1"
 		JUMP_LIMIT = "250"
@@ -420,18 +546,28 @@
 		FLY_INTERVAL = "1"
 		GRAVITY = "0.0075"
 		KICK_INTERVAL ="100"
-		POWERUP_INTERVAL ="200"
+		POWERUP_INTERVAL ="400"
 		INVINCIBLE_COUNTDOWN="5000"
 		DEFLECT_FORCE="1.5"
 		SHELL_OFFSET="32"
-		TAIL_ENTRY = "200"
-		TAIL_PROGRESS = "100"
-		TAIL_RECOVER = "100"
+		TAIL_ENTRY = "150"
+		TAIL_PROGRESS = "75"
+		TAIL_RECOVER = "75"
+		FIRE_ENTRY = "150"
+		FIRE_PROGRESS = "75"
+		FIRE_RECOVER = "75"
+		FIRE_OFFSETX = "32"
+		FIRE_OFFSETY = "96"
 		PIPE_MOVEMENT = "128"
+		DIE_ENTRY = "500"
+		DIE_PROGRESS = "1000"
 		/>
-	
+
 	<Body tag="small" width ="62.0" height="60.0" offsetX="0.0" offsetY="30.0"/>
 	<Body tag="big" width ="62.0" height="96.0" offsetX="0.0" offsetY="48.0"/>
 	<Tail actor="2002" name="tail" source="Data/Asset/Character/MarioTail.xml"/>
+	<Fireball actor="2012" name="fireball1" source="Data/Asset/Character/MarioFireball.xml"/>
+	<Fireball actor="2012" name="fireball2" source="Data/Asset/Character/MarioFireball.xml"/>
+	<Fireball actor="2012" name="fireball3" source="Data/Asset/Character/MarioFireball.xml"/>
 
 </Prefab>

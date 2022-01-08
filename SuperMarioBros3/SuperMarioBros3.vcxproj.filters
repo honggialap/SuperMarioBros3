@@ -97,6 +97,9 @@
     <Filter Include="Props\TransportPipe">
       <UniqueIdentifier>{476532bb-1e66-46b5-8b4b-a10a8cc94dd6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Items\Flower">
+      <UniqueIdentifier>{ac023c20-8812-48fc-8275-d6d377fd3849}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Animation.cpp">
@@ -219,6 +222,15 @@
     </ClCompile>
     <ClCompile Include="Actor\Prop\TransportPipe.cpp">
       <Filter>Props\TransportPipe</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Item\Flower.cpp">
+      <Filter>Items\Flower</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Character\MarioFireball.cpp">
+      <Filter>Characters\Mario</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor\Prop\BrickFrag.cpp">
+      <Filter>Props\Brick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -344,6 +356,15 @@
     </ClInclude>
     <ClInclude Include="Actor\Prop\TransportPipe.h">
       <Filter>Props\TransportPipe</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Item\Flower.h">
+      <Filter>Items\Flower</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Character\MarioFireball.h">
+      <Filter>Characters\Mario</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor\Prop\BrickFrag.h">
+      <Filter>Props\Brick</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -511,6 +532,18 @@
     </Xml>
     <Xml Include="Data\Asset\Prop\World11SpawnZone2.xml">
       <Filter>Props\SpawnZone</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\Item\Flower.xml">
+      <Filter>Items\Flower</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\Prop\FlowerBlock.xml">
+      <Filter>Props\Block</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\Character\MarioFireball.xml">
+      <Filter>Characters\Mario</Filter>
+    </Xml>
+    <Xml Include="Data\Asset\Prop\BrickFrag.xml">
+      <Filter>Props\Brick</Filter>
     </Xml>
   </ItemGroup>
   <ItemGroup>

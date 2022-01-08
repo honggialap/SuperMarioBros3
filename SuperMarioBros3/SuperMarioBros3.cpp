@@ -5,6 +5,7 @@
 
 #include "Actor/Character/Mario.h"
 #include "Actor/Character/MarioTail.h"
+#include "Actor/Character/MarioFireball.h"
 #include "Actor/Character/Goomba.h"
 #include "Actor/Character/Koopa.h"
 #include "Actor/Character/KoopaSensor.h"
@@ -18,6 +19,7 @@
 #include "Actor/Item/ExtraLife.h"
 #include "Actor/Item/Mushroom.h"
 #include "Actor/Item/Leaf.h"
+#include "Actor/Item/Flower.h"
 
 #include "Actor/Misc/Background.h"
 #include "Actor/Misc/HUD.h"
@@ -94,6 +96,21 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 		return gameObject;
 	}
 	break;
+
+	case ACT_MARIO_FIREBALL:
+	{
+		auto gameObject = new CMarioFireball(
+			this, scene, nextGameObjectId++,
+			name, prefabSource,
+			posX, posY, gridX, gridY, layer
+		);
+		Add(gameObject);
+		if (active) gameObject->Active();
+		gameObject->Load();
+		return gameObject;
+	}
+	break;
+
 
 	case ACT_GOOMBA:
 	{
@@ -253,6 +270,20 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	case ACT_LEAF:
 	{
 		auto gameObject = new CLeaf(
+			this, scene, nextGameObjectId++,
+			name, prefabSource,
+			posX, posY, gridX, gridY, layer
+		);
+		Add(gameObject);
+		if (active) gameObject->Active();
+		gameObject->Load();
+		return gameObject;
+	}
+	break;
+
+	case ACT_FLOWER:
+	{
+		auto gameObject = new CFlower(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer

@@ -44,10 +44,15 @@ void CBrick::Render()
 	switch (_action)
 	{
 	case CBrick::EAction::IDLE:
-	case CBrick::EAction::BOUNCE:
 	{
 		if (_renderBody) _sprites[BBOX]->Render(_x, _y);
 		_animations[ANI_BRICK]->Render(_x, _y);
+	}
+		break;
+	case CBrick::EAction::BOUNCE:
+	{
+		if (_renderBody) _sprites[BBOX]->Render(_x, _y);
+		_animations[ANI_BRICK]->Render(_renderX, _renderY);
 	}
 		break;
 	case CBrick::EAction::BROKE:
@@ -104,6 +109,8 @@ void CBrick::Bounce(float elapsedMs)
 	case CBrick::EActionStage::START:
 	{
 		_originY = _y;
+		_renderX = _x;
+		_renderY = _y;
 		_return = false;
 		_animations[ANI_BRICK]->Play(true);
 	}
@@ -117,9 +124,9 @@ void CBrick::Bounce(float elapsedMs)
 		if (!_return)
 		{
 
-			if (_y < _originY + BOUNCE_LIMIT && !_return)
+			if (_renderY < _originY + BOUNCE_LIMIT && !_return)
 			{
-				_y += MOVE_SPEED * elapsedMs;
+				_renderY += MOVE_SPEED * elapsedMs;
 			}
 			else
 			{
@@ -128,14 +135,14 @@ void CBrick::Bounce(float elapsedMs)
 		}
 		else
 		{
-			if (_y > _originY && _return)
+			if (_renderY > _originY && _return)
 			{
-				_y -= MOVE_SPEED * elapsedMs;
+				_renderY -= MOVE_SPEED * elapsedMs;
 			}
 			else
 			{
 				_return = false;
-				_y = _originY;
+				_renderY = _originY;
 				SetNextAction(EAction::IDLE);
 			}
 		}

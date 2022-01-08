@@ -50,6 +50,8 @@ public:
 	/* Logic */
 	bool _return = false;
 	float _originY = 0;
+	float _renderX = 0;
+	float _renderY = 0;
 
 
 	enum class EAction

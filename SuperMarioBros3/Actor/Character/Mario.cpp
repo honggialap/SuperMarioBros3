@@ -2,6 +2,7 @@
 #include "../../SuperMarioBros3.h"
 #include "../Controller/GameMaster.h"
 #include "../Controller/World.h"
+#include "../Character/MarioFireball.h"
 #include "../Character/Goomba.h"
 #include "../Character/Koopa.h"
 #include "../Character/Piranha.h"
@@ -11,6 +12,7 @@
 #include "../Item/ExtraLife.h"
 #include "../Item/Mushroom.h"
 #include "../Item/Leaf.h"
+#include "../Item/Flower.h"
 #include "../Prop/Platform.h"
 #include "../Prop/Brick.h"
 #include "../Prop/Block.h"
@@ -38,7 +40,12 @@ void CMario::Load()
 	RIGHT = bindingNode.attribute("RIGHT").as_int();
 	JUMP = bindingNode.attribute("JUMP").as_int();
 	ACTION = bindingNode.attribute("ACTION").as_int();
-
+	HOTKEY1 = bindingNode.attribute("HOTKEY1").as_int();
+	HOTKEY2 = bindingNode.attribute("HOTKEY2").as_int();
+	HOTKEY3 = bindingNode.attribute("HOTKEY3").as_int();
+	HOTKEY4 = bindingNode.attribute("HOTKEY4").as_int();
+	HOTKEY5 = bindingNode.attribute("HOTKEY5").as_int();
+	
 	/* Body */
 	pugi::xml_node bodyNode = prefab.child("Prefab").child("Body");
 	SMALL_BODY_WIDTH = bodyNode.attribute("width").as_float();
@@ -56,6 +63,8 @@ void CMario::Load()
 	_renderBody = statsNode.attribute("renderBody").as_bool();
 	_controllerName = statsNode.attribute("controllerName").as_string();
 	_gameMasterName = statsNode.attribute("gameMasterName").as_string();
+
+	/* Stats - Movement */
 	ACCELERATE = statsNode.attribute("ACCELERATE").as_float();
 	FAST_ACCELERATE = statsNode.attribute("FAST_ACCELERATE").as_float();
 	DRAG_FORCE = statsNode.attribute("DRAG_FORCE").as_float();
@@ -71,14 +80,24 @@ void CMario::Load()
 	FLY_FORCE = statsNode.attribute("FLY_FORCE").as_float();
 	FLY_INTERVAL = statsNode.attribute("FLY_INTERVAL").as_float();
 	GRAVITY = statsNode.attribute("GRAVITY").as_float();
-	KICK_INTERVAL = statsNode.attribute("KICK_INTERVAL").as_float();
+
+	/* Stats - Action */
+	POWERUP_INTERVAL = statsNode.attribute("POWERUP_INTERVAL").as_float();
 	INVINCIBLE_COUNTDOWN = statsNode.attribute("INVINCIBLE_COUNTDOWN").as_float();
+	KICK_INTERVAL = statsNode.attribute("KICK_INTERVAL").as_float();
 	DEFLECT_FORCE = statsNode.attribute("DEFLECT_FORCE").as_float();
 	SHELL_OFFSET = statsNode.attribute("SHELL_OFFSET").as_float();
 	TAIL_ENTRY = statsNode.attribute("TAIL_ENTRY").as_float();
 	TAIL_PROGRESS = statsNode.attribute("TAIL_PROGRESS").as_float();
 	TAIL_RECOVER = statsNode.attribute("TAIL_RECOVER").as_float();
+	FIRE_ENTRY = statsNode.attribute("FIRE_ENTRY").as_float();
+	FIRE_PROGRESS = statsNode.attribute("FIRE_PROGRESS").as_float();
+	FIRE_RECOVER = statsNode.attribute("FIRE_RECOVER").as_float();
+	FIRE_OFFSETX = statsNode.attribute("FIRE_OFFSETX").as_float();
+	FIRE_OFFSETY = statsNode.attribute("FIRE_OFFSETY").as_float();
 	PIPE_MOVEMENT = statsNode.attribute("PIPE_MOVEMENT").as_float();
+	DIE_ENTRY = statsNode.attribute("DIE_ENTRY").as_float();
+	DIE_PROGRESS = statsNode.attribute("DIE_PROGRESS").as_float();
 
 	/* Weapon */
 	pugi::xml_node sensorNode = prefab.child("Prefab").child("Tail");
@@ -118,8 +137,7 @@ void CMario::Update(float elapsedMs)
 		_ay = -HOVER_FORCE;
 	}
 
-	if ((_action != EAction::DIE)
-		&& (_action != EAction::PIPE_IN)
+	if ((_action != EAction::PIPE_IN)
 		&& (_action != EAction::PIPE_OUT))
 	{
 		_vx += _ax * elapsedMs;
@@ -153,6 +171,7 @@ void CMario::Render()
 		case CMario::EAction::IDLE:
 			switch (_power)
 			{
+
 			case CMario::EPower::SMALL:
 			{
 				if (_hold)
@@ -167,6 +186,7 @@ void CMario::Render()
 				}
 			}
 			break;
+
 			case CMario::EPower::LARGE:
 			{
 				if (_hold)
@@ -181,6 +201,7 @@ void CMario::Render()
 				}
 			}
 			break;
+
 			case CMario::EPower::RACCOON:
 			{
 				{
@@ -197,12 +218,30 @@ void CMario::Render()
 				}
 			}
 			break;
+
+			case CMario::EPower::FIRE:
+			{
+				{
+					if (_hold)
+					{
+						if (_left) _sprites[SPR_MARIO_F_HOLD_IDLE_LEFT]->Render(_x, _y);
+						else	   _sprites[SPR_MARIO_F_HOLD_IDLE_RIGHT]->Render(_x, _y);
+					}
+					else
+					{
+						if (_left) _sprites[SPR_MARIO_F_IDLE_LEFT]->Render(_x, _y);
+						else	   _sprites[SPR_MARIO_F_IDLE_RIGHT]->Render(_x, _y);
+					}
+				}
+			}
+			break;
 			}
 			break;
 
 		case CMario::EAction::WALK:
 			switch (_power)
 			{
+
 			case CMario::EPower::SMALL:
 			{
 				if (_hold)
@@ -217,6 +256,7 @@ void CMario::Render()
 				}
 			}
 			break;
+
 			case CMario::EPower::LARGE:
 			{
 				if (_hold)
@@ -231,6 +271,7 @@ void CMario::Render()
 				}
 			}
 			break;
+
 			case CMario::EPower::RACCOON:
 			{
 				if (_hold)
@@ -245,12 +286,29 @@ void CMario::Render()
 				}
 			}
 			break;
+
+			case CMario::EPower::FIRE:
+			{
+				if (_hold)
+				{
+					if (_left) _animations[ANI_MARIO_F_HOLD_WALK_LEFT]->Render(_x, _y);
+					else	   _animations[ANI_MARIO_F_HOLD_WALK_RIGHT]->Render(_x, _y);
+				}
+				else
+				{
+					if (_left) _animations[ANI_MARIO_F_WALK_LEFT]->Render(_x, _y);
+					else	   _animations[ANI_MARIO_F_WALK_RIGHT]->Render(_x, _y);
+				}
+			}
+			break;
+
 			}
 			break;
 
 		case CMario::EAction::JUMP:
 			switch (_power)
 			{
+
 			case CMario::EPower::SMALL:
 			{
 				if (_hold)
@@ -273,6 +331,7 @@ void CMario::Render()
 				}
 			}
 			break;
+
 			case CMario::EPower::LARGE:
 			{
 				if (_hold)
@@ -295,6 +354,7 @@ void CMario::Render()
 				}
 			}
 			break;
+
 			case CMario::EPower::RACCOON:
 			{
 				if (_hold)
@@ -317,6 +377,30 @@ void CMario::Render()
 				}
 			}
 			break;
+
+			case CMario::EPower::FIRE:
+			{
+				if (_hold)
+				{
+					if (_left) _sprites[SPR_MARIO_F_HOLD_WALK1_LEFT]->Render(_x, _y);
+					else	   _sprites[SPR_MARIO_F_HOLD_WALK1_RIGHT]->Render(_x, _y);
+				}
+				else
+				{
+					if (_fly)
+					{
+						if (_left) _sprites[SPR_MARIO_F_FLY_LEFT]->Render(_x, _y);
+						else	   _sprites[SPR_MARIO_F_FLY_RIGHT]->Render(_x, _y);
+					}
+					else
+					{
+						if (_left) _sprites[SPR_MARIO_F_JUMP_LEFT]->Render(_x, _y);
+						else	   _sprites[SPR_MARIO_F_JUMP_RIGHT]->Render(_x, _y);
+					}
+				}
+			}
+			break;
+
 			}
 			break;
 
@@ -335,6 +419,7 @@ void CMario::Render()
 		case CMario::EAction::RUN:
 			switch (_power)
 			{
+
 			case CMario::EPower::SMALL:
 			{
 				if (_hold)
@@ -365,6 +450,7 @@ void CMario::Render()
 				}
 			}
 			break;
+
 			case CMario::EPower::LARGE:
 			{
 				if (_hold)
@@ -395,6 +481,7 @@ void CMario::Render()
 				}
 			}
 			break;
+
 			case CMario::EPower::RACCOON:
 			{
 				if (_hold)
@@ -425,6 +512,37 @@ void CMario::Render()
 				}
 			}
 			break;
+
+			case CMario::EPower::FIRE:
+			{
+				if (_hold)
+				{
+					if (_fly)
+					{
+						if (_left) _animations[ANI_MARIO_F_HOLD_RUN_FULL_LEFT]->Render(_x, _y);
+						else	   _animations[ANI_MARIO_F_HOLD_RUN_FULL_RIGHT]->Render(_x, _y);
+					}
+					else
+					{
+						if (_left) _animations[ANI_MARIO_F_HOLD_RUN_LEFT]->Render(_x, _y);
+						else	   _animations[ANI_MARIO_F_HOLD_RUN_RIGHT]->Render(_x, _y);
+					}
+				}
+				else
+				{
+					if (_fly)
+					{
+						if (_left) _animations[ANI_MARIO_F_RUN_FULL_LEFT]->Render(_x, _y);
+						else	   _animations[ANI_MARIO_F_RUN_FULL_RIGHT]->Render(_x, _y);
+					}
+					else
+					{
+						if (_left) _animations[ANI_MARIO_F_RUN_LEFT]->Render(_x, _y);
+						else	   _animations[ANI_MARIO_F_RUN_RIGHT]->Render(_x, _y);
+					}
+				}
+			}
+			break;
 			}
 			break;
 
@@ -437,18 +555,28 @@ void CMario::Render()
 				else	   _sprites[SPR_MARIO_S_DRIFT_RIGHT]->Render(_x, _y);
 			}
 			break;
+
 			case CMario::EPower::LARGE:
 			{
 				if (_left) _sprites[SPR_MARIO_L_DRIFT_LEFT]->Render(_x, _y);
 				else	   _sprites[SPR_MARIO_L_DRIFT_RIGHT]->Render(_x, _y);
 			}
 			break;
+
 			case CMario::EPower::RACCOON:
 			{
 				if (_left) _sprites[SPR_MARIO_R_DRIFT_LEFT]->Render(_x, _y);
 				else	   _sprites[SPR_MARIO_R_DRIFT_RIGHT]->Render(_x, _y);
 			}
 			break;
+
+			case CMario::EPower::FIRE:
+			{
+				if (_left) _sprites[SPR_MARIO_F_DRIFT_LEFT]->Render(_x, _y);
+				else	   _sprites[SPR_MARIO_F_DRIFT_RIGHT]->Render(_x, _y);
+			}
+			break;
+
 			}
 			break;
 
@@ -467,24 +595,35 @@ void CMario::Render()
 		case CMario::EAction::CROUNCH:
 			switch (_power)
 			{
+
 			case CMario::EPower::SMALL:
 			{
 				if (_left) _sprites[SPR_MARIO_S_IDLE_LEFT]->Render(_x, _y);
 				else	   _sprites[SPR_MARIO_S_IDLE_RIGHT]->Render(_x, _y);
 			}
 			break;
+
 			case CMario::EPower::LARGE:
 			{
 				if (_left) _sprites[SPR_MARIO_L_CROUCH_LEFT]->Render(_x, _y);
 				else	   _sprites[SPR_MARIO_L_CROUCH_RIGHT]->Render(_x, _y);
 			}
 			break;
+
 			case CMario::EPower::RACCOON:
 			{
 				if (_left) _sprites[SPR_MARIO_R_CROUCH_LEFT]->Render(_x, _y);
 				else	   _sprites[SPR_MARIO_R_CROUCH_RIGHT]->Render(_x, _y);
 			}
 			break;
+
+			case CMario::EPower::FIRE:
+			{
+				if (_left) _sprites[SPR_MARIO_F_CROUCH_LEFT]->Render(_x, _y);
+				else	   _sprites[SPR_MARIO_F_CROUCH_RIGHT]->Render(_x, _y);
+			}
+			break;
+
 			}
 			break;
 
@@ -500,36 +639,71 @@ void CMario::Render()
 			}
 			break;
 
+		case CMario::EAction::SHOOT:
+			switch (_power)
+			{
+			case CMario::EPower::FIRE:
+			{
+				if (_left) _animations[ANI_MARIO_F_ATTACK_LEFT]->Render(_x, _y);
+				else	   _animations[ANI_MARIO_F_ATTACK_RIGHT]->Render(_x, _y);
+			}
+			break;
+			}
+			break;
+
 		case CMario::EAction::KICK:
 			switch (_power)
 			{
+
 			case CMario::EPower::SMALL:
 			{
 				if (_left) _sprites[SPR_MARIO_S_KICK_LEFT]->Render(_x, _y);
 				else	   _sprites[SPR_MARIO_S_KICK_RIGHT]->Render(_x, _y);
 			}
 			break;
+
 			case CMario::EPower::LARGE:
 			{
 				if (_left) _sprites[SPR_MARIO_L_KICK_LEFT]->Render(_x, _y);
 				else	   _sprites[SPR_MARIO_L_KICK_RIGHT]->Render(_x, _y);
 			}
 			break;
+
 			case CMario::EPower::RACCOON:
 			{
 				if (_left) _sprites[SPR_MARIO_R_KICK_LEFT]->Render(_x, _y);
 				else	   _sprites[SPR_MARIO_R_KICK_RIGHT]->Render(_x, _y);
 			}
 			break;
+
+			case CMario::EPower::FIRE:
+			{
+				if (_left) _sprites[SPR_MARIO_F_KICK_LEFT]->Render(_x, _y);
+				else	   _sprites[SPR_MARIO_F_KICK_RIGHT]->Render(_x, _y);
+			}
+			break;
+
 			}
 			break;
 
 		case CMario::EAction::POWERUP:
+		{
+			if (_left)	_animations[ANI_MARIO_L_GROW_LEFT]->Render(_x, _y);
+			else		_animations[ANI_MARIO_L_GROW_RIGHT]->Render(_x, _y);
+		}
+		break;
+
 		case CMario::EAction::POWERUP_TAIL:
+		case CMario::EAction::POWERUP_FIRE:
+		{
+			_animations[ANI_MARIO_R_TRANSFORM]->Render(_x, _y);
+		}
+		break;
+
 		case CMario::EAction::POWERDOWN:
 		{
-			if (_left) _animations[ANI_MARIO_L_GROW_LEFT]->Render(_x, _y);
-			else _animations[ANI_MARIO_L_GROW_RIGHT]->Render(_x, _y);
+			if (_left)	_animations[ANI_MARIO_L_DEGROW_LEFT]->Render(_x, _y);
+			else		_animations[ANI_MARIO_L_DEGROW_RIGHT]->Render(_x, _y);
 		}
 		break;
 
@@ -539,6 +713,7 @@ void CMario::Render()
 			case CMario::EPower::SMALL:
 			case CMario::EPower::LARGE:
 			case CMario::EPower::RACCOON:
+			case CMario::EPower::FIRE:
 			{
 				_sprites[SPR_MARIO_S_DIE]->Render(_x, _y);
 			}
@@ -558,6 +733,9 @@ void CMario::Render()
 				break;
 			case CMario::EPower::RACCOON:
 				_sprites[SPR_MARIO_R_FRONT]->Render(_x, _y);
+				break;
+			case CMario::EPower::FIRE:
+				_sprites[SPR_MARIO_F_FRONT]->Render(_x, _y);
 				break;
 			}
 			break;
@@ -609,12 +787,20 @@ void CMario::HandleAction(float elapsedMs)
 		Kick(elapsedMs);
 		break;
 
+	case CMario::EAction::SHOOT:
+		Shoot(elapsedMs);
+		break;
+
 	case CMario::EAction::POWERUP:
 		PowerUp(elapsedMs);
 		break;
 
 	case CMario::EAction::POWERUP_TAIL:
 		PowerTail(elapsedMs);
+		break;
+
+	case CMario::EAction::POWERUP_FIRE:
+		PowerFire(elapsedMs);
 		break;
 
 	case CMario::EAction::POWERDOWN:
@@ -651,6 +837,10 @@ void CMario::Idle(float elapsedMs)
 		if (_power == EPower::RACCOON
 			&& _game->IsPressed(ACTION))
 			SetNextAction(EAction::SPIN);
+
+		else if (_power == EPower::FIRE
+			&& _game->IsPressed(ACTION))
+			SetNextAction(EAction::SHOOT);
 
 		if (_hold
 			&& _game->IsReleased(ACTION))
@@ -728,6 +918,13 @@ void CMario::Walk(float elapsedMs)
 				_animations[ANI_MARIO_R_HOLD_WALK_LEFT]->Play(true);
 				_animations[ANI_MARIO_R_HOLD_WALK_RIGHT]->Play(true);
 				break;
+
+			case CMario::EPower::FIRE:
+				_animations[ANI_MARIO_F_WALK_LEFT]->Play(true);
+				_animations[ANI_MARIO_F_WALK_RIGHT]->Play(true);
+				_animations[ANI_MARIO_F_HOLD_WALK_LEFT]->Play(true);
+				_animations[ANI_MARIO_F_HOLD_WALK_RIGHT]->Play(true);
+				break;
 			}
 		}
 	}
@@ -760,6 +957,13 @@ void CMario::Walk(float elapsedMs)
 				_animations[ANI_MARIO_R_HOLD_WALK_LEFT]->Update(elapsedMs);
 				_animations[ANI_MARIO_R_HOLD_WALK_RIGHT]->Update(elapsedMs);
 				break;
+
+			case CMario::EPower::FIRE:
+				_animations[ANI_MARIO_F_WALK_LEFT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_WALK_RIGHT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_HOLD_WALK_LEFT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_HOLD_WALK_RIGHT]->Update(elapsedMs);
+				break;
 			}
 		}
 
@@ -789,6 +993,10 @@ void CMario::Walk(float elapsedMs)
 			if (_power == EPower::RACCOON
 				&& _game->IsPressed(ACTION))
 				SetNextAction(EAction::SPIN);
+
+			else if (_power == EPower::FIRE
+				&& _game->IsPressed(ACTION))
+				SetNextAction(EAction::SHOOT);
 		}
 		else if (_game->IsDown(RIGHT)
 			&& !_game->IsDown(LEFT))
@@ -801,6 +1009,10 @@ void CMario::Walk(float elapsedMs)
 			if (_power == EPower::RACCOON
 				&& _game->IsPressed(ACTION))
 				SetNextAction(EAction::SPIN);
+
+			else if (_power == EPower::FIRE
+				&& _game->IsPressed(ACTION))
+				SetNextAction(EAction::SHOOT);
 		}
 
 		if (_left)
@@ -844,17 +1056,26 @@ void CMario::Walk(float elapsedMs)
 				_animations[ANI_MARIO_S_HOLD_WALK_LEFT]->Stop();
 				_animations[ANI_MARIO_S_HOLD_WALK_RIGHT]->Stop();
 				break;
+
 			case CMario::EPower::LARGE:
 				_animations[ANI_MARIO_L_WALK_LEFT]->Stop();
 				_animations[ANI_MARIO_L_WALK_RIGHT]->Stop();
 				_animations[ANI_MARIO_L_HOLD_WALK_LEFT]->Stop();
 				_animations[ANI_MARIO_L_HOLD_WALK_RIGHT]->Stop();
 				break;
+
 			case CMario::EPower::RACCOON:
 				_animations[ANI_MARIO_R_WALK_LEFT]->Stop();
 				_animations[ANI_MARIO_R_WALK_RIGHT]->Stop();
 				_animations[ANI_MARIO_R_HOLD_WALK_LEFT]->Stop();
 				_animations[ANI_MARIO_R_HOLD_WALK_RIGHT]->Stop();
+				break;
+
+			case CMario::EPower::FIRE:
+				_animations[ANI_MARIO_F_WALK_LEFT]->Stop();
+				_animations[ANI_MARIO_F_WALK_RIGHT]->Stop();
+				_animations[ANI_MARIO_F_HOLD_WALK_LEFT]->Stop();
+				_animations[ANI_MARIO_F_HOLD_WALK_RIGHT]->Stop();
 				break;
 			}
 		}
@@ -885,6 +1106,10 @@ void CMario::Jump(float elapsedMs)
 		if (_power == EPower::RACCOON
 			&& _game->IsPressed(ACTION))
 			SetNextAction(EAction::SPIN);
+
+		else if (_power == EPower::FIRE
+			&& _game->IsPressed(ACTION))
+			SetNextAction(EAction::SHOOT);
 
 		if (_hold
 			&& _game->IsReleased(ACTION))
@@ -974,6 +1199,10 @@ void CMario::Hover(float elapsedMs)
 			&& _game->IsPressed(ACTION))
 			SetNextAction(EAction::SPIN);
 
+		else if (_power == EPower::FIRE
+			&& _game->IsPressed(ACTION))
+			SetNextAction(EAction::SHOOT);
+
 		if (_hold
 			&& _game->IsReleased(ACTION))
 			SetNextAction(EAction::KICK);
@@ -1038,6 +1267,17 @@ void CMario::Run(float elapsedMs)
 				_animations[ANI_MARIO_R_HOLD_RUN_FULL_LEFT]->Play(true);
 				_animations[ANI_MARIO_R_HOLD_RUN_FULL_RIGHT]->Play(true);
 				break;
+
+			case CMario::EPower::FIRE:
+				_animations[ANI_MARIO_F_RUN_LEFT]->Play(true);
+				_animations[ANI_MARIO_F_RUN_RIGHT]->Play(true);
+				_animations[ANI_MARIO_F_RUN_FULL_LEFT]->Play(true);
+				_animations[ANI_MARIO_F_RUN_FULL_RIGHT]->Play(true);
+				_animations[ANI_MARIO_F_HOLD_RUN_LEFT]->Play(true);
+				_animations[ANI_MARIO_F_HOLD_RUN_RIGHT]->Play(true);
+				_animations[ANI_MARIO_F_HOLD_RUN_FULL_LEFT]->Play(true);
+				_animations[ANI_MARIO_F_HOLD_RUN_FULL_RIGHT]->Play(true);
+				break;
 			}
 		}
 	}
@@ -1082,6 +1322,17 @@ void CMario::Run(float elapsedMs)
 				_animations[ANI_MARIO_R_HOLD_RUN_FULL_LEFT]->Update(elapsedMs);
 				_animations[ANI_MARIO_R_HOLD_RUN_FULL_RIGHT]->Update(elapsedMs);
 				break;
+
+			case CMario::EPower::FIRE:
+				_animations[ANI_MARIO_F_RUN_LEFT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_RUN_RIGHT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_RUN_FULL_LEFT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_RUN_FULL_RIGHT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_HOLD_RUN_LEFT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_HOLD_RUN_RIGHT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_HOLD_RUN_FULL_LEFT]->Update(elapsedMs);
+				_animations[ANI_MARIO_F_HOLD_RUN_FULL_RIGHT]->Update(elapsedMs);
+				break;
 			}
 		}
 
@@ -1111,6 +1362,10 @@ void CMario::Run(float elapsedMs)
 			if (_power == EPower::RACCOON
 				&& _game->IsPressed(ACTION))
 				SetNextAction(EAction::SPIN);
+
+			else if (_power == EPower::FIRE
+				&& _game->IsPressed(ACTION))
+				SetNextAction(EAction::SHOOT);
 		}
 		else if (_game->IsDown(RIGHT)
 			&& !_game->IsDown(LEFT)
@@ -1121,6 +1376,10 @@ void CMario::Run(float elapsedMs)
 			if (_power == EPower::RACCOON
 				&& _game->IsPressed(ACTION))
 				SetNextAction(EAction::SPIN);
+
+			else if (_power == EPower::FIRE
+				&& _game->IsPressed(ACTION))
+				SetNextAction(EAction::SHOOT);
 		}
 		else if (!_game->IsDown(ACTION))
 			SetNextAction(EAction::WALK);
@@ -1196,6 +1455,17 @@ void CMario::Run(float elapsedMs)
 				_animations[ANI_MARIO_R_HOLD_RUN_FULL_LEFT]->Stop();
 				_animations[ANI_MARIO_R_HOLD_RUN_FULL_RIGHT]->Stop();
 				break;
+
+			case CMario::EPower::FIRE:
+				_animations[ANI_MARIO_F_RUN_LEFT]->Stop();
+				_animations[ANI_MARIO_F_RUN_RIGHT]->Stop();
+				_animations[ANI_MARIO_F_RUN_FULL_LEFT]->Stop();
+				_animations[ANI_MARIO_F_RUN_FULL_RIGHT]->Stop();
+				_animations[ANI_MARIO_F_HOLD_RUN_LEFT]->Stop();
+				_animations[ANI_MARIO_F_HOLD_RUN_RIGHT]->Stop();
+				_animations[ANI_MARIO_F_HOLD_RUN_FULL_LEFT]->Stop();
+				_animations[ANI_MARIO_F_HOLD_RUN_FULL_RIGHT]->Stop();
+				break;
 			}
 		}
 
@@ -1221,6 +1491,10 @@ void CMario::Drift(float elapsedMs)
 		if (_power == EPower::RACCOON
 			&& _game->IsPressed(ACTION))
 			SetNextAction(EAction::SPIN);
+
+		else if (_power == EPower::FIRE
+			&& _game->IsPressed(ACTION))
+			SetNextAction(EAction::SHOOT);
 
 		if (_hold
 			&& _game->IsReleased(ACTION))
@@ -1334,6 +1608,10 @@ void CMario::Crounch(float elapsedMs)
 		if (_power == EPower::RACCOON
 			&& _game->IsPressed(ACTION))
 			SetNextAction(EAction::SPIN);
+
+		else if (_power == EPower::FIRE
+			&& _game->IsPressed(ACTION))
+			SetNextAction(EAction::SHOOT);
 
 		if (_hold
 			&& _game->IsReleased(ACTION))
@@ -1456,6 +1734,107 @@ void CMario::Spin(float elapsedMs)
 	}
 }
 
+void CMario::Shoot(float elapsedMs)
+{
+	switch (_actionStage)
+	{
+	case CMario::EActionStage::START:
+	{
+		/* Animation Start */
+		{
+			_animations[ANI_MARIO_F_ATTACK_LEFT]->Play(false);
+			_animations[ANI_MARIO_F_ATTACK_RIGHT]->Play(false);
+		}
+
+		_fireEntry = FIRE_ENTRY;
+		_fireProgress = FIRE_PROGRESS;
+		_fireRecover = FIRE_RECOVER;
+	}
+	_actionStage = EActionStage::PROGRESS;
+	break;
+
+	case CMario::EActionStage::PROGRESS:
+	{
+
+		/* Animation Start */
+		{
+			_animations[ANI_MARIO_F_ATTACK_LEFT]->Update(elapsedMs);
+			_animations[ANI_MARIO_F_ATTACK_RIGHT]->Update(elapsedMs);
+		}
+
+		if (_fireEntry > 0)
+			_fireEntry -= elapsedMs;
+		else
+		{
+			if (_fireProgress > 0)
+			{
+				_fireProgress -= elapsedMs;
+				if (!_shot)
+				{
+					_shot = true;
+					ShootFireball();
+				}
+			}
+			else
+			{
+				if (_fireProgress > 0)
+					_fireProgress -= elapsedMs;
+				else
+				{
+					_shot = false;
+					SetNextAction(EAction::IDLE);
+				}
+			}
+		}
+
+		_ax = 0;
+		if (_left
+			&& _game->IsDown(LEFT)
+			&& !_game->IsDown(RIGHT))
+		{
+			if (_game->IsDown(ACTION))
+			{
+				_ax = -FAST_ACCELERATE;
+				if (_vx < -MAX_MOVE_SPEED_LIMIT) _vx = -MAX_MOVE_SPEED_LIMIT;
+			}
+			else
+			{
+				_ax = -ACCELERATE;
+				if (_vx < -MOVE_SPEED_LIMIT) _vx = -MOVE_SPEED_LIMIT;
+			}
+		}
+		
+		else if (!_left
+			&& !_game->IsDown(LEFT)
+			&& _game->IsDown(RIGHT))
+		{
+			if (_game->IsDown(ACTION))
+			{
+				_ax = FAST_ACCELERATE;
+				if (_vx > MAX_MOVE_SPEED_LIMIT) _vx = MAX_MOVE_SPEED_LIMIT;
+			}
+			else
+			{
+				_ax = ACCELERATE;
+				if (_vx > MOVE_SPEED_LIMIT) _vx = MOVE_SPEED_LIMIT;
+			}
+		}
+	}
+	break;
+
+	case CMario::EActionStage::EXIT:
+	{
+		/* Animation Start */
+		{
+			_animations[ANI_MARIO_F_ATTACK_LEFT]->Stop();
+			_animations[ANI_MARIO_F_ATTACK_RIGHT]->Stop();
+		}
+	}
+	NextAction();
+	break;
+	}
+}
+
 void CMario::Kick(float elapsedMs)
 {
 	switch (_actionStage)
@@ -1506,6 +1885,7 @@ void CMario::PowerUp(float elapsedMs)
 
 		_power = EPower::LARGE;
 		_powerUpInterval = POWERUP_INTERVAL;
+		_invincible = true;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
@@ -1530,6 +1910,7 @@ void CMario::PowerUp(float elapsedMs)
 	{
 		_animations[ANI_MARIO_L_GROW_LEFT]->Stop();
 		_animations[ANI_MARIO_L_GROW_RIGHT]->Stop();
+		_invincible = false;
 	}
 	NextAction();
 	break;
@@ -1542,9 +1923,9 @@ void CMario::PowerTail(float elapsedMs)
 	{
 	case CMario::EActionStage::START:
 	{
-		_animations[ANI_MARIO_L_GROW_LEFT]->Play(true);
-		_animations[ANI_MARIO_L_GROW_RIGHT]->Play(true);
+		_animations[ANI_MARIO_R_TRANSFORM]->Play(true);
 
+		_invincible = true;
 		_power = EPower::RACCOON;
 		_powerUpInterval = POWERUP_INTERVAL;
 	}
@@ -1553,8 +1934,7 @@ void CMario::PowerTail(float elapsedMs)
 
 	case CMario::EActionStage::PROGRESS:
 	{
-		_animations[ANI_MARIO_L_GROW_LEFT]->Update(elapsedMs);
-		_animations[ANI_MARIO_L_GROW_RIGHT]->Update(elapsedMs);
+		_animations[ANI_MARIO_R_TRANSFORM]->Update(elapsedMs);
 
 		if (_powerUpInterval > 0)
 		{
@@ -1569,8 +1949,48 @@ void CMario::PowerTail(float elapsedMs)
 
 	case CMario::EActionStage::EXIT:
 	{
-		_animations[ANI_MARIO_L_GROW_LEFT]->Stop();
-		_animations[ANI_MARIO_L_GROW_RIGHT]->Stop();
+		_animations[ANI_MARIO_R_TRANSFORM]->Stop();
+		_invincible = false;
+	}
+	NextAction();
+	break;
+	}
+}
+
+void CMario::PowerFire(float elapsedMs)
+{
+	switch (_actionStage)
+	{
+	case CMario::EActionStage::START:
+	{
+		_animations[ANI_MARIO_R_TRANSFORM]->Play(true);
+
+		_invincible = true;
+		_power = EPower::FIRE;
+		_powerUpInterval = POWERUP_INTERVAL;
+	}
+	_actionStage = EActionStage::PROGRESS;
+	break;
+
+	case CMario::EActionStage::PROGRESS:
+	{
+		_animations[ANI_MARIO_R_TRANSFORM]->Update(elapsedMs);
+
+		if (_powerUpInterval > 0)
+		{
+			_powerUpInterval -= elapsedMs;
+		}
+		else
+		{
+			SetNextAction(EAction::IDLE);
+		}
+	}
+	break;
+
+	case CMario::EActionStage::EXIT:
+	{
+		_animations[ANI_MARIO_R_TRANSFORM]->Stop();
+		_invincible = false;
 	}
 	NextAction();
 	break;
@@ -1583,8 +2003,8 @@ void CMario::PowerDown(float elapsedMs)
 	{
 	case CMario::EActionStage::START:
 	{
-		_animations[ANI_MARIO_L_GROW_LEFT]->Play(true);
-		_animations[ANI_MARIO_L_GROW_RIGHT]->Play(true);
+		_animations[ANI_MARIO_L_DEGROW_LEFT]->Play(true);
+		_animations[ANI_MARIO_L_DEGROW_RIGHT]->Play(true);
 
 		_power = EPower::SMALL;
 		_powerUpInterval = POWERUP_INTERVAL;
@@ -1594,8 +2014,8 @@ void CMario::PowerDown(float elapsedMs)
 
 	case CMario::EActionStage::PROGRESS:
 	{
-		_animations[ANI_MARIO_L_GROW_LEFT]->Update(elapsedMs);
-		_animations[ANI_MARIO_L_GROW_RIGHT]->Update(elapsedMs);
+		_animations[ANI_MARIO_L_DEGROW_LEFT]->Update(elapsedMs);
+		_animations[ANI_MARIO_L_DEGROW_RIGHT]->Update(elapsedMs);
 
 		if (_powerUpInterval > 0)
 		{
@@ -1610,8 +2030,8 @@ void CMario::PowerDown(float elapsedMs)
 
 	case CMario::EActionStage::EXIT:
 	{
-		_animations[ANI_MARIO_L_GROW_LEFT]->Stop();
-		_animations[ANI_MARIO_L_GROW_RIGHT]->Stop();
+		_animations[ANI_MARIO_L_DEGROW_LEFT]->Stop();
+		_animations[ANI_MARIO_L_DEGROW_RIGHT]->Stop();
 	}
 	NextAction();
 	break;
@@ -1625,14 +2045,34 @@ void CMario::Die(float elapsedMs)
 	case CMario::EActionStage::START:
 	{
 		_vy = 0;
+		_dieEntry = DIE_ENTRY;
+		_dieProgress = DIE_PROGRESS;
+		_diePush = false;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
 
 	case CMario::EActionStage::PROGRESS:
 	{
-		auto gameMaster = dynamic_cast<pGameMaster>(_game->Get(_gameMasterName));
-		gameMaster->Restart();
+		if (_dieEntry > 0)
+		{
+			_vy = 0;
+			_dieEntry -= elapsedMs;
+		}
+		else
+		{
+			if (!_diePush)
+			{
+				_vy = DEFLECT_FORCE;
+				_diePush = true;
+			}
+			if (_dieProgress > 0) _dieProgress -= elapsedMs;
+			else
+			{
+				auto gameMaster = dynamic_cast<pGameMaster>(_game->Get(_gameMasterName));
+				gameMaster->Restart();
+			}
+		}
 	}
 	break;
 
@@ -1721,21 +2161,22 @@ void CMario::PipeOut(float elapsedMs)
 
 void CMario::HotCheat()
 {
-	if (_game->IsPressed(2)) 
+	if (_game->IsPressed(HOTKEY1)) 
 		SetNextAction(EAction::POWERDOWN);
 
-	else if (_game->IsPressed(3)) 
+	else if (_game->IsPressed(HOTKEY2))
 		SetNextAction(EAction::POWERUP);
 
-	else if (_game->IsPressed(4)) 
+	else if (_game->IsPressed(HOTKEY3))
 		SetNextAction(EAction::POWERUP_TAIL);
 
-	else if (_game->IsPressed(5))
+	else if (_game->IsPressed(HOTKEY4))
+		SetNextAction(EAction::POWERUP_FIRE);
+
+	else if (_game->IsPressed(HOTKEY5))
 	{
-		_vy = 0;
-		_ay = 0;
-		SetPosition(100, 100);
-		SetNextAction(EAction::IDLE);
+		auto gameMaster = dynamic_cast<pGameMaster>(_game->Get(_gameMasterName));
+		gameMaster->Restart();
 	}
 }
 
@@ -1795,11 +2236,14 @@ void CMario::Hit()
 {
 	if (!_invincible) 
 	{
-		if (_power == EPower::SMALL)
+		switch (_power)
 		{
+		case CMario::EPower::SMALL:
 			SetNextAction(CMario::EAction::DIE);
-		}
-		else if (_power == EPower::LARGE)
+			break;
+		case CMario::EPower::LARGE:
+		case CMario::EPower::RACCOON:
+		case CMario::EPower::FIRE:
 		{
 			_invincible = true;
 			_invincibleCountdown = INVINCIBLE_COUNTDOWN;
@@ -1808,14 +2252,43 @@ void CMario::Hit()
 			else _vx = -DEFLECT_FORCE;
 			SetNextAction(CMario::EAction::POWERDOWN);
 		}
-		else if (_power == EPower::RACCOON)
+			break;
+		}
+	}
+}
+
+void CMario::ShootFireball()
+{
+	/* Read file */
+	pugi::xml_document prefab;
+	prefab.load_file(_source.c_str());
+
+	/* Fireball */
+	for (auto fireballNode = prefab.child("Prefab").child("Fireball");
+		fireballNode;
+		fireballNode = fireballNode.next_sibling("Fireball"))
+	{
+		std::string fireballName = _name + fireballNode.attribute("name").as_string();
+		if (_game->Get(fireballName) == nullptr)
 		{
-			_invincible = true;
-			_invincibleCountdown = INVINCIBLE_COUNTDOWN;
-			_vy = DEFLECT_FORCE;
-			if (_left) _vx = DEFLECT_FORCE;
-			else _vx = -DEFLECT_FORCE;
-			SetNextAction(CMario::EAction::POWERDOWN);
+			float fireOffsetX = 0;
+			if (_left) fireOffsetX = -FIRE_OFFSETX;
+			else fireOffsetX = FIRE_OFFSETX;
+
+			pMarioFireball fireball = dynamic_cast<pMarioFireball>(
+				_game->Create(
+				_scene,
+				fireballNode.attribute("actor").as_uint(),
+				fireballName,
+				fireballNode.attribute("source").as_string(),
+				_x + fireOffsetX, _y + FIRE_OFFSETY, _gridX, _gridY, _layer, _active
+				)
+				);
+
+			if (_left) fireball->_vx = -fireball->INITIAL_FORCE;
+			else fireball->_vx = fireball->INITIAL_FORCE;
+
+			break;
 		}
 	}
 }
@@ -1833,9 +2306,11 @@ int CMario::IsCollidable()
 	case CMario::EAction::FLY:
 	case CMario::EAction::CROUNCH:
 	case CMario::EAction::SPIN:
+	case CMario::EAction::SHOOT:
 	case CMario::EAction::KICK:
 	case CMario::EAction::POWERUP:
 	case CMario::EAction::POWERUP_TAIL:
+	case CMario::EAction::POWERUP_FIRE:
 	case CMario::EAction::POWERDOWN:
 		return 1;
 		break;
@@ -1870,9 +2345,11 @@ void CMario::GetBoundingBox(float& left, float& top, float& right, float& bottom
 		case CMario::EAction::FLY:
 		case CMario::EAction::CROUNCH:
 		case CMario::EAction::SPIN:
+		case CMario::EAction::SHOOT:
 		case CMario::EAction::KICK:
 		case CMario::EAction::POWERUP:
 		case CMario::EAction::POWERUP_TAIL:
+		case CMario::EAction::POWERUP_FIRE:
 		case CMario::EAction::POWERDOWN:
 			left = _x + SMALL_BODY_OFFSETX - (SMALL_BODY_WIDTH / 2);
 			right = _x + SMALL_BODY_OFFSETX + (SMALL_BODY_WIDTH / 2);
@@ -1893,6 +2370,7 @@ void CMario::GetBoundingBox(float& left, float& top, float& right, float& bottom
 
 	case CMario::EPower::LARGE:
 	case CMario::EPower::RACCOON:
+	case CMario::EPower::FIRE:
 		switch (_action)
 		{
 		case CMario::EAction::IDLE:
@@ -1903,9 +2381,11 @@ void CMario::GetBoundingBox(float& left, float& top, float& right, float& bottom
 		case CMario::EAction::DRIFT:
 		case CMario::EAction::FLY:
 		case CMario::EAction::SPIN:
+		case CMario::EAction::SHOOT:
 		case CMario::EAction::KICK:
 		case CMario::EAction::POWERUP:
 		case CMario::EAction::POWERUP_TAIL:
+		case CMario::EAction::POWERUP_FIRE:
 		case CMario::EAction::POWERDOWN:
 			left = _x + LARGE_BODY_OFFSETX - (LARGE_BODY_WIDTH / 2);
 			right = _x + LARGE_BODY_OFFSETX + (LARGE_BODY_WIDTH / 2);
@@ -1935,8 +2415,7 @@ void CMario::GetBoundingBox(float& left, float& top, float& right, float& bottom
 
 void CMario::OnNoCollision(float elapsedMs)
 {
-	if ((_action != EAction::DIE)
-		&& (_action != EAction::PIPE_IN)
+	if ((_action != EAction::PIPE_IN)
 		&& (_action != EAction::PIPE_OUT))
 	{
 		_x += _vx * elapsedMs;
@@ -1987,6 +2466,9 @@ void CMario::OnCollisionWith(pCollision e)
 
 	else if (dynamic_cast<pLeaf>(e->_target))
 		OnCollisionWithLeaf(e);
+
+	else if (dynamic_cast<pFlower>(e->_target))
+		OnCollisionWithFlower(e);
 
 	/* Prop*/
 	if (dynamic_cast<pPlatform>(e->_target))
@@ -2173,7 +2655,7 @@ void CMario::OnCollisionWithBlock(pCollision e)
 	pBlock block = dynamic_cast<pBlock>(e->_target);
 	if (e->_ny < 0)
 	{
-		_vy = -DEFLECT_FORCE;
+		_vy = -DEFLECT_FORCE / 2;
 		_fall = true;
 		if (block->_action == CBlock::EAction::IDLE)
 		{
@@ -2181,11 +2663,6 @@ void CMario::OnCollisionWithBlock(pCollision e)
 			block->_leftBounce = false;
 			block->SetNextAction(CBlock::EAction::SPAWN);
 		}
-	}
-	else if (e->_nx != 0 && _action == EAction::SPIN)
-	{
-		if (e->_nx > 0) _vx = DEFLECT_FORCE / 4;
-		else _vx = -DEFLECT_FORCE / 4;
 	}
 }
 
@@ -2234,4 +2711,12 @@ void CMario::OnCollisionWithLeaf(pCollision e)
 	if (_power != EPower::RACCOON)
 		SetNextAction(EAction::POWERUP_TAIL);
 	leaf->SetNextAction(CLeaf::EAction::CONSUMED);
+}
+
+void CMario::OnCollisionWithFlower(pCollision e)
+{
+	pFlower flower = dynamic_cast<pFlower>(e->_target);
+	if (_power != EPower::FIRE)
+		SetNextAction(EAction::POWERUP_FIRE);
+	flower->SetNextAction(CFlower::EAction::CONSUMED);
 }

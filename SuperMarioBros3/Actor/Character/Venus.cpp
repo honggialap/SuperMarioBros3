@@ -463,15 +463,15 @@ void CVenus::ShootFireball()
 	prefab.load_file(_source.c_str());
 
 	/* Fireball */
-	pugi::xml_node sensorNode = prefab.child("Prefab").child("Fireball");
-	std::string fireballName = _name + sensorNode.attribute("name").as_string();
+	pugi::xml_node fireballNode = prefab.child("Prefab").child("Fireball");
+	std::string fireballName = _name + fireballNode.attribute("name").as_string();
 	if (_game->Get(fireballName) == nullptr)
 	{
 		auto fireball = _game->Create(
 			_scene,
-			sensorNode.attribute("actor").as_uint(),
+			fireballNode.attribute("actor").as_uint(),
 			fireballName,
-			sensorNode.attribute("source").as_string(),
+			fireballNode.attribute("source").as_string(),
 			_x, _y + SHOT_OFFSET, _gridX, _gridY, _layer, _active
 		);
 

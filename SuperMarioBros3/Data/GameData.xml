@@ -34,12 +34,8 @@
 		<Button keyCode="4"/>
 		<!--Hot4-->
 		<Button keyCode="5"/>
-		
-		<!--NUMPAD for CAMERA-->
-		<Button keyCode="80"/>
-		<Button keyCode="75"/>
-		<Button keyCode="77"/>
-		<Button keyCode="72"/>
+		<!--Hot5-->
+		<Button keyCode="6"/>
 
 	</PlayerSettings>
 	<!--https://community.bistudio.com/wiki/DIK_KeyCodes-->

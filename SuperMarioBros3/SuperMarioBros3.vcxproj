@@ -39,6 +39,7 @@
     <ClCompile Include="Actor\Item\Mushroom.cpp" />
     <ClCompile Include="Actor\Prop\Brick.cpp" />
     <ClCompile Include="Actor\Prop\Block.cpp" />
+    <ClCompile Include="Actor\Prop\BrickFrag.cpp" />
     <ClCompile Include="Actor\Prop\DeadZone.cpp" />
     <ClCompile Include="Actor\Prop\Goal.cpp" />
     <ClCompile Include="Actor\Prop\Pipe.cpp" />
@@ -57,7 +58,9 @@
     <ClCompile Include="Engine\Game.cpp" />
     <ClCompile Include="Engine\GameObject.cpp" />
     <ClCompile Include="Engine\Library\pugixml.cpp" />
+    <ClCompile Include="Actor\Item\Flower.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Actor\Character\MarioFireball.cpp" />
     <ClCompile Include="SuperMarioBros3.cpp" />
     <ClCompile Include="Actor\Prop\TransportPipe.cpp" />
   </ItemGroup>
@@ -82,6 +85,7 @@
     <ClInclude Include="Actor\Item\Mushroom.h" />
     <ClInclude Include="Actor\Prop\Brick.h" />
     <ClInclude Include="Actor\Prop\Block.h" />
+    <ClInclude Include="Actor\Prop\BrickFrag.h" />
     <ClInclude Include="Actor\Prop\DeadZone.h" />
     <ClInclude Include="Actor\Prop\Goal.h" />
     <ClInclude Include="Actor\Prop\Pipe.h" />
@@ -101,6 +105,8 @@
     <ClInclude Include="Engine\GameObject.h" />
     <ClInclude Include="Engine\Library\pugiconfig.hpp" />
     <ClInclude Include="Engine\Library\pugixml.hpp" />
+    <ClInclude Include="Actor\Item\Flower.h" />
+    <ClInclude Include="Actor\Character\MarioFireball.h" />
     <ClInclude Include="SuperMarioBros3.h" />
     <ClInclude Include="Actor\Prop\TransportPipe.h" />
   </ItemGroup>
@@ -110,6 +116,7 @@
     <Xml Include="Data\Asset\Character\MarioTail.xml" />
     <Xml Include="Data\Asset\Character\PiranhaSensor.xml" />
     <Xml Include="Data\Asset\Character\VenusSensor.xml" />
+    <Xml Include="Data\Asset\Prop\BrickFrag.xml" />
     <Xml Include="Data\Asset\Prop\PowerUpBlock.xml" />
     <Xml Include="Data\Asset\Prop\DeadZone.xml" />
     <Xml Include="Data\Asset\Misc\World11SubBackground.xml" />
@@ -160,6 +167,9 @@
     <Xml Include="Data\Asset\Prop\OnLandPipe.xml" />
     <Xml Include="Data\Asset\Prop\UndergroundPipe.xml" />
     <Xml Include="Data\Asset\Prop\World11SpawnZone2.xml" />
+    <Xml Include="Data\Asset\Item\Flower.xml" />
+    <Xml Include="Data\Asset\Prop\FlowerBlock.xml" />
+    <Xml Include="Data\Asset\Character\MarioFireball.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\Scene\GridMaker.exe" />

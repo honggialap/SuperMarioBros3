@@ -8,6 +8,7 @@
 /* CHARACTER */
 #define ACT_MARIO				2001
 #define ACT_MARIO_TAIL			2002
+#define ACT_MARIO_FIREBALL		2012
 #define ACT_GOOMBA				2003
 #define ACT_KOOPA				2004
 #define ACT_KOOPA_SENSOR		2005
@@ -22,6 +23,7 @@
 #define ACT_EXTRALIFE			3002
 #define ACT_MUSHROOM			3003
 #define ACT_LEAF				3004
+#define ACT_FLOWER				3005
 
 /* PROP */
 #define ACT_PLATFORM			4001

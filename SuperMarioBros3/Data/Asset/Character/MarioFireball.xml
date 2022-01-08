@@ -1,0 +1,31 @@
+<Prefab>
+
+	<Sprites>
+		<!--BBox-->
+		<Sprite id="9991" textureId="0" left="0" top="0" width ="32" height ="32" offsetX="0" offsetY="0"/>
+
+		<Sprite id="1001" textureId="1" left="436" top="964" width="32" height="64" offsetX="0" offsetY="0"/>
+		<Sprite id="1002" textureId="1" left="476" top="964" width="32" height="64" offsetX="0" offsetY="0"/>
+		<Sprite id="1003" textureId="1" left="516" top="964" width="32" height="64" offsetX="0" offsetY="0"/>
+		<Sprite id="1004" textureId="1" left="556" top="964" width="32" height="64" offsetX="0" offsetY="0"/>
+	</Sprites>
+
+	<Animations>
+		<Animation id="1001">
+			<Frame spriteId="1001" time="150"/>
+			<Frame spriteId="1002" time="150"/>
+			<Frame spriteId="1003" time="150"/>
+			<Frame spriteId="1004" time="150"/>
+		</Animation>
+	</Animations>
+
+	<Stats
+		renderBody="true"
+		DECAY_INTERVAL="1000"
+		DRAG_FORCE="1.05"
+		GRAVITY="0.0025"
+		INITIAL_FORCE="2"
+	/>
+	<Body tag="bla" width ="32" height ="32" offsetX="0" offsetY="0"/>
+
+</Prefab>

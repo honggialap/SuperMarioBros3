@@ -44,6 +44,7 @@
 
 	<Coin actor="3001" name="Coin" source="Data/Asset/Item/Coin.xml"/>
 	<Leaf actor="3004" name="Leaf" source="Data/Asset/Item/Leaf.xml"/>
+	<Flower actor="3005" name="Flower" source="Data/Asset/Item/Flower.xml"/>
 	<Mushroom actor="3003" name="Mushroom" source="Data/Asset/Item/Mushroom.xml"/>
 	<ExtraLife actor="3002" name="ExtraLife" source="Data/Asset/Item/ExtraLife.xml"/>
 	<Switch actor="4006" name="Switch" source="Data/Asset/Prop/Switch.xml"/>

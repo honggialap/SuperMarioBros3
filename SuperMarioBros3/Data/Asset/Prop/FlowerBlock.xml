@@ -35,8 +35,8 @@
 	<Stats
 	renderBody="true"
 	targetName="mario"
-	TYPE="1"
-	SPAWN="2"
+	TYPE="0"
+	SPAWN="4"
 	MOVE_SPEED = "0.7"
 	BOUNCE_LIMIT ="32"
 		/>
@@ -48,4 +48,6 @@
 	<Mushroom actor="3003" name="Mushroom" source="Data/Asset/Item/Mushroom.xml"/>
 	<ExtraLife actor="3002" name="ExtraLife" source="Data/Asset/Item/ExtraLife.xml"/>
 	<Switch actor="4006" name="Switch" source="Data/Asset/Prop/Switch.xml"/>
+
+
 </Prefab>

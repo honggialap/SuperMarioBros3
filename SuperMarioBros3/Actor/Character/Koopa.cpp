@@ -728,5 +728,6 @@ void CKoopa::OnCollisionWithBlock(pCollision e)
 
 void CKoopa::OnCollisionWithDeadZone(pCollision e)
 {
-	SetNextAction(EAction::THROWN);
+	if(_action != EAction::THROWN)
+		SetNextAction(EAction::THROWN);
 }

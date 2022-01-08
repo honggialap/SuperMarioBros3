@@ -66,6 +66,11 @@ void CBlock::Render()
 		break;
 
 	case CBlock::EAction::SPAWN:
+	{
+		if (_renderBody) _sprites[BBOX]->Render(_x, _y);
+		_sprites[SPR_BLOCK_EMPTY]->Render(_renderX, _renderY);
+	}
+	break;
 	case CBlock::EAction::EMTPY:
 	{
 		if (_renderBody) _sprites[BBOX]->Render(_x, _y);
@@ -135,6 +140,8 @@ void CBlock::Spawn(float elapsedMs)
 		{
 			_origin = _x;
 		}
+		_renderX = _x;
+		_renderY = _y;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
@@ -145,9 +152,9 @@ void CBlock::Spawn(float elapsedMs)
 		{
 			if (!_return)
 			{
-				if (_y < _origin + BOUNCE_LIMIT)
+				if (_renderY < _origin + BOUNCE_LIMIT)
 				{
-					_y += MOVE_SPEED * elapsedMs;
+					_renderY += MOVE_SPEED * elapsedMs;
 				}
 				else
 				{
@@ -156,14 +163,14 @@ void CBlock::Spawn(float elapsedMs)
 			}
 			else
 			{
-				if (_y > _origin)
+				if (_renderY > _origin)
 				{
-					_y -= MOVE_SPEED * elapsedMs;
+					_renderY -= MOVE_SPEED * elapsedMs;
 				}
 				else
 				{
 					_return = false;
-					_y = _origin;
+					_renderY = _origin;
 					SpawnItem();
 					SetNextAction(EAction::EMTPY);
 				}
@@ -175,9 +182,9 @@ void CBlock::Spawn(float elapsedMs)
 			{
 				if (!_return)
 				{
-					if (_x > _origin - BOUNCE_LIMIT && !_return)
+					if (_renderX > _origin - BOUNCE_LIMIT && !_return)
 					{
-						_x -= MOVE_SPEED * elapsedMs;
+						_renderX -= MOVE_SPEED * elapsedMs;
 					}
 					else
 					{
@@ -186,14 +193,14 @@ void CBlock::Spawn(float elapsedMs)
 				}
 				else
 				{
-					if (_x < _origin && _return)
+					if (_renderX < _origin && _return)
 					{
-						_x += MOVE_SPEED * elapsedMs;
+						_renderX += MOVE_SPEED * elapsedMs;
 					}
 					else
 					{
 						_return = false;
-						_x = _origin;
+						_renderX = _origin;
 						SpawnItem();
 						SetNextAction(EAction::EMTPY);
 					}
@@ -204,9 +211,9 @@ void CBlock::Spawn(float elapsedMs)
 				if (!_return)
 				{
 
-					if (_x < _origin + BOUNCE_LIMIT && !_return)
+					if (_renderX < _origin + BOUNCE_LIMIT && !_return)
 					{
-						_x += MOVE_SPEED * elapsedMs;
+						_renderX += MOVE_SPEED * elapsedMs;
 					}
 					else
 					{
@@ -215,14 +222,14 @@ void CBlock::Spawn(float elapsedMs)
 				}
 				else
 				{
-					if (_x > _origin && _return)
+					if (_renderX > _origin && _return)
 					{
-						_x -= MOVE_SPEED * elapsedMs;
+						_renderX -= MOVE_SPEED * elapsedMs;
 					}
 					else
 					{
 						_return = false;
-						_x = _origin;
+						_renderX = _origin;
 						SpawnItem();
 						SetNextAction(EAction::EMTPY);
 					}
@@ -345,6 +352,21 @@ void CBlock::SpawnItem()
 		);
 	}
 		break;
+
+	case CBlock::ESpawn::FLOWER:
+	{
+		auto flowerNode = prefab.child("Prefab").child("Flower");
+		std::string flowerName = _name + flowerNode.attribute("name").as_string();
+		auto gameObject = _game->Create(
+			_scene,
+			flowerNode.attribute("actor").as_uint(),
+			flowerName,
+			flowerNode.attribute("source").as_string(),
+			_x, _y, _gridX, _gridY, _layer, _active
+		);
+	}
+	break;
+
 	}
 }
 
