@@ -1,5 +1,6 @@
 #include "Brick.h"
 #include "../../SuperMarioBros3.h"
+#include "BrickFrag.h"
 
 void CBrick::Load()
 {
@@ -164,6 +165,7 @@ void CBrick::Broke(float elapsedMs)
 	{
 	case CBrick::EActionStage::START:
 	{
+		SpawnFrag();
 		Destroy();
 	}
 	_actionStage = EActionStage::PROGRESS;
@@ -179,6 +181,42 @@ void CBrick::Broke(float elapsedMs)
 	}
 	NextAction();
 	break;
+	}
+}
+
+void CBrick::SpawnFrag()
+{
+	/* Read file */
+	pugi::xml_document prefab;
+	prefab.load_file(_source.c_str());
+
+	{
+		pugi::xml_node leftFragNode = prefab.child("Prefab").child("LeftFrag");
+		std::string leftFragName = _name + leftFragNode.attribute("name").as_string();
+		pBrickFrag leftFrag = dynamic_cast<pBrickFrag>(
+			_game->Create(
+				_scene,
+				leftFragNode.attribute("actor").as_uint(),
+				leftFragName,
+				leftFragNode.attribute("source").as_string(),
+				_x, _y, _gridX, _gridY, _layer + 1, _active
+			)
+			);
+		leftFrag->_left = true;
+	}
+	{
+		pugi::xml_node rightFragNode = prefab.child("Prefab").child("RightFrag");
+		std::string rightFragName = _name + rightFragNode.attribute("name").as_string();
+		pBrickFrag rightFrag = dynamic_cast<pBrickFrag>(
+			_game->Create(
+				_scene,
+				rightFragNode.attribute("actor").as_uint(),
+				rightFragName,
+				rightFragNode.attribute("source").as_string(),
+				_x, _y, _gridX, _gridY, _layer + 1, _active
+			)
+			);
+		rightFrag->_left = false;
 	}
 }
 

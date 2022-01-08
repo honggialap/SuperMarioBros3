@@ -28,5 +28,7 @@
 		/>
 	<Body tag="small" width ="64.0" height="64.0" offsetX="0.0" offsetY="32.0"/>
 
+	<LeftFrag actor="4012" name="leftfrag" source="Data/Asset/Prop/BrickFrag.xml"/>
+	<RightFrag actor="4012" name="rightfrag" source="Data/Asset/Prop/BrickFrag.xml"/>
 
 </Prefab>

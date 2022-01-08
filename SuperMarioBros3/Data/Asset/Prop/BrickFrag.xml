@@ -1,0 +1,14 @@
+<Prefab>
+
+	<Sprites>
+		<Sprite id="1001" textureId="4" left="292" top="76" width="32" height="64" offsetX="0" offsetY="0"/>
+		<Sprite id="1002" textureId="4" left="332" top="76" width="32" height="64" offsetX="0" offsetY="0"/>
+	</Sprites>
+
+	<Stats
+		DECAY_INTERVAL="1000"
+		DRAG_FORCE="1.05"
+		GRAVITY="0.0025"
+		INITIAL_FORCE="1"
+	/>
+</Prefab>

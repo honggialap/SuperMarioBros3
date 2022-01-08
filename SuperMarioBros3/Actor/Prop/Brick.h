@@ -90,6 +90,7 @@ public:
 	void Idle(float elapsedMs);
 	void Bounce(float elapsedMs);
 	void Broke(float elapsedMs);
+	void SpawnFrag();
 
 	int IsCollidable();
 	int IsBlocking();

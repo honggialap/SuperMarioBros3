@@ -1883,9 +1883,9 @@ void CMario::PowerUp(float elapsedMs)
 		_animations[ANI_MARIO_L_GROW_LEFT]->Play(true);
 		_animations[ANI_MARIO_L_GROW_RIGHT]->Play(true);
 
+		if (!_invincible) _invincible = true;
 		_power = EPower::LARGE;
 		_powerUpInterval = POWERUP_INTERVAL;
-		_invincible = true;
 	}
 	_actionStage = EActionStage::PROGRESS;
 	break;
@@ -1925,7 +1925,7 @@ void CMario::PowerTail(float elapsedMs)
 	{
 		_animations[ANI_MARIO_R_TRANSFORM]->Play(true);
 
-		_invincible = true;
+		if(!_invincible) _invincible = true;
 		_power = EPower::RACCOON;
 		_powerUpInterval = POWERUP_INTERVAL;
 	}
@@ -1965,7 +1965,7 @@ void CMario::PowerFire(float elapsedMs)
 	{
 		_animations[ANI_MARIO_R_TRANSFORM]->Play(true);
 
-		_invincible = true;
+		if(!_invincible) _invincible = true;
 		_power = EPower::FIRE;
 		_powerUpInterval = POWERUP_INTERVAL;
 	}
@@ -2045,6 +2045,7 @@ void CMario::Die(float elapsedMs)
 	case CMario::EActionStage::START:
 	{
 		_vy = 0;
+		_vx = 0;
 		_dieEntry = DIE_ENTRY;
 		_dieProgress = DIE_PROGRESS;
 		_diePush = false;

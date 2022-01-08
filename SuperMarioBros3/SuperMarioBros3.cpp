@@ -27,6 +27,7 @@
 
 #include "Actor/Prop/Platform.h"
 #include "Actor/Prop/Brick.h"
+#include "Actor/Prop/BrickFrag.h"
 #include "Actor/Prop/Block.h"
 #include "Actor/Prop/SpawnZone.h"
 #include "Actor/Prop/DeadZone.h"
@@ -313,6 +314,20 @@ pGameObject CSMB3::Create(pScene scene, unsigned int actorID, std::string name, 
 	case ACT_BRICK:
 	{
 		auto gameObject = new CBrick(
+			this, scene, nextGameObjectId++,
+			name, prefabSource,
+			posX, posY, gridX, gridY, layer
+		);
+		Add(gameObject);
+		if (active) gameObject->Active();
+		gameObject->Load();
+		return gameObject;
+	}
+	break;
+
+	case ACT_BRICK_FRAG:
+	{
+		auto gameObject = new CBrickFrag(
 			this, scene, nextGameObjectId++,
 			name, prefabSource,
 			posX, posY, gridX, gridY, layer

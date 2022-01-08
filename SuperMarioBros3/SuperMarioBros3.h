@@ -28,6 +28,7 @@
 /* PROP */
 #define ACT_PLATFORM			4001
 #define ACT_BRICK				4002
+#define ACT_BRICK_FRAG			4012
 #define ACT_BLOCK				4003
 #define ACT_SPAWN_ZONE			4004
 #define ACT_DEAD_ZONE			4005
