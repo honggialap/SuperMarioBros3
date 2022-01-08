@@ -3,15 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SuperMarioBros3", "SuperMarioBros3\SuperMarioBros3.vcxproj", "{4E4E7FE6-838D-4FE3-B856-94845235524E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "legacy", "SuperMarioBros3\SuperMarioBros3.vcxproj", "{4E4E7FE6-838D-4FE3-B856-94845235524E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GridMaker", "GridMaker\GridMaker.vcxproj", "{DC2F44BF-9073-457C-93D7-058BB3D91C73}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EA69F688-9EA7-41CE-B043-3BFAA07B6862}"
 	ProjectSection(SolutionItems) = preProject
-		build.rar = build.rar
 		readme.txt = readme.txt
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj", "{B4FFA118-6A6E-474E-A80F-354F62C9CE8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +38,14 @@ Global
 		{DC2F44BF-9073-457C-93D7-058BB3D91C73}.Release|x64.Build.0 = Release|x64
 		{DC2F44BF-9073-457C-93D7-058BB3D91C73}.Release|x86.ActiveCfg = Release|Win32
 		{DC2F44BF-9073-457C-93D7-058BB3D91C73}.Release|x86.Build.0 = Release|Win32
+		{B4FFA118-6A6E-474E-A80F-354F62C9CE8D}.Debug|x64.ActiveCfg = Debug|x64
+		{B4FFA118-6A6E-474E-A80F-354F62C9CE8D}.Debug|x64.Build.0 = Debug|x64
+		{B4FFA118-6A6E-474E-A80F-354F62C9CE8D}.Debug|x86.ActiveCfg = Debug|Win32
+		{B4FFA118-6A6E-474E-A80F-354F62C9CE8D}.Debug|x86.Build.0 = Debug|Win32
+		{B4FFA118-6A6E-474E-A80F-354F62C9CE8D}.Release|x64.ActiveCfg = Release|x64
+		{B4FFA118-6A6E-474E-A80F-354F62C9CE8D}.Release|x64.Build.0 = Release|x64
+		{B4FFA118-6A6E-474E-A80F-354F62C9CE8D}.Release|x86.ActiveCfg = Release|Win32
+		{B4FFA118-6A6E-474E-A80F-354F62C9CE8D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
